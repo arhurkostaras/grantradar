@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UK Small Business Grants and Innovation Funding | GrantRadar</title>
+    <meta name="description" content="Find UK small business grants from Innovate UK, HMRC R&D Tax Relief, British Business Bank, and regional growth funds. Innovation funding updated daily.">
+    <link rel="canonical" href="https://grantradar.com/uk-small-business-grants.html">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { theme: { extend: { colors: { forest: '#1A7A4A', 'forest-dark': '#14613B', 'forest-light': '#22995D', gold: '#C9A227', 'gold-light': '#D4B342', dark: '#0a0a0a', card: '#1a1a1a', border: '#333333' } } } }
+    </script>
+    <style>
+        body { font-family: 'Roboto', sans-serif; background: #0a0a0a; color: #e5e7eb; }
+        .glass-nav { background: rgba(0,0,0,0.4); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); }
+        .card-hover { transition: transform 0.3s, box-shadow 0.3s; }
+        .card-hover:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(26,122,74,0.15); }
+        .grant-count-badge { background: linear-gradient(135deg, #1A7A4A, #C9A227); }
+        .gold-gradient { background: linear-gradient(135deg, #C9A227, #D4B342); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        @media (max-width: 768px) { .nav-links { display: none; } .nav-links.active { display: flex; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0; background: rgba(0,0,0,0.95); padding: 1rem; } }
+    </style>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+    <script>window.API_BASE = 'https://grantradar-backend-production.up.railway.app';</script>
+    <script type="application/ld+json">
+    { "@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://grantradar.com/" },
+        { "@type": "ListItem", "position": 2, "name": "UK Small Business Grants", "item": "https://grantradar.com/uk-small-business-grants.html" }
+    ]}
+    </script>
+    <script type="application/ld+json">
+    { "@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
+        { "@type": "Question", "name": "What grants are available for UK small businesses?", "acceptedAnswer": { "@type": "Answer", "text": "UK small businesses can access Innovate UK Smart Grants for innovation projects, HMRC R&D Tax Relief for research expenditure, British Business Bank programs, regional Local Enterprise Partnership grants, and sector-specific funds like the Clean Growth Fund and Digital Growth Programme." }},
+        { "@type": "Question", "name": "How does Innovate UK funding work?", "acceptedAnswer": { "@type": "Answer", "text": "Innovate UK provides competitive grants through programmes like Smart Grants (up to 500K for game-changing innovations), Catalyst programmes for specific sectors, and the Knowledge Transfer Partnership. Applications are assessed on innovation, team capability, market potential, and project plan." }},
+        { "@type": "Question", "name": "What is the UK R&D Tax Relief scheme?", "acceptedAnswer": { "@type": "Answer", "text": "HMRC R&D Tax Relief allows UK companies to claim tax credits on qualifying R&D expenditure. SMEs can claim up to 186% enhanced deduction or a 10% credit if loss-making. The RDEC scheme for larger companies provides a 20% above-the-line credit on qualifying costs." }},
+        { "@type": "Question", "name": "Can UK startups get government grants?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, UK startups can apply for Innovate UK grants, the Start Up Loans programme (up to 25K per co-founder), Enterprise Investment Scheme support, and regional innovation grants. Many programs have no minimum trading history requirement." }},
+        { "@type": "Question", "name": "Are there grants for UK businesses post-Brexit?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, the UK has replaced EU Structural Funds with the UK Shared Prosperity Fund and Levelling Up Fund. Additionally, Horizon Europe association allows UK researchers to access EU research grants. Innovate UK continues to expand domestic innovation funding." }}
+    ]}
+    </script>
+    <script type="application/ld+json">
+    { "@context": "https://schema.org", "@type": "ItemList", "name": "UK Small Business Grants and Innovation Funding", "numberOfItems": 5, "itemListElement": [] }
+    </script>
+</head>
+<body class="bg-dark min-h-screen">
+    <nav class="glass-nav fixed top-0 left-0 right-0 z-50 border-b border-border">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <a href="index.html" class="flex items-center space-x-2">
+                    <span class="text-xl font-bold text-white">Grant<span class="text-forest">Radar</span></span>
+                </a>
+                <button id="mobile-menu-btn" class="md:hidden text-white text-xl"><i class="fas fa-bars"></i></button>
+                <div class="nav-links hidden md:flex items-center space-x-6">
+                    <a href="index.html" class="text-gray-300 hover:text-forest transition">Home</a>
+                    <a href="find-grant.html" class="text-gray-300 hover:text-forest transition">Find Grants</a>
+                    <a href="how-it-works.html" class="text-gray-300 hover:text-forest transition">How It Works</a>
+                    <a href="pricing.html" class="text-gray-300 hover:text-forest transition">Pricing</a>
+                    <a href="for-consultants.html" class="text-gray-300 hover:text-forest transition">For Consultants</a>
+                    <a href="contact.html" class="text-gray-300 hover:text-forest transition">Contact</a>
+                    <a href="eligibility-quiz.html" class="bg-forest hover:bg-forest-dark text-white px-4 py-2 rounded-lg transition font-medium">Check Eligibility</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section class="pt-28 pb-16 px-4">
+        <div class="max-w-4xl mx-auto text-center">
+            <div class="grant-count-badge inline-block px-5 py-1.5 rounded-full text-sm font-bold mb-6 text-white" id="grantCount">Loading UK grants...</div>
+            <h1 class="text-4xl md:text-5xl font-bold text-white mb-5">UK Small Business Grants <span class="gold-gradient">and Innovation Funding</span></h1>
+            <p class="text-gray-400 text-lg max-w-2xl mx-auto mb-8">Explore Innovate UK programmes, HMRC R&D Tax Relief, British Business Bank support, and regional growth funding for UK businesses.</p>
+            <a href="find-grant.html?country=GB&funder_type=government" class="bg-forest hover:bg-forest-dark text-white px-8 py-3 rounded-lg text-lg font-medium inline-block transition"><i class="fas fa-search mr-2"></i>Browse All UK Grants</a>
+        </div>
+    </section>
+
+    <section class="py-16 px-4">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl font-bold text-white mb-4 text-center">Key UK Funding Bodies</h2>
+            <p class="text-gray-400 text-center mb-10 max-w-2xl mx-auto">The UK government supports business growth through several key agencies and programmes offering grants, tax relief, and equity co-investment.</p>
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="bg-card border border-border rounded-xl p-6">
+                    <div class="w-12 h-12 bg-blue-500/20 rounded-lg flex items-center justify-center mb-4"><i class="fas fa-lightbulb text-blue-400 text-xl"></i></div>
+                    <h3 class="text-lg font-bold text-white mb-2">Innovate UK</h3>
+                    <p class="text-gray-400 text-sm">The UK's innovation agency providing Smart Grants up to 500K, Catalyst programmes, and Knowledge Transfer Partnerships for businesses developing cutting-edge products and services.</p>
+                </div>
+                <div class="bg-card border border-border rounded-xl p-6">
+                    <div class="w-12 h-12 bg-green-500/20 rounded-lg flex items-center justify-center mb-4"><i class="fas fa-sterling-sign text-green-400 text-xl"></i></div>
+                    <h3 class="text-lg font-bold text-white mb-2">HMRC R&D Tax Relief</h3>
+                    <p class="text-gray-400 text-sm">Claim tax credits of up to 186% enhanced deduction on qualifying research and development costs. Loss-making SMEs can receive a 10% cash credit on surrenderable losses.</p>
+                </div>
+                <div class="bg-card border border-border rounded-xl p-6">
+                    <div class="w-12 h-12 bg-purple-500/20 rounded-lg flex items-center justify-center mb-4"><i class="fas fa-university text-purple-400 text-xl"></i></div>
+                    <h3 class="text-lg font-bold text-white mb-2">British Business Bank</h3>
+                    <p class="text-gray-400 text-sm">Government-owned development bank offering Start Up Loans, the Future Fund, Regional Angel programmes, and co-investment funds for high-growth businesses.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 px-4 bg-card/30">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl font-bold text-white mb-4 text-center">Regional UK Funding</h2>
+            <p class="text-gray-400 text-center mb-10 max-w-2xl mx-auto">Local Enterprise Partnerships and devolved governments offer additional grants tailored to regional economic priorities.</p>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div class="bg-card border border-border rounded-xl p-5 text-center card-hover">
+                    <h4 class="font-bold text-white mb-1">England</h4>
+                    <p class="text-gray-400 text-xs">LEP Growth Hubs, Shared Prosperity Fund</p>
+                </div>
+                <div class="bg-card border border-border rounded-xl p-5 text-center card-hover">
+                    <h4 class="font-bold text-white mb-1">Scotland</h4>
+                    <p class="text-gray-400 text-xs">Scottish Enterprise, HIE</p>
+                </div>
+                <div class="bg-card border border-border rounded-xl p-5 text-center card-hover">
+                    <h4 class="font-bold text-white mb-1">Wales</h4>
+                    <p class="text-gray-400 text-xs">Development Bank of Wales</p>
+                </div>
+                <div class="bg-card border border-border rounded-xl p-5 text-center card-hover">
+                    <h4 class="font-bold text-white mb-1">Northern Ireland</h4>
+                    <p class="text-gray-400 text-xs">Invest NI, InterTradeIreland</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 px-4">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl font-bold text-white mb-8 text-center">Featured UK Grants</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6" id="grantGrid"></div>
+            <div class="text-center mt-8">
+                <a href="find-grant.html?country=GB&funder_type=government" class="bg-gold hover:bg-gold-light text-dark px-6 py-3 rounded-lg font-medium inline-block transition">See All UK Grants &rarr;</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 px-4 bg-card/30">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-3xl font-bold text-white mb-8 text-center">Frequently Asked Questions</h2>
+            <div class="space-y-4">
+                <div class="bg-card border border-border rounded-xl p-6">
+                    <h3 class="font-bold text-white mb-2">What grants are available for UK small businesses?</h3>
+                    <p class="text-gray-400 text-sm">UK small businesses can access Innovate UK Smart Grants for innovation projects, HMRC R&D Tax Relief for research expenditure, British Business Bank programs, regional Local Enterprise Partnership grants, and sector-specific funds like the Clean Growth Fund and Digital Growth Programme.</p>
+                </div>
+                <div class="bg-card border border-border rounded-xl p-6">
+                    <h3 class="font-bold text-white mb-2">How does Innovate UK funding work?</h3>
+                    <p class="text-gray-400 text-sm">Innovate UK provides competitive grants through programmes like Smart Grants (up to 500K for game-changing innovations), Catalyst programmes for specific sectors, and the Knowledge Transfer Partnership. Applications are assessed on innovation, team capability, market potential, and project plan.</p>
+                </div>
+                <div class="bg-card border border-border rounded-xl p-6">
+                    <h3 class="font-bold text-white mb-2">What is the UK R&D Tax Relief scheme?</h3>
+                    <p class="text-gray-400 text-sm">HMRC R&D Tax Relief allows UK companies to claim tax credits on qualifying R&D expenditure. SMEs can claim up to 186% enhanced deduction or a 10% credit if loss-making. The RDEC scheme for larger companies provides a 20% above-the-line credit on qualifying costs.</p>
+                </div>
+                <div class="bg-card border border-border rounded-xl p-6">
+                    <h3 class="font-bold text-white mb-2">Can UK startups get government grants?</h3>
+                    <p class="text-gray-400 text-sm">Yes, UK startups can apply for Innovate UK grants, the Start Up Loans programme (up to 25K per co-founder), Enterprise Investment Scheme support, and regional innovation grants. Many programs have no minimum trading history requirement.</p>
+                </div>
+                <div class="bg-card border border-border rounded-xl p-6">
+                    <h3 class="font-bold text-white mb-2">Are there grants for UK businesses post-Brexit?</h3>
+                    <p class="text-gray-400 text-sm">Yes, the UK has replaced EU Structural Funds with the UK Shared Prosperity Fund and Levelling Up Fund. Additionally, Horizon Europe association allows UK researchers to access EU research grants. Innovate UK continues to expand domestic innovation funding.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 px-4 bg-gradient-to-r from-forest-dark to-forest">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-3xl font-bold text-white mb-4">Unlock UK Funding for Your Business</h2>
+            <p class="text-green-100 mb-8 text-lg">AI-powered matching across Innovate UK, HMRC, and regional programmes. Find your best grant in minutes.</p>
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="eligibility-quiz.html" class="bg-gold hover:bg-gold-light text-dark px-8 py-4 rounded-xl text-lg font-bold transition"><i class="fas fa-arrow-right mr-2"></i>Check Your Eligibility</a>
+                <a href="pricing.html" class="border-2 border-white text-white hover:bg-white hover:text-forest-dark px-8 py-4 rounded-xl text-lg font-bold transition">View Pricing</a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-16 px-4" style="background: #111;">
+        <div class="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8">
+            <div>
+                <h3 class="text-white font-bold mb-4"><span class="text-forest">Grant</span>Radar</h3>
+                <p class="text-gray-500 text-sm">AI-powered grant matching across 50+ countries. Find, match, and win funding for your organization.</p>
+            </div>
+            <div>
+                <h4 class="text-white font-bold mb-4">Find Grants</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="find-grant.html" class="text-gray-400 hover:text-forest transition">All Grants</a></li>
+                    <li><a href="find-government-grant.html" class="text-gray-400 hover:text-forest transition">Government Grants</a></li>
+                    <li><a href="find-startup-grant.html" class="text-gray-400 hover:text-forest transition">Startup Grants</a></li>
+                    <li><a href="find-nonprofit-grant.html" class="text-gray-400 hover:text-forest transition">Nonprofit Grants</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-bold mb-4">Resources</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="how-it-works.html" class="text-gray-400 hover:text-forest transition">How It Works</a></li>
+                    <li><a href="pricing.html" class="text-gray-400 hover:text-forest transition">Pricing</a></li>
+                    <li><a href="blog.html" class="text-gray-400 hover:text-forest transition">Blog</a></li>
+                    <li><a href="grant-calendar.html" class="text-gray-400 hover:text-forest transition">Grant Calendar</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-bold mb-4">Company</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="contact.html" class="text-gray-400 hover:text-forest transition">Contact</a></li>
+                    <li><a href="for-consultants.html" class="text-gray-400 hover:text-forest transition">For Consultants</a></li>
+                    <li><a href="success-stories.html" class="text-gray-400 hover:text-forest transition">Success Stories</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto mt-12 pt-8 border-t border-border text-center">
+            <p class="text-gray-500 text-sm">&copy; 2026 GrantRadar. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+            document.querySelector('.nav-links').classList.toggle('active');
+        });
+        const API_BASE = window.API_BASE;
+        async function loadGrants() {
+            try {
+                const res = await fetch(`${API_BASE}/api/grants?country=GB&funder_type=government&limit=5`);
+                const data = await res.json();
+                const total = data.total || data.grants?.length || 0;
+                document.getElementById('grantCount').textContent = `${total} UK Business Grants Available`;
+                const grants = data.grants || data.data || [];
+                const grid = document.getElementById('grantGrid');
+                if (grants.length === 0) { grid.innerHTML = '<p class="text-gray-400 col-span-3 text-center">No grants loaded yet. Check back soon.</p>'; return; }
+                grid.innerHTML = grants.slice(0, 5).map(g => `
+                    <div class="bg-card border border-border rounded-xl p-6 card-hover">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-xs bg-purple-500/20 text-purple-400 px-2 py-1 rounded">${g.funder_type || 'Government'}</span>
+                            <span class="text-xs text-gray-500">${g.deadline ? new Date(g.deadline).toLocaleDateString() : 'Rolling'}</span>
+                        </div>
+                        <h3 class="font-bold text-white mb-2 text-sm leading-tight">${g.title}</h3>
+                        <p class="text-gray-400 text-xs mb-3 line-clamp-2">${g.funder_name || ''}</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-forest font-bold text-sm">${g.funding_amount_max ? '\u00A3' + Number(g.funding_amount_max).toLocaleString() : 'Varies'}</span>
+                            <a href="${g.application_url || g.source_url || '#'}" target="_blank" class="text-gold text-xs font-medium hover:underline">Apply &rarr;</a>
+                        </div>
+                    </div>
+                `).join('');
+            } catch (err) {
+                document.getElementById('grantCount').textContent = 'UK Business Grants Available';
+            }
+        }
+        loadGrants();
+    </script>
+</body>
+</html>

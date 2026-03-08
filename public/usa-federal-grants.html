@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>USA Federal Grants — Grants.gov Programs | GrantRadar</title>
+    <meta name="description" content="Search USA federal grants from Grants.gov. Thousands of active federal funding opportunities from NIH, NSF, DOE, USDA, SBA, and more. Updated daily.">
+    <link rel="canonical" href="https://grantradar.com/usa-federal-grants.html">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { theme: { extend: { colors: { forest: '#1A7A4A', 'forest-dark': '#14613B', 'forest-light': '#22995D', gold: '#C9A227', 'gold-light': '#D4B342', dark: '#0a0a0a', card: '#1a1a1a', border: '#333333' } } } }
+    </script>
+    <style>
+        body { font-family: 'Roboto', sans-serif; background: #0a0a0a; color: #e5e7eb; }
+        .glass-nav { background: rgba(0,0,0,0.4); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); }
+        .card-hover { transition: transform 0.3s, box-shadow 0.3s; }
+        .card-hover:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(26,122,74,0.15); }
+        .grant-count-badge { background: linear-gradient(135deg, #1A7A4A, #C9A227); }
+        .gold-gradient { background: linear-gradient(135deg, #C9A227, #D4B342); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        @media (max-width: 768px) { .nav-links { display: none; } .nav-links.active { display: flex; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0; background: rgba(0,0,0,0.95); padding: 1rem; } }
+    </style>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+    <script>window.API_BASE = 'https://grantradar-backend-production.up.railway.app';</script>
+    <script type="application/ld+json">
+    { "@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://grantradar.com/" },
+        { "@type": "ListItem", "position": 2, "name": "USA Federal Grants", "item": "https://grantradar.com/usa-federal-grants.html" }
+    ]}
+    </script>
+    <script type="application/ld+json">
+    { "@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
+        { "@type": "Question", "name": "What is Grants.gov and how does it work?", "acceptedAnswer": { "@type": "Answer", "text": "Grants.gov is the US government's centralized portal for finding and applying to federal grant opportunities. It lists funding from over 26 federal agencies including NIH, NSF, DOE, and USDA. Organizations can search, save, and apply to grants directly through the portal after registering with SAM.gov." }},
+        { "@type": "Question", "name": "How many federal grants are available in the USA?", "acceptedAnswer": { "@type": "Answer", "text": "At any given time, Grants.gov lists thousands of active federal funding opportunities totaling hundreds of billions of dollars annually. The exact number fluctuates as new grants are posted and deadlines pass. GrantRadar tracks all active opportunities and matches them to your organization's profile." }},
+        { "@type": "Question", "name": "Do I need to register on SAM.gov to apply for federal grants?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, all organizations applying for US federal grants must register in the System for Award Management (SAM.gov) and obtain a Unique Entity Identifier (UEI). Registration is free but can take 2-4 weeks, so register early before grant deadlines." }},
+        { "@type": "Question", "name": "Can small businesses apply for federal grants?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, the US government offers extensive small business grant programs including SBIR (Small Business Innovation Research) and STTR (Small Business Technology Transfer) across 11 federal agencies. The SBA also provides resources and some direct funding for small businesses." }},
+        { "@type": "Question", "name": "What are SBIR and STTR grants?", "acceptedAnswer": { "@type": "Answer", "text": "SBIR and STTR are competitive programs that provide non-dilutive funding to small businesses for technology innovation. Phase I awards are typically $50K-$275K for feasibility studies. Phase II awards range from $500K-$1.5M for full R&D. Eleven federal agencies participate in the SBIR program." }}
+    ]}
+    </script>
+    <script type="application/ld+json">
+    { "@context": "https://schema.org", "@type": "ItemList", "name": "USA Federal Grants — Grants.gov Programs", "numberOfItems": 5, "itemListElement": [] }
+    </script>
+</head>
+<body class="bg-dark min-h-screen">
+    <nav class="glass-nav fixed top-0 left-0 right-0 z-50 border-b border-border">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <a href="index.html" class="flex items-center space-x-2">
+                    <span class="text-xl font-bold text-white">Grant<span class="text-forest">Radar</span></span>
+                </a>
+                <button id="mobile-menu-btn" class="md:hidden text-white text-xl"><i class="fas fa-bars"></i></button>
+                <div class="nav-links hidden md:flex items-center space-x-6">
+                    <a href="index.html" class="text-gray-300 hover:text-forest transition">Home</a>
+                    <a href="find-grant.html" class="text-gray-300 hover:text-forest transition">Find Grants</a>
+                    <a href="how-it-works.html" class="text-gray-300 hover:text-forest transition">How It Works</a>
+                    <a href="pricing.html" class="text-gray-300 hover:text-forest transition">Pricing</a>
+                    <a href="for-consultants.html" class="text-gray-300 hover:text-forest transition">For Consultants</a>
+                    <a href="contact.html" class="text-gray-300 hover:text-forest transition">Contact</a>
+                    <a href="eligibility-quiz.html" class="bg-forest hover:bg-forest-dark text-white px-4 py-2 rounded-lg transition font-medium">Check Eligibility</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section class="pt-28 pb-16 px-4">
+        <div class="max-w-4xl mx-auto text-center">
+            <div class="grant-count-badge inline-block px-5 py-1.5 rounded-full text-sm font-bold mb-6 text-white" id="grantCount">Loading US grants...</div>
+            <h1 class="text-4xl md:text-5xl font-bold text-white mb-5">USA Federal Grants <span class="gold-gradient">Grants.gov Programs</span></h1>
+            <p class="text-gray-400 text-lg max-w-2xl mx-auto mb-8">Access thousands of US federal funding opportunities from NIH, NSF, DOE, USDA, SBA, and 20+ other agencies. All sourced directly from Grants.gov.</p>
+            <a href="find-grant.html?country=US&funder_type=government" class="bg-forest hover:bg-forest-dark text-white px-8 py-3 rounded-lg text-lg font-medium inline-block transition"><i class="fas fa-search mr-2"></i>Browse All US Federal Grants</a>
+        </div>
+    </section>
+
+    <section class="py-16 px-4">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl font-bold text-white mb-4 text-center">Top Federal Funding Agencies</h2>
+            <p class="text-gray-400 text-center mb-10 max-w-2xl mx-auto">The US federal government distributes grant funding through dozens of agencies, each with specific program areas and eligibility requirements.</p>
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="bg-card border border-border rounded-xl p-6">
+                    <div class="w-12 h-12 bg-blue-500/20 rounded-lg flex items-center justify-center mb-4"><i class="fas fa-heartbeat text-blue-400 text-xl"></i></div>
+                    <h3 class="text-lg font-bold text-white mb-2">NIH — National Institutes of Health</h3>
+                    <p class="text-gray-400 text-sm">The largest public funder of biomedical research in the world, awarding over $40 billion annually in research grants across 27 institutes.</p>
+                </div>
+                <div class="bg-card border border-border rounded-xl p-6">
+                    <div class="w-12 h-12 bg-purple-500/20 rounded-lg flex items-center justify-center mb-4"><i class="fas fa-atom text-purple-400 text-xl"></i></div>
+                    <h3 class="text-lg font-bold text-white mb-2">NSF — National Science Foundation</h3>
+                    <p class="text-gray-400 text-sm">Funds fundamental research and education across all non-medical fields of science and engineering with an annual budget exceeding $9 billion.</p>
+                </div>
+                <div class="bg-card border border-border rounded-xl p-6">
+                    <div class="w-12 h-12 bg-green-500/20 rounded-lg flex items-center justify-center mb-4"><i class="fas fa-bolt text-green-400 text-xl"></i></div>
+                    <h3 class="text-lg font-bold text-white mb-2">DOE — Department of Energy</h3>
+                    <p class="text-gray-400 text-sm">Funds clean energy, advanced manufacturing, and nuclear research. ARPA-E provides high-risk, high-reward energy technology grants.</p>
+                </div>
+                <div class="bg-card border border-border rounded-xl p-6">
+                    <div class="w-12 h-12 bg-yellow-500/20 rounded-lg flex items-center justify-center mb-4"><i class="fas fa-tractor text-yellow-400 text-xl"></i></div>
+                    <h3 class="text-lg font-bold text-white mb-2">USDA — Agriculture</h3>
+                    <p class="text-gray-400 text-sm">Grants for rural development, agriculture research, food safety, and conservation through programs like SBIR, NIFA, and Rural Energy.</p>
+                </div>
+                <div class="bg-card border border-border rounded-xl p-6">
+                    <div class="w-12 h-12 bg-red-500/20 rounded-lg flex items-center justify-center mb-4"><i class="fas fa-rocket text-red-400 text-xl"></i></div>
+                    <h3 class="text-lg font-bold text-white mb-2">SBIR/STTR Programs</h3>
+                    <p class="text-gray-400 text-sm">America's flagship small business innovation programs across 11 agencies. Phase I: $50K-$275K. Phase II: $500K-$1.5M. Non-dilutive.</p>
+                </div>
+                <div class="bg-card border border-border rounded-xl p-6">
+                    <div class="w-12 h-12 bg-cyan-500/20 rounded-lg flex items-center justify-center mb-4"><i class="fas fa-shield-alt text-cyan-400 text-xl"></i></div>
+                    <h3 class="text-lg font-bold text-white mb-2">DoD — Department of Defense</h3>
+                    <p class="text-gray-400 text-sm">Defense research grants through DARPA, ONR, AFOSR, and ARO. Strong SBIR program for dual-use technologies and defense applications.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 px-4 bg-card/30">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl font-bold text-white mb-4 text-center">How US Federal Grants Work</h2>
+            <p class="text-gray-400 text-center mb-10 max-w-2xl mx-auto">Understanding the federal grant lifecycle from opportunity announcement to award.</p>
+            <div class="grid md:grid-cols-4 gap-6">
+                <div class="text-center">
+                    <div class="w-14 h-14 bg-forest/20 rounded-full flex items-center justify-center mx-auto mb-4"><span class="text-forest font-bold text-xl">1</span></div>
+                    <h4 class="font-bold text-white mb-2">Register on SAM.gov</h4>
+                    <p class="text-gray-400 text-sm">Obtain a UEI and complete SAM registration. Allow 2-4 weeks for processing before your first application.</p>
+                </div>
+                <div class="text-center">
+                    <div class="w-14 h-14 bg-forest/20 rounded-full flex items-center justify-center mx-auto mb-4"><span class="text-forest font-bold text-xl">2</span></div>
+                    <h4 class="font-bold text-white mb-2">Find Opportunities</h4>
+                    <p class="text-gray-400 text-sm">Use GrantRadar to discover matching federal grants filtered by agency, amount, deadline, and eligibility criteria.</p>
+                </div>
+                <div class="text-center">
+                    <div class="w-14 h-14 bg-forest/20 rounded-full flex items-center justify-center mx-auto mb-4"><span class="text-forest font-bold text-xl">3</span></div>
+                    <h4 class="font-bold text-white mb-2">Prepare & Submit</h4>
+                    <p class="text-gray-400 text-sm">Develop your proposal following the NOFO guidelines. Submit through Grants.gov or the agency's specific portal.</p>
+                </div>
+                <div class="text-center">
+                    <div class="w-14 h-14 bg-forest/20 rounded-full flex items-center justify-center mx-auto mb-4"><span class="text-forest font-bold text-xl">4</span></div>
+                    <h4 class="font-bold text-white mb-2">Award & Compliance</h4>
+                    <p class="text-gray-400 text-sm">If selected, negotiate terms and complete reporting requirements per 2 CFR 200 Uniform Guidance.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 px-4">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl font-bold text-white mb-8 text-center">Featured US Federal Grants</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6" id="grantGrid"></div>
+            <div class="text-center mt-8">
+                <a href="find-grant.html?country=US&funder_type=government" class="bg-gold hover:bg-gold-light text-dark px-6 py-3 rounded-lg font-medium inline-block transition">See All US Grants &rarr;</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 px-4 bg-card/30">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-3xl font-bold text-white mb-8 text-center">Frequently Asked Questions</h2>
+            <div class="space-y-4">
+                <div class="bg-card border border-border rounded-xl p-6">
+                    <h3 class="font-bold text-white mb-2">What is Grants.gov and how does it work?</h3>
+                    <p class="text-gray-400 text-sm">Grants.gov is the US government's centralized portal for finding and applying to federal grant opportunities. It lists funding from over 26 federal agencies including NIH, NSF, DOE, and USDA. Organizations can search, save, and apply to grants directly through the portal after registering with SAM.gov.</p>
+                </div>
+                <div class="bg-card border border-border rounded-xl p-6">
+                    <h3 class="font-bold text-white mb-2">How many federal grants are available in the USA?</h3>
+                    <p class="text-gray-400 text-sm">At any given time, Grants.gov lists thousands of active federal funding opportunities totaling hundreds of billions of dollars annually. The exact number fluctuates as new grants are posted and deadlines pass. GrantRadar tracks all active opportunities and matches them to your organization's profile.</p>
+                </div>
+                <div class="bg-card border border-border rounded-xl p-6">
+                    <h3 class="font-bold text-white mb-2">Do I need to register on SAM.gov to apply for federal grants?</h3>
+                    <p class="text-gray-400 text-sm">Yes, all organizations applying for US federal grants must register in the System for Award Management (SAM.gov) and obtain a Unique Entity Identifier (UEI). Registration is free but can take 2-4 weeks, so register early before grant deadlines.</p>
+                </div>
+                <div class="bg-card border border-border rounded-xl p-6">
+                    <h3 class="font-bold text-white mb-2">Can small businesses apply for federal grants?</h3>
+                    <p class="text-gray-400 text-sm">Yes, the US government offers extensive small business grant programs including SBIR (Small Business Innovation Research) and STTR (Small Business Technology Transfer) across 11 federal agencies. The SBA also provides resources and some direct funding for small businesses.</p>
+                </div>
+                <div class="bg-card border border-border rounded-xl p-6">
+                    <h3 class="font-bold text-white mb-2">What are SBIR and STTR grants?</h3>
+                    <p class="text-gray-400 text-sm">SBIR and STTR are competitive programs that provide non-dilutive funding to small businesses for technology innovation. Phase I awards are typically $50K-$275K for feasibility studies. Phase II awards range from $500K-$1.5M for full R&D. Eleven federal agencies participate in the SBIR program.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 px-4 bg-gradient-to-r from-forest-dark to-forest">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-3xl font-bold text-white mb-4">Discover US Federal Funding for Your Organization</h2>
+            <p class="text-green-100 mb-8 text-lg">AI-powered matching across thousands of Grants.gov opportunities. Find your best fit in minutes.</p>
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="eligibility-quiz.html" class="bg-gold hover:bg-gold-light text-dark px-8 py-4 rounded-xl text-lg font-bold transition"><i class="fas fa-arrow-right mr-2"></i>Check Your Eligibility</a>
+                <a href="pricing.html" class="border-2 border-white text-white hover:bg-white hover:text-forest-dark px-8 py-4 rounded-xl text-lg font-bold transition">View Pricing</a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-16 px-4" style="background: #111;">
+        <div class="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8">
+            <div>
+                <h3 class="text-white font-bold mb-4"><span class="text-forest">Grant</span>Radar</h3>
+                <p class="text-gray-500 text-sm">AI-powered grant matching across 50+ countries. Find, match, and win funding for your organization.</p>
+            </div>
+            <div>
+                <h4 class="text-white font-bold mb-4">Find Grants</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="find-grant.html" class="text-gray-400 hover:text-forest transition">All Grants</a></li>
+                    <li><a href="find-government-grant.html" class="text-gray-400 hover:text-forest transition">Government Grants</a></li>
+                    <li><a href="find-startup-grant.html" class="text-gray-400 hover:text-forest transition">Startup Grants</a></li>
+                    <li><a href="find-nonprofit-grant.html" class="text-gray-400 hover:text-forest transition">Nonprofit Grants</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-bold mb-4">Resources</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="how-it-works.html" class="text-gray-400 hover:text-forest transition">How It Works</a></li>
+                    <li><a href="pricing.html" class="text-gray-400 hover:text-forest transition">Pricing</a></li>
+                    <li><a href="blog.html" class="text-gray-400 hover:text-forest transition">Blog</a></li>
+                    <li><a href="grant-calendar.html" class="text-gray-400 hover:text-forest transition">Grant Calendar</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-bold mb-4">Company</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="contact.html" class="text-gray-400 hover:text-forest transition">Contact</a></li>
+                    <li><a href="for-consultants.html" class="text-gray-400 hover:text-forest transition">For Consultants</a></li>
+                    <li><a href="success-stories.html" class="text-gray-400 hover:text-forest transition">Success Stories</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto mt-12 pt-8 border-t border-border text-center">
+            <p class="text-gray-500 text-sm">&copy; 2026 GrantRadar. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+            document.querySelector('.nav-links').classList.toggle('active');
+        });
+        const API_BASE = window.API_BASE;
+        async function loadGrants() {
+            try {
+                const res = await fetch(`${API_BASE}/api/grants?country=US&funder_type=government&limit=5`);
+                const data = await res.json();
+                const total = data.total || data.grants?.length || 0;
+                document.getElementById('grantCount').textContent = `${total} US Federal Grants Available`;
+                const grants = data.grants || data.data || [];
+                const grid = document.getElementById('grantGrid');
+                if (grants.length === 0) { grid.innerHTML = '<p class="text-gray-400 col-span-3 text-center">No grants loaded yet. Check back soon.</p>'; return; }
+                grid.innerHTML = grants.slice(0, 5).map(g => `
+                    <div class="bg-card border border-border rounded-xl p-6 card-hover">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-xs bg-blue-500/20 text-blue-400 px-2 py-1 rounded">${g.funder_name || 'Federal'}</span>
+                            <span class="text-xs text-gray-500">${g.deadline ? new Date(g.deadline).toLocaleDateString() : 'Rolling'}</span>
+                        </div>
+                        <h3 class="font-bold text-white mb-2 text-sm leading-tight">${g.title}</h3>
+                        <p class="text-gray-400 text-xs mb-3 line-clamp-2">${g.description ? g.description.substring(0, 120) + '...' : ''}</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-forest font-bold text-sm">${g.funding_amount_max ? '$' + Number(g.funding_amount_max).toLocaleString() : 'Varies'}</span>
+                            <a href="${g.application_url || g.source_url || '#'}" target="_blank" class="text-gold text-xs font-medium hover:underline">Apply &rarr;</a>
+                        </div>
+                    </div>
+                `).join('');
+            } catch (err) {
+                document.getElementById('grantCount').textContent = 'US Federal Grants Available';
+            }
+        }
+        loadGrants();
+    </script>
+</body>
+</html>

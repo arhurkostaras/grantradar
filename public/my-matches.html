@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Grant Matches — GrantRadar</title>
+    <meta name="description" content="View your AI-powered grant matches, track applications, and manage awarded grants.">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>tailwind.config={theme:{extend:{colors:{forest:'#1A7A4A','forest-dark':'#14613B','forest-light':'#22995D',gold:'#C9A227','gold-light':'#D4B342',dark:'#0a0a0a',card:'#1a1a1a',border:'#333333'}}}}</script>
+    <style>
+        body { font-family: 'Roboto', sans-serif; background: #0a0a0a; color: #e5e7eb; }
+        .glass-nav { background: rgba(0,0,0,0.4); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); }
+        .card-hover { transition: transform 0.3s, box-shadow 0.3s; }
+        .card-hover:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(26,122,74,0.15); }
+        .match-circle { width: 56px; height: 56px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.875rem; }
+        .tab-active { color: #1A7A4A; border-bottom: 2px solid #1A7A4A; }
+        @media (max-width: 768px) { .nav-links { display: none; } .nav-links.active { display: flex; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0; background: rgba(0,0,0,0.95); padding: 1rem; } }
+    </style>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+    <script>window.API_BASE = 'https://grantradar-backend-production.up.railway.app';</script>
+</head>
+<body class="bg-dark min-h-screen">
+    <!-- Navigation -->
+    <nav class="glass-nav fixed top-0 left-0 right-0 z-50 border-b border-border">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <a href="index.html" class="flex items-center space-x-2"><span class="text-xl font-bold text-white">Grant<span class="text-forest">Radar</span></span></a>
+                <button id="mobile-menu-btn" class="md:hidden text-white text-xl"><i class="fas fa-bars"></i></button>
+                <div class="nav-links hidden md:flex items-center space-x-6">
+                    <a href="index.html" class="text-gray-300 hover:text-forest transition">Home</a>
+                    <a href="find-grant.html" class="text-gray-300 hover:text-forest transition">Find Grants</a>
+                    <a href="my-matches.html" class="text-white font-medium hover:text-forest transition">My Matches</a>
+                    <a href="organization-profile.html" class="text-gray-300 hover:text-forest transition">Profile</a>
+                    <a href="pricing.html" class="text-gray-300 hover:text-forest transition">Pricing</a>
+                    <button id="logout-btn" class="text-gray-300 hover:text-red-400 transition">Logout</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="pt-24 pb-16 px-4">
+        <div class="max-w-7xl mx-auto">
+            <h1 class="text-3xl font-bold text-white mb-6">My Grant Matches</h1>
+
+            <!-- Stats -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+                <div class="bg-card border border-border rounded-xl p-5 text-center">
+                    <p id="stat-matches" class="text-2xl font-bold text-forest">24</p>
+                    <p class="text-gray-400 text-sm">Total Matches</p>
+                </div>
+                <div class="bg-card border border-border rounded-xl p-5 text-center">
+                    <p id="stat-applied" class="text-2xl font-bold text-blue-400">5</p>
+                    <p class="text-gray-400 text-sm">Applications</p>
+                </div>
+                <div class="bg-card border border-border rounded-xl p-5 text-center">
+                    <p id="stat-awarded" class="text-2xl font-bold text-gold">2</p>
+                    <p class="text-gray-400 text-sm">Grants Awarded</p>
+                </div>
+                <div class="bg-card border border-border rounded-xl p-5 text-center">
+                    <p id="stat-funding" class="text-2xl font-bold text-green-400">$175K</p>
+                    <p class="text-gray-400 text-sm">Total Funding Won</p>
+                </div>
+            </div>
+
+            <!-- Filter Tabs -->
+            <div class="flex gap-6 border-b border-border mb-6">
+                <button class="tab-btn tab-active pb-3 text-sm font-medium transition" data-tab="all">All Matches</button>
+                <button class="tab-btn pb-3 text-sm font-medium text-gray-400 hover:text-white transition" data-tab="applied">Applied</button>
+                <button class="tab-btn pb-3 text-sm font-medium text-gray-400 hover:text-white transition" data-tab="awarded">Awarded</button>
+            </div>
+
+            <!-- Match Cards -->
+            <div id="matches-list" class="space-y-4">
+                <!-- Placeholder match cards -->
+                <div class="bg-card border border-border rounded-xl p-6 card-hover" data-status="matched">
+                    <div class="flex items-start gap-4">
+                        <div class="match-circle bg-forest/20 text-forest flex-shrink-0">92%</div>
+                        <div class="flex-1">
+                            <div class="flex items-center gap-2 mb-1">
+                                <span class="bg-blue-500/20 text-blue-400 text-xs px-2 py-0.5 rounded font-medium">Government</span>
+                                <span class="text-gray-500 text-xs">Canada</span>
+                            </div>
+                            <h3 class="text-lg font-bold text-white mb-1">Canada Digital Adoption Program</h3>
+                            <p class="text-gray-400 text-sm mb-3">Up to $15,000 for digital transformation initiatives for Canadian SMEs.</p>
+                            <div class="flex flex-wrap gap-2 mb-3">
+                                <span class="bg-forest/10 text-forest text-xs px-2 py-1 rounded">Country Match</span>
+                                <span class="bg-forest/10 text-forest text-xs px-2 py-1 rounded">SME Eligible</span>
+                                <span class="bg-forest/10 text-forest text-xs px-2 py-1 rounded">Tech Sector</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center gap-4">
+                                    <span class="text-forest font-bold text-sm">$2,400 - $15,000</span>
+                                    <span class="text-yellow-400 text-sm"><i class="fas fa-clock mr-1"></i>45 days left</span>
+                                </div>
+                                <div class="flex gap-2">
+                                    <button class="bg-forest/20 text-forest px-3 py-1.5 rounded-lg text-sm font-medium hover:bg-forest hover:text-white transition">View Grant</button>
+                                    <button onclick="markApplied(this)" class="bg-blue-500/20 text-blue-400 px-3 py-1.5 rounded-lg text-sm font-medium hover:bg-blue-500 hover:text-white transition">Mark Applied</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-card border border-border rounded-xl p-6 card-hover" data-status="applied">
+                    <div class="flex items-start gap-4">
+                        <div class="match-circle bg-blue-500/20 text-blue-400 flex-shrink-0">87%</div>
+                        <div class="flex-1">
+                            <div class="flex items-center gap-2 mb-1">
+                                <span class="bg-purple-500/20 text-purple-400 text-xs px-2 py-0.5 rounded font-medium">Foundation</span>
+                                <span class="text-gray-500 text-xs">USA</span>
+                                <span class="bg-blue-500/20 text-blue-400 text-xs px-2 py-0.5 rounded font-medium">Applied</span>
+                            </div>
+                            <h3 class="text-lg font-bold text-white mb-1">Gates Foundation Global Health Grant</h3>
+                            <p class="text-gray-400 text-sm mb-3">Research grants for innovative solutions to global health challenges.</p>
+                            <div class="flex flex-wrap gap-2 mb-3">
+                                <span class="bg-forest/10 text-forest text-xs px-2 py-1 rounded">Research Focus</span>
+                                <span class="bg-forest/10 text-forest text-xs px-2 py-1 rounded">Healthcare</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center gap-4">
+                                    <span class="text-forest font-bold text-sm">$100,000 - $2,000,000</span>
+                                    <span class="text-gray-400 text-sm"><i class="fas fa-paper-plane mr-1"></i>Applied Mar 1</span>
+                                </div>
+                                <div class="flex gap-2">
+                                    <button class="bg-forest/20 text-forest px-3 py-1.5 rounded-lg text-sm font-medium hover:bg-forest hover:text-white transition">View Grant</button>
+                                    <button onclick="markAwarded(this)" class="bg-gold/20 text-gold px-3 py-1.5 rounded-lg text-sm font-medium hover:bg-gold hover:text-dark transition">Mark Awarded</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-card border border-gold/30 rounded-xl p-6 card-hover" data-status="awarded">
+                    <div class="flex items-start gap-4">
+                        <div class="match-circle bg-gold/20 text-gold flex-shrink-0">95%</div>
+                        <div class="flex-1">
+                            <div class="flex items-center gap-2 mb-1">
+                                <span class="bg-blue-500/20 text-blue-400 text-xs px-2 py-0.5 rounded font-medium">Government</span>
+                                <span class="text-gray-500 text-xs">Canada</span>
+                                <span class="bg-gold/20 text-gold text-xs px-2 py-0.5 rounded font-medium"><i class="fas fa-trophy mr-1"></i>Awarded</span>
+                            </div>
+                            <h3 class="text-lg font-bold text-white mb-1">NRC IRAP Innovation Grant</h3>
+                            <p class="text-gray-400 text-sm mb-3">Industrial research assistance for technology innovation projects.</p>
+                            <div class="flex flex-wrap gap-2 mb-3">
+                                <span class="bg-gold/10 text-gold text-xs px-2 py-1 rounded">$150,000 Awarded</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <span class="text-gold font-bold text-sm"><i class="fas fa-check-circle mr-1"></i>$150,000 Received</span>
+                                <button class="bg-forest/20 text-forest px-3 py-1.5 rounded-lg text-sm font-medium hover:bg-forest hover:text-white transition">View Grant</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-card border border-border rounded-xl p-6 card-hover" data-status="matched">
+                    <div class="flex items-start gap-4">
+                        <div class="match-circle bg-forest/20 text-forest flex-shrink-0">78%</div>
+                        <div class="flex-1">
+                            <div class="flex items-center gap-2 mb-1">
+                                <span class="bg-green-500/20 text-green-400 text-xs px-2 py-0.5 rounded font-medium">EU Program</span>
+                                <span class="text-gray-500 text-xs">EU</span>
+                            </div>
+                            <h3 class="text-lg font-bold text-white mb-1">EIC Accelerator</h3>
+                            <p class="text-gray-400 text-sm mb-3">Grant and equity for breakthrough innovations by European startups and SMEs.</p>
+                            <div class="flex flex-wrap gap-2 mb-3">
+                                <span class="bg-forest/10 text-forest text-xs px-2 py-1 rounded">Innovation</span>
+                                <span class="bg-forest/10 text-forest text-xs px-2 py-1 rounded">Tech Sector</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center gap-4">
+                                    <span class="text-forest font-bold text-sm">Up to $2,500,000</span>
+                                    <span class="text-gray-400 text-sm"><i class="fas fa-sync-alt mr-1"></i>Rolling</span>
+                                </div>
+                                <div class="flex gap-2">
+                                    <button class="bg-forest/20 text-forest px-3 py-1.5 rounded-lg text-sm font-medium hover:bg-forest hover:text-white transition">View Grant</button>
+                                    <button onclick="markApplied(this)" class="bg-blue-500/20 text-blue-400 px-3 py-1.5 rounded-lg text-sm font-medium hover:bg-blue-500 hover:text-white transition">Mark Applied</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="py-16 px-4" style="background: #111;">
+        <div class="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8">
+            <div><h3 class="text-white font-bold mb-4"><span class="text-forest">Grant</span>Radar</h3><p class="text-gray-500 text-sm">AI-powered grant matching across 50+ countries.</p></div>
+            <div><h4 class="text-white font-bold mb-4">Find Grants</h4><ul class="space-y-2 text-sm"><li><a href="find-grant.html" class="text-gray-400 hover:text-forest transition">All Grants</a></li><li><a href="find-government-grant.html" class="text-gray-400 hover:text-forest transition">Government</a></li><li><a href="find-startup-grant.html" class="text-gray-400 hover:text-forest transition">Startups</a></li><li><a href="find-nonprofit-grant.html" class="text-gray-400 hover:text-forest transition">Nonprofits</a></li></ul></div>
+            <div><h4 class="text-white font-bold mb-4">Platform</h4><ul class="space-y-2 text-sm"><li><a href="how-it-works.html" class="text-gray-400 hover:text-forest transition">How It Works</a></li><li><a href="pricing.html" class="text-gray-400 hover:text-forest transition">Pricing</a></li><li><a href="for-consultants.html" class="text-gray-400 hover:text-forest transition">For Consultants</a></li><li><a href="grant-calendar.html" class="text-gray-400 hover:text-forest transition">Calendar</a></li></ul></div>
+            <div><h4 class="text-white font-bold mb-4">Company</h4><ul class="space-y-2 text-sm"><li><a href="blog.html" class="text-gray-400 hover:text-forest transition">Blog</a></li><li><a href="contact.html" class="text-gray-400 hover:text-forest transition">Contact</a></li><li><a href="#" class="text-gray-400 hover:text-forest transition">Privacy Policy</a></li><li><a href="#" class="text-gray-400 hover:text-forest transition">Terms of Service</a></li></ul></div>
+        </div>
+        <div class="max-w-7xl mx-auto mt-12 pt-8 border-t border-border text-center"><p class="text-gray-500 text-sm">&copy; 2026 GrantRadar. All rights reserved.</p></div>
+    </footer>
+
+    <script>
+        document.getElementById('mobile-menu-btn').addEventListener('click',function(){document.querySelector('.nav-links').classList.toggle('active');});
+        const token = localStorage.getItem('token');
+        if (!token) { window.location.href = 'eligibility-quiz.html'; }
+        // Tabs
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.tab-btn').forEach(b => { b.classList.remove('tab-active'); b.classList.add('text-gray-400'); });
+                this.classList.add('tab-active'); this.classList.remove('text-gray-400');
+                const tab = this.dataset.tab;
+                document.querySelectorAll('#matches-list > div').forEach(card => {
+                    if (tab === 'all') { card.style.display = ''; }
+                    else if (tab === 'applied') { card.style.display = card.dataset.status === 'applied' ? '' : 'none'; }
+                    else if (tab === 'awarded') { card.style.display = card.dataset.status === 'awarded' ? '' : 'none'; }
+                });
+            });
+        });
+        function markApplied(btn) { btn.textContent = 'Applied'; btn.className = 'bg-blue-500 text-white px-3 py-1.5 rounded-lg text-sm font-medium'; btn.closest('[data-status]').dataset.status = 'applied'; }
+        function markAwarded(btn) { btn.textContent = 'Awarded!'; btn.className = 'bg-gold text-dark px-3 py-1.5 rounded-lg text-sm font-medium'; btn.closest('[data-status]').dataset.status = 'awarded'; }
+        // Load matches from API
+        async function loadMatches() {
+            try {
+                const res = await fetch(`${window.API_BASE}/api/matches`, { headers: { 'Authorization': `Bearer ${token}` } });
+                if (res.ok) { /* render live data */ }
+            } catch(e) { console.log('Showing placeholder matches'); }
+        }
+        loadMatches();
+        document.getElementById('logout-btn').addEventListener('click', function() { localStorage.removeItem('token'); window.location.href = 'index.html'; });
+    </script>
+</body>
+</html>

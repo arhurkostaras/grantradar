@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grant Deadline Calendar — GrantRadar</title>
+    <meta name="description" content="Visual calendar of grant deadlines across all sectors and countries. Never miss a funding deadline again.">
+    <link rel="canonical" href="https://grantradar.com/grant-calendar.html">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>tailwind.config={theme:{extend:{colors:{forest:'#1A7A4A','forest-dark':'#14613B','forest-light':'#22995D',gold:'#C9A227','gold-light':'#D4B342',dark:'#0a0a0a',card:'#1a1a1a',border:'#333333'}}}}</script>
+    <style>
+        body { font-family: 'Roboto', sans-serif; background: #0a0a0a; color: #e5e7eb; }
+        .glass-nav { background: rgba(0,0,0,0.4); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); }
+        .cal-day { min-height: 80px; cursor: pointer; transition: background 0.2s; }
+        .cal-day:hover { background: rgba(26,122,74,0.1); }
+        .cal-day.today { border: 2px solid #1A7A4A; }
+        .dot { width: 6px; height: 6px; border-radius: 50%; display: inline-block; }
+        .dot-tech { background: #3B82F6; }
+        .dot-energy { background: #22C55E; }
+        .dot-agri { background: #A16207; }
+        .dot-health { background: #EC4899; }
+        .dot-edu { background: #8B5CF6; }
+        .dot-arts { background: #F59E0B; }
+        .dot-social { background: #EF4444; }
+        .dot-mfg { background: #6B7280; }
+        @media (max-width: 768px) { .nav-links { display: none; } .nav-links.active { display: flex; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0; background: rgba(0,0,0,0.95); padding: 1rem; } .cal-day { min-height: 48px; } }
+    </style>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+    <script>window.API_BASE = 'https://grantradar-backend-production.up.railway.app';</script>
+    <script type="application/ld+json">
+    {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+        {"@type":"ListItem","position":1,"name":"Home","item":"https://grantradar.com/"},
+        {"@type":"ListItem","position":2,"name":"Grant Calendar","item":"https://grantradar.com/grant-calendar.html"}
+    ]}
+    </script>
+</head>
+<body class="bg-dark min-h-screen">
+    <!-- Navigation -->
+    <nav class="glass-nav fixed top-0 left-0 right-0 z-50 border-b border-border">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <a href="index.html" class="flex items-center space-x-2"><span class="text-xl font-bold text-white">Grant<span class="text-forest">Radar</span></span></a>
+                <button id="mobile-menu-btn" class="md:hidden text-white text-xl"><i class="fas fa-bars"></i></button>
+                <div class="nav-links hidden md:flex items-center space-x-6">
+                    <a href="index.html" class="text-gray-300 hover:text-forest transition">Home</a>
+                    <a href="find-grant.html" class="text-gray-300 hover:text-forest transition">Find Grants</a>
+                    <a href="how-it-works.html" class="text-gray-300 hover:text-forest transition">How It Works</a>
+                    <a href="pricing.html" class="text-gray-300 hover:text-forest transition">Pricing</a>
+                    <a href="for-consultants.html" class="text-gray-300 hover:text-forest transition">For Consultants</a>
+                    <a href="contact.html" class="text-gray-300 hover:text-forest transition">Contact</a>
+                    <a href="eligibility-quiz.html" class="bg-forest hover:bg-forest-dark text-white px-4 py-2 rounded-lg transition font-medium">Sign Up</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="pt-24 pb-16 px-4">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col md:flex-row items-start md:items-center justify-between mb-8 gap-4">
+                <div>
+                    <h1 class="text-3xl font-bold text-white mb-2">Grant Deadline Calendar</h1>
+                    <p class="text-gray-400">Never miss a funding deadline. Color-coded by sector.</p>
+                </div>
+                <div class="flex gap-3">
+                    <select id="filter-country" class="bg-card border border-border rounded-lg px-3 py-2 text-white text-sm focus:border-forest focus:outline-none">
+                        <option value="">All Countries</option>
+                        <option value="Canada">Canada</option><option value="USA">USA</option><option value="UK">UK</option><option value="Australia">Australia</option><option value="EU">EU</option>
+                    </select>
+                    <select id="filter-type" class="bg-card border border-border rounded-lg px-3 py-2 text-white text-sm focus:border-forest focus:outline-none">
+                        <option value="">All Types</option>
+                        <option value="sme">SME</option><option value="startup">Startup</option><option value="nonprofit">Nonprofit</option><option value="research">Research</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Legend -->
+            <div class="flex flex-wrap gap-4 mb-6 bg-card border border-border rounded-xl p-4">
+                <div class="flex items-center gap-2 text-sm"><span class="dot dot-tech"></span><span class="text-gray-300">Technology</span></div>
+                <div class="flex items-center gap-2 text-sm"><span class="dot dot-energy"></span><span class="text-gray-300">Clean Energy</span></div>
+                <div class="flex items-center gap-2 text-sm"><span class="dot dot-agri"></span><span class="text-gray-300">Agriculture</span></div>
+                <div class="flex items-center gap-2 text-sm"><span class="dot dot-health"></span><span class="text-gray-300">Healthcare</span></div>
+                <div class="flex items-center gap-2 text-sm"><span class="dot dot-edu"></span><span class="text-gray-300">Education</span></div>
+                <div class="flex items-center gap-2 text-sm"><span class="dot dot-arts"></span><span class="text-gray-300">Arts & Culture</span></div>
+                <div class="flex items-center gap-2 text-sm"><span class="dot dot-social"></span><span class="text-gray-300">Social Impact</span></div>
+                <div class="flex items-center gap-2 text-sm"><span class="dot dot-mfg"></span><span class="text-gray-300">Manufacturing</span></div>
+            </div>
+
+            <!-- Calendar Navigation -->
+            <div class="flex items-center justify-between mb-4">
+                <button id="prev-month" class="bg-card border border-border rounded-lg px-4 py-2 text-white hover:border-forest transition"><i class="fas fa-chevron-left"></i></button>
+                <h2 id="month-title" class="text-xl font-bold text-white">March 2026</h2>
+                <button id="next-month" class="bg-card border border-border rounded-lg px-4 py-2 text-white hover:border-forest transition"><i class="fas fa-chevron-right"></i></button>
+            </div>
+
+            <!-- Calendar Grid -->
+            <div class="bg-card border border-border rounded-xl overflow-hidden">
+                <!-- Header -->
+                <div class="grid grid-cols-7 bg-dark">
+                    <div class="p-3 text-center text-gray-400 text-sm font-medium border-b border-border">Sun</div>
+                    <div class="p-3 text-center text-gray-400 text-sm font-medium border-b border-border">Mon</div>
+                    <div class="p-3 text-center text-gray-400 text-sm font-medium border-b border-border">Tue</div>
+                    <div class="p-3 text-center text-gray-400 text-sm font-medium border-b border-border">Wed</div>
+                    <div class="p-3 text-center text-gray-400 text-sm font-medium border-b border-border">Thu</div>
+                    <div class="p-3 text-center text-gray-400 text-sm font-medium border-b border-border">Fri</div>
+                    <div class="p-3 text-center text-gray-400 text-sm font-medium border-b border-border">Sat</div>
+                </div>
+                <!-- Days Grid -->
+                <div id="calendar-days" class="grid grid-cols-7">
+                    <!-- Filled by JavaScript -->
+                </div>
+            </div>
+
+            <!-- Selected Day Detail -->
+            <div id="day-detail" class="mt-6 hidden">
+                <h3 id="day-detail-title" class="text-lg font-bold text-white mb-4">Grants Due March 15, 2026</h3>
+                <div id="day-detail-cards" class="space-y-3">
+                    <!-- Filled by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="py-16 px-4" style="background: #111;">
+        <div class="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8">
+            <div><h3 class="text-white font-bold mb-4"><span class="text-forest">Grant</span>Radar</h3><p class="text-gray-500 text-sm">AI-powered grant matching across 50+ countries.</p></div>
+            <div><h4 class="text-white font-bold mb-4">Find Grants</h4><ul class="space-y-2 text-sm"><li><a href="find-grant.html" class="text-gray-400 hover:text-forest transition">All Grants</a></li><li><a href="find-government-grant.html" class="text-gray-400 hover:text-forest transition">Government</a></li><li><a href="find-startup-grant.html" class="text-gray-400 hover:text-forest transition">Startups</a></li><li><a href="find-nonprofit-grant.html" class="text-gray-400 hover:text-forest transition">Nonprofits</a></li></ul></div>
+            <div><h4 class="text-white font-bold mb-4">Platform</h4><ul class="space-y-2 text-sm"><li><a href="how-it-works.html" class="text-gray-400 hover:text-forest transition">How It Works</a></li><li><a href="pricing.html" class="text-gray-400 hover:text-forest transition">Pricing</a></li><li><a href="for-consultants.html" class="text-gray-400 hover:text-forest transition">For Consultants</a></li><li><a href="grant-calendar.html" class="text-gray-400 hover:text-forest transition">Calendar</a></li></ul></div>
+            <div><h4 class="text-white font-bold mb-4">Company</h4><ul class="space-y-2 text-sm"><li><a href="blog.html" class="text-gray-400 hover:text-forest transition">Blog</a></li><li><a href="contact.html" class="text-gray-400 hover:text-forest transition">Contact</a></li><li><a href="#" class="text-gray-400 hover:text-forest transition">Privacy Policy</a></li><li><a href="#" class="text-gray-400 hover:text-forest transition">Terms of Service</a></li></ul></div>
+        </div>
+        <div class="max-w-7xl mx-auto mt-12 pt-8 border-t border-border text-center"><p class="text-gray-500 text-sm">&copy; 2026 GrantRadar. All rights reserved.</p></div>
+    </footer>
+
+    <script>
+        document.getElementById('mobile-menu-btn').addEventListener('click',function(){document.querySelector('.nav-links').classList.toggle('active');});
+        let currentYear = 2026, currentMonth = 2; // March = 2 (0-indexed)
+        const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+        // Sample deadlines
+        const sampleDeadlines = {
+            '2026-03-10': [{ title: 'SBIR Phase I', sector: 'tech', country: 'USA', amount: '$275K' }],
+            '2026-03-15': [{ title: 'CDAP Digital Grant', sector: 'tech', country: 'Canada', amount: '$15K' }, { title: 'Innovate UK Smart', sector: 'tech', country: 'UK', amount: '$2.5M' }],
+            '2026-03-20': [{ title: 'Clean Energy Fund', sector: 'energy', country: 'Canada', amount: '$500K' }],
+            '2026-03-28': [{ title: 'Arts Council Grant', sector: 'arts', country: 'UK', amount: '$100K' }],
+            '2026-04-01': [{ title: 'NSERC Discovery', sector: 'edu', country: 'Canada', amount: '$50K/yr' }],
+            '2026-04-10': [{ title: 'Gates Foundation', sector: 'health', country: 'USA', amount: '$2M' }],
+            '2026-04-15': [{ title: 'AgriInnovate', sector: 'agri', country: 'Canada', amount: '$1M' }, { title: 'Social Enterprise Fund', sector: 'social', country: 'UK', amount: '$250K' }],
+            '2026-04-22': [{ title: 'EIC Accelerator', sector: 'tech', country: 'EU', amount: '$2.5M' }],
+            '2026-05-01': [{ title: 'Manufacturing Innovation', sector: 'mfg', country: 'USA', amount: '$500K' }],
+            '2026-05-15': [{ title: 'Horizon Europe', sector: 'energy', country: 'EU', amount: '$5M' }],
+        };
+        function renderCalendar() {
+            document.getElementById('month-title').textContent = `${months[currentMonth]} ${currentYear}`;
+            const firstDay = new Date(currentYear, currentMonth, 1).getDay();
+            const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+            const today = new Date();
+            let html = '';
+            for (let i = 0; i < firstDay; i++) { html += '<div class="cal-day p-2 border-b border-r border-border opacity-30"></div>'; }
+            for (let d = 1; d <= daysInMonth; d++) {
+                const dateStr = `${currentYear}-${String(currentMonth+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+                const isToday = today.getFullYear() === currentYear && today.getMonth() === currentMonth && today.getDate() === d;
+                const deadlines = sampleDeadlines[dateStr] || [];
+                html += `<div class="cal-day p-2 border-b border-r border-border ${isToday ? 'today' : ''}" onclick="showDay('${dateStr}')">`;
+                html += `<span class="text-sm ${isToday ? 'text-forest font-bold' : 'text-gray-400'}">${d}</span>`;
+                if (deadlines.length > 0) {
+                    html += '<div class="mt-1 flex flex-wrap gap-1">';
+                    deadlines.forEach(dl => { html += `<span class="dot dot-${dl.sector}"></span>`; });
+                    html += '</div>';
+                    if (window.innerWidth > 768) {
+                        html += `<p class="text-xs text-gray-400 mt-1 truncate">${deadlines[0].title}</p>`;
+                        if (deadlines.length > 1) html += `<p class="text-xs text-gray-500">+${deadlines.length - 1} more</p>`;
+                    }
+                }
+                html += '</div>';
+            }
+            document.getElementById('calendar-days').innerHTML = html;
+        }
+        function showDay(dateStr) {
+            const deadlines = sampleDeadlines[dateStr];
+            const detail = document.getElementById('day-detail');
+            if (!deadlines || deadlines.length === 0) { detail.classList.add('hidden'); return; }
+            detail.classList.remove('hidden');
+            const d = new Date(dateStr + 'T12:00:00');
+            document.getElementById('day-detail-title').textContent = `Grants Due ${months[d.getMonth()]} ${d.getDate()}, ${d.getFullYear()}`;
+            document.getElementById('day-detail-cards').innerHTML = deadlines.map(dl => `
+                <div class="bg-card border border-border rounded-xl p-4 flex items-center justify-between">
+                    <div class="flex items-center gap-3">
+                        <span class="dot dot-${dl.sector}" style="width:10px;height:10px;"></span>
+                        <div>
+                            <p class="text-white font-medium">${dl.title}</p>
+                            <p class="text-gray-500 text-xs">${dl.country} &middot; ${dl.amount}</p>
+                        </div>
+                    </div>
+                    <a href="find-grant.html" class="text-forest text-sm hover:underline">View <i class="fas fa-arrow-right ml-1"></i></a>
+                </div>
+            `).join('');
+        }
+        document.getElementById('prev-month').addEventListener('click', () => { currentMonth--; if (currentMonth < 0) { currentMonth = 11; currentYear--; } renderCalendar(); });
+        document.getElementById('next-month').addEventListener('click', () => { currentMonth++; if (currentMonth > 11) { currentMonth = 0; currentYear++; } renderCalendar(); });
+        renderCalendar();
+    </script>
+</body>
+</html>

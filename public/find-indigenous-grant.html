@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Indigenous Business Grants and Funding Programs — GrantRadar</title>
+    <meta name="description" content="Find grants and funding programs for Indigenous-owned businesses and communities. Government programs, economic development funds, and capacity building grants.">
+    <link rel="canonical" href="https://grantradar.com/find-indigenous-grant.html">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>tailwind.config={theme:{extend:{colors:{forest:'#1A7A4A','forest-dark':'#14613B','forest-light':'#22995D',gold:'#C9A227','gold-light':'#D4B342',dark:'#0a0a0a',card:'#1a1a1a',border:'#333333'}}}}</script>
+    <style>
+        body { font-family: 'Roboto', sans-serif; background: #0a0a0a; color: #e5e7eb; }
+        .glass-nav { background: rgba(0,0,0,0.4); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); }
+        .card-hover { transition: transform 0.3s, box-shadow 0.3s; }
+        .card-hover:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(26,122,74,0.15); }
+        @media (max-width: 768px) { .nav-links { display: none; } .nav-links.active { display: flex; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0; background: rgba(0,0,0,0.95); padding: 1rem; } }
+    </style>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+    <script>window.API_BASE = 'https://grantradar-backend-production.up.railway.app';</script>
+    <script type="application/ld+json">
+    {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+        {"@type":"ListItem","position":1,"name":"Home","item":"https://grantradar.com/"},
+        {"@type":"ListItem","position":2,"name":"Indigenous Grants","item":"https://grantradar.com/find-indigenous-grant.html"}
+    ]}
+    </script>
+    <script type="application/ld+json">
+    {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+        {"@type":"Question","name":"What grants are available for Indigenous businesses?","acceptedAnswer":{"@type":"Answer","text":"Indigenous businesses can access dedicated government programs, Aboriginal business development funds, community economic development grants, and capacity building programs. Many countries have specific funding streams for Indigenous entrepreneurs."}},
+        {"@type":"Question","name":"Do I need to be registered as an Indigenous business?","acceptedAnswer":{"@type":"Answer","text":"Requirements vary by program. In Canada, many programs require membership in an Indigenous community or registration with organizations like the CCAB. In Australia, Supply Nation certification may be needed. In the USA, tribal enrollment or BIA certification is common."}},
+        {"@type":"Question","name":"Can Indigenous businesses also apply for general grants?","acceptedAnswer":{"@type":"Answer","text":"Yes, Indigenous-owned businesses are eligible for both Indigenous-specific programs and general business grants. In fact, many general programs give priority or additional points to Indigenous applicants."}},
+        {"@type":"Question","name":"What sectors are covered by Indigenous grants?","acceptedAnswer":{"@type":"Answer","text":"Indigenous grants cover all sectors including natural resources, tourism, technology, agriculture, arts and culture, construction, clean energy, and professional services. Many programs are sector-agnostic and focus on community economic development."}},
+        {"@type":"Question","name":"Are there grants for Indigenous youth entrepreneurs?","acceptedAnswer":{"@type":"Answer","text":"Yes, several programs specifically target Indigenous youth entrepreneurs, including Futurpreneur Indigenous Entrepreneur stream in Canada, First Nations Enterprise Scholarships in Australia, and various tribal youth programs in the USA."}}
+    ]}
+    </script>
+</head>
+<body class="bg-dark min-h-screen">
+    <!-- Navigation -->
+    <nav class="glass-nav fixed top-0 left-0 right-0 z-50 border-b border-border">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <a href="index.html" class="flex items-center space-x-2"><span class="text-xl font-bold text-white">Grant<span class="text-forest">Radar</span></span></a>
+                <button id="mobile-menu-btn" class="md:hidden text-white text-xl"><i class="fas fa-bars"></i></button>
+                <div class="nav-links hidden md:flex items-center space-x-6">
+                    <a href="index.html" class="text-gray-300 hover:text-forest transition">Home</a>
+                    <a href="find-grant.html" class="text-white font-medium hover:text-forest transition">Find Grants</a>
+                    <a href="how-it-works.html" class="text-gray-300 hover:text-forest transition">How It Works</a>
+                    <a href="pricing.html" class="text-gray-300 hover:text-forest transition">Pricing</a>
+                    <a href="for-consultants.html" class="text-gray-300 hover:text-forest transition">For Consultants</a>
+                    <a href="contact.html" class="text-gray-300 hover:text-forest transition">Contact</a>
+                    <a href="eligibility-quiz.html" class="bg-forest hover:bg-forest-dark text-white px-4 py-2 rounded-lg transition font-medium">Sign Up</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="pt-28 pb-12 px-4">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex items-center gap-3 mb-6">
+                <div class="w-14 h-14 bg-orange-500/20 rounded-xl flex items-center justify-center">
+                    <i class="fas fa-feather-pointed text-orange-400 text-2xl"></i>
+                </div>
+                <div>
+                    <h1 class="text-3xl md:text-4xl font-bold text-white">Indigenous Business Grants and Funding Programs</h1>
+                    <p class="text-gray-400">Browse <span class="text-forest font-bold">800+</span> Indigenous-focused programs</p>
+                </div>
+            </div>
+            <p class="text-gray-300 max-w-3xl text-lg mb-8">Dedicated funding programs for Indigenous entrepreneurs, communities, and organizations. From federal economic development programs to community capacity building grants, find the support designed to grow Indigenous businesses worldwide.</p>
+        </div>
+    </section>
+
+    <!-- Top Indigenous Grants -->
+    <section class="pb-12 px-4">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-2xl font-bold text-white mb-6">Top Indigenous Business Grants</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div class="bg-card border border-border rounded-xl p-5 card-hover">
+                    <div class="flex items-center gap-2 mb-3">
+                        <span class="bg-orange-500/20 text-orange-400 text-xs px-2 py-1 rounded font-medium">Indigenous</span>
+                        <span class="text-gray-500 text-xs">Canada</span>
+                    </div>
+                    <h3 class="text-white font-bold mb-2">Aboriginal Business and Entrepreneurship Development</h3>
+                    <p class="text-gray-400 text-sm mb-3">Business planning, startup, expansion, and marketing support</p>
+                    <div class="flex items-center justify-between">
+                        <span class="text-forest font-bold text-sm">Up to $99,999</span>
+                        <a href="find-grant.html?eligibility_type=indigenous" class="text-forest text-sm hover:underline">View <i class="fas fa-arrow-right ml-1"></i></a>
+                    </div>
+                </div>
+                <div class="bg-card border border-border rounded-xl p-5 card-hover">
+                    <div class="flex items-center gap-2 mb-3">
+                        <span class="bg-orange-500/20 text-orange-400 text-xs px-2 py-1 rounded font-medium">Indigenous</span>
+                        <span class="text-gray-500 text-xs">Australia</span>
+                    </div>
+                    <h3 class="text-white font-bold mb-2">Indigenous Advancement Strategy</h3>
+                    <p class="text-gray-400 text-sm mb-3">Jobs, economic development, and community safety programs</p>
+                    <div class="flex items-center justify-between">
+                        <span class="text-forest font-bold text-sm">$10,000 - $500,000</span>
+                        <a href="find-grant.html?eligibility_type=indigenous" class="text-forest text-sm hover:underline">View <i class="fas fa-arrow-right ml-1"></i></a>
+                    </div>
+                </div>
+                <div class="bg-card border border-border rounded-xl p-5 card-hover">
+                    <div class="flex items-center gap-2 mb-3">
+                        <span class="bg-orange-500/20 text-orange-400 text-xs px-2 py-1 rounded font-medium">Indigenous</span>
+                        <span class="text-gray-500 text-xs">USA</span>
+                    </div>
+                    <h3 class="text-white font-bold mb-2">Indian Business Incubators Program</h3>
+                    <p class="text-gray-400 text-sm mb-3">Business incubation for Native American communities</p>
+                    <div class="flex items-center justify-between">
+                        <span class="text-forest font-bold text-sm">Up to $300,000</span>
+                        <a href="find-grant.html?eligibility_type=indigenous" class="text-forest text-sm hover:underline">View <i class="fas fa-arrow-right ml-1"></i></a>
+                    </div>
+                </div>
+                <div class="bg-card border border-border rounded-xl p-5 card-hover">
+                    <div class="flex items-center gap-2 mb-3">
+                        <span class="bg-orange-500/20 text-orange-400 text-xs px-2 py-1 rounded font-medium">Indigenous</span>
+                        <span class="text-gray-500 text-xs">Canada</span>
+                    </div>
+                    <h3 class="text-white font-bold mb-2">Futurpreneur Indigenous Entrepreneur</h3>
+                    <p class="text-gray-400 text-sm mb-3">Financing and mentoring for Indigenous youth founders</p>
+                    <div class="flex items-center justify-between">
+                        <span class="text-forest font-bold text-sm">Up to $75,000</span>
+                        <a href="find-grant.html?eligibility_type=indigenous" class="text-forest text-sm hover:underline">View <i class="fas fa-arrow-right ml-1"></i></a>
+                    </div>
+                </div>
+                <div class="bg-card border border-border rounded-xl p-5 card-hover">
+                    <div class="flex items-center gap-2 mb-3">
+                        <span class="bg-orange-500/20 text-orange-400 text-xs px-2 py-1 rounded font-medium">Indigenous</span>
+                        <span class="text-gray-500 text-xs">New Zealand</span>
+                    </div>
+                    <h3 class="text-white font-bold mb-2">Te Puni Kokiri Maori Business Grants</h3>
+                    <p class="text-gray-400 text-sm mb-3">Business development and capability building for Maori enterprises</p>
+                    <div class="flex items-center justify-between">
+                        <span class="text-forest font-bold text-sm">$5,000 - $200,000</span>
+                        <a href="find-grant.html?eligibility_type=indigenous" class="text-forest text-sm hover:underline">View <i class="fas fa-arrow-right ml-1"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Support Areas -->
+    <section class="py-12 px-4 bg-card/50">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-2xl font-bold text-white mb-8 text-center">Funding Areas for Indigenous Businesses</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-forest/20 rounded-full flex items-center justify-center mx-auto mb-4"><i class="fas fa-seedling text-forest text-2xl"></i></div>
+                    <h3 class="text-white font-bold mb-2">Startup Capital</h3>
+                    <p class="text-gray-400 text-sm">Launch funding and first-stage support</p>
+                </div>
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-forest/20 rounded-full flex items-center justify-center mx-auto mb-4"><i class="fas fa-expand text-forest text-2xl"></i></div>
+                    <h3 class="text-white font-bold mb-2">Business Expansion</h3>
+                    <p class="text-gray-400 text-sm">Scaling, new markets, and growth</p>
+                </div>
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-forest/20 rounded-full flex items-center justify-center mx-auto mb-4"><i class="fas fa-graduation-cap text-forest text-2xl"></i></div>
+                    <h3 class="text-white font-bold mb-2">Training & Skills</h3>
+                    <p class="text-gray-400 text-sm">Capacity building and mentorship</p>
+                </div>
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-forest/20 rounded-full flex items-center justify-center mx-auto mb-4"><i class="fas fa-people-group text-forest text-2xl"></i></div>
+                    <h3 class="text-white font-bold mb-2">Community Development</h3>
+                    <p class="text-gray-400 text-sm">Community economic prosperity</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="py-16 px-4">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-3xl font-bold text-white mb-4">Find Funding for Your Indigenous Business</h2>
+            <p class="text-gray-400 mb-8">Search dedicated programs and mainstream grants that support Indigenous entrepreneurs.</p>
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="find-grant.html?eligibility_type=indigenous" class="bg-forest hover:bg-forest-dark text-white px-8 py-4 rounded-xl text-lg font-bold transition"><i class="fas fa-search mr-2"></i>See All Indigenous Grants</a>
+                <a href="eligibility-quiz.html" class="border-2 border-gold text-gold hover:bg-gold hover:text-dark px-8 py-4 rounded-xl text-lg font-bold transition">Take Eligibility Quiz</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="py-12 px-4 bg-card/50">
+        <div class="max-w-3xl mx-auto">
+            <h2 class="text-2xl font-bold text-white mb-8 text-center">Indigenous Grant FAQs</h2>
+            <div class="space-y-4">
+                <div class="bg-card border border-border rounded-xl p-5"><h3 class="text-white font-bold mb-2">What grants are available for Indigenous businesses?</h3><p class="text-gray-400 text-sm">Indigenous businesses can access dedicated government programs, Aboriginal business development funds, community economic development grants, and capacity building programs.</p></div>
+                <div class="bg-card border border-border rounded-xl p-5"><h3 class="text-white font-bold mb-2">Do I need to be registered as an Indigenous business?</h3><p class="text-gray-400 text-sm">Requirements vary by program. In Canada, many programs require membership in an Indigenous community. In Australia, Supply Nation certification may be needed. In the USA, tribal enrollment or BIA certification is common.</p></div>
+                <div class="bg-card border border-border rounded-xl p-5"><h3 class="text-white font-bold mb-2">Can Indigenous businesses also apply for general grants?</h3><p class="text-gray-400 text-sm">Yes, Indigenous-owned businesses are eligible for both Indigenous-specific and general business grants. Many general programs give priority to Indigenous applicants.</p></div>
+                <div class="bg-card border border-border rounded-xl p-5"><h3 class="text-white font-bold mb-2">What sectors are covered by Indigenous grants?</h3><p class="text-gray-400 text-sm">Indigenous grants cover all sectors including natural resources, tourism, technology, agriculture, arts and culture, construction, clean energy, and professional services.</p></div>
+                <div class="bg-card border border-border rounded-xl p-5"><h3 class="text-white font-bold mb-2">Are there grants for Indigenous youth entrepreneurs?</h3><p class="text-gray-400 text-sm">Yes, several programs specifically target Indigenous youth entrepreneurs, including Futurpreneur Indigenous Entrepreneur stream in Canada and First Nations Enterprise Scholarships in Australia.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-16 px-4" style="background: #111;">
+        <div class="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8">
+            <div><h3 class="text-white font-bold mb-4"><span class="text-forest">Grant</span>Radar</h3><p class="text-gray-500 text-sm">AI-powered grant matching across 50+ countries.</p></div>
+            <div><h4 class="text-white font-bold mb-4">Find Grants</h4><ul class="space-y-2 text-sm"><li><a href="find-grant.html" class="text-gray-400 hover:text-forest transition">All Grants</a></li><li><a href="find-government-grant.html" class="text-gray-400 hover:text-forest transition">Government</a></li><li><a href="find-startup-grant.html" class="text-gray-400 hover:text-forest transition">Startups</a></li><li><a href="find-nonprofit-grant.html" class="text-gray-400 hover:text-forest transition">Nonprofits</a></li></ul></div>
+            <div><h4 class="text-white font-bold mb-4">Platform</h4><ul class="space-y-2 text-sm"><li><a href="how-it-works.html" class="text-gray-400 hover:text-forest transition">How It Works</a></li><li><a href="pricing.html" class="text-gray-400 hover:text-forest transition">Pricing</a></li><li><a href="for-consultants.html" class="text-gray-400 hover:text-forest transition">For Consultants</a></li><li><a href="grant-calendar.html" class="text-gray-400 hover:text-forest transition">Calendar</a></li></ul></div>
+            <div><h4 class="text-white font-bold mb-4">Company</h4><ul class="space-y-2 text-sm"><li><a href="blog.html" class="text-gray-400 hover:text-forest transition">Blog</a></li><li><a href="contact.html" class="text-gray-400 hover:text-forest transition">Contact</a></li><li><a href="#" class="text-gray-400 hover:text-forest transition">Privacy Policy</a></li><li><a href="#" class="text-gray-400 hover:text-forest transition">Terms of Service</a></li></ul></div>
+        </div>
+        <div class="max-w-7xl mx-auto mt-12 pt-8 border-t border-border text-center"><p class="text-gray-500 text-sm">&copy; 2026 GrantRadar. All rights reserved.</p></div>
+    </footer>
+    <script>document.getElementById('mobile-menu-btn').addEventListener('click',function(){document.querySelector('.nav-links').classList.toggle('active');});</script>
+</body>
+</html>

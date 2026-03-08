@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grant Consulting Made Powerful — GrantRadar</title>
+    <meta name="description" content="Manage 10 client organizations, track applications, and boost your success rate with AI-powered grant matching for consultants.">
+    <link rel="canonical" href="https://grantradar.com/for-consultants.html">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>tailwind.config={theme:{extend:{colors:{forest:'#1A7A4A','forest-dark':'#14613B','forest-light':'#22995D',gold:'#C9A227','gold-light':'#D4B342',dark:'#0a0a0a',card:'#1a1a1a',border:'#333333'}}}}</script>
+    <style>
+        body { font-family: 'Roboto', sans-serif; background: #0a0a0a; color: #e5e7eb; }
+        .glass-nav { background: rgba(0,0,0,0.4); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); }
+        .card-hover { transition: transform 0.3s, box-shadow 0.3s; }
+        .card-hover:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(26,122,74,0.15); }
+        @media (max-width: 768px) { .nav-links { display: none; } .nav-links.active { display: flex; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0; background: rgba(0,0,0,0.95); padding: 1rem; } }
+    </style>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+    <script>window.API_BASE = 'https://grantradar-backend-production.up.railway.app';</script>
+    <script type="application/ld+json">
+    {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+        {"@type":"ListItem","position":1,"name":"Home","item":"https://grantradar.com/"},
+        {"@type":"ListItem","position":2,"name":"For Consultants","item":"https://grantradar.com/for-consultants.html"}
+    ]}
+    </script>
+</head>
+<body class="bg-dark min-h-screen">
+    <!-- Navigation -->
+    <nav class="glass-nav fixed top-0 left-0 right-0 z-50 border-b border-border">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <a href="index.html" class="flex items-center space-x-2"><span class="text-xl font-bold text-white">Grant<span class="text-forest">Radar</span></span></a>
+                <button id="mobile-menu-btn" class="md:hidden text-white text-xl"><i class="fas fa-bars"></i></button>
+                <div class="nav-links hidden md:flex items-center space-x-6">
+                    <a href="index.html" class="text-gray-300 hover:text-forest transition">Home</a>
+                    <a href="find-grant.html" class="text-gray-300 hover:text-forest transition">Find Grants</a>
+                    <a href="how-it-works.html" class="text-gray-300 hover:text-forest transition">How It Works</a>
+                    <a href="pricing.html" class="text-gray-300 hover:text-forest transition">Pricing</a>
+                    <a href="for-consultants.html" class="text-white font-medium hover:text-forest transition">For Consultants</a>
+                    <a href="contact.html" class="text-gray-300 hover:text-forest transition">Contact</a>
+                    <a href="eligibility-quiz.html" class="bg-forest hover:bg-forest-dark text-white px-4 py-2 rounded-lg transition font-medium">Sign Up</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="pt-28 pb-16 px-4">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <div class="inline-block bg-gold/20 text-gold px-4 py-1.5 rounded-full text-sm font-medium mb-6">FOR GRANT CONSULTANTS</div>
+                    <h1 class="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">Grant Consulting Made <span style="color: #C9A227;">Powerful</span></h1>
+                    <p class="text-gray-300 text-lg mb-8">Stop spending hours searching for grants manually. GrantRadar gives you AI-powered matching for all your clients in one dashboard. Manage up to 10 organizations, track every application, and build a track record that wins more business.</p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a href="pricing.html" class="bg-gold hover:bg-gold-light text-dark px-8 py-4 rounded-xl text-lg font-bold transition text-center"><i class="fas fa-crown mr-2"></i>Start Consultant Plan — $499/mo</a>
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="bg-card border border-border rounded-xl p-5 text-center">
+                        <p class="text-3xl font-bold text-forest mb-1">10</p>
+                        <p class="text-gray-400 text-sm">Client Orgs</p>
+                    </div>
+                    <div class="bg-card border border-border rounded-xl p-5 text-center">
+                        <p class="text-3xl font-bold text-forest mb-1">AI</p>
+                        <p class="text-gray-400 text-sm">Matching Engine</p>
+                    </div>
+                    <div class="bg-card border border-border rounded-xl p-5 text-center">
+                        <p class="text-3xl font-bold text-forest mb-1">100%</p>
+                        <p class="text-gray-400 text-sm">Application Tracking</p>
+                    </div>
+                    <div class="bg-card border border-border rounded-xl p-5 text-center">
+                        <p class="text-3xl font-bold text-forest mb-1">ROI</p>
+                        <p class="text-gray-400 text-sm">Success Analytics</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits -->
+    <section class="py-16 px-4 bg-card/50">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-3xl font-bold text-white text-center mb-12">Why Consultants Choose GrantRadar</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-card border border-border rounded-xl p-6 card-hover">
+                    <div class="w-12 h-12 bg-forest/20 rounded-lg flex items-center justify-center mb-4"><i class="fas fa-users text-forest text-xl"></i></div>
+                    <h3 class="text-white font-bold text-lg mb-3">Client Management</h3>
+                    <p class="text-gray-400 text-sm">Create profiles for up to 10 client organizations. Each client gets their own AI-matched grants, deadlines, and application pipeline. Switch between clients in one click.</p>
+                </div>
+                <div class="bg-card border border-border rounded-xl p-6 card-hover">
+                    <div class="w-12 h-12 bg-forest/20 rounded-lg flex items-center justify-center mb-4"><i class="fas fa-robot text-forest text-xl"></i></div>
+                    <h3 class="text-white font-bold text-lg mb-3">AI Matching for All Clients</h3>
+                    <p class="text-gray-400 text-sm">Every client profile is automatically matched against 10,000+ grants daily. Get scored results ranked by eligibility so you can focus on the best opportunities.</p>
+                </div>
+                <div class="bg-card border border-border rounded-xl p-6 card-hover">
+                    <div class="w-12 h-12 bg-forest/20 rounded-lg flex items-center justify-center mb-4"><i class="fas fa-clipboard-list text-forest text-xl"></i></div>
+                    <h3 class="text-white font-bold text-lg mb-3">Application Tracking</h3>
+                    <p class="text-gray-400 text-sm">Track every grant application from discovery to award. Set reminders for deadlines, mark submission dates, and log outcomes for your entire book of business.</p>
+                </div>
+                <div class="bg-card border border-border rounded-xl p-6 card-hover">
+                    <div class="w-12 h-12 bg-forest/20 rounded-lg flex items-center justify-center mb-4"><i class="fas fa-chart-bar text-forest text-xl"></i></div>
+                    <h3 class="text-white font-bold text-lg mb-3">Success Analytics</h3>
+                    <p class="text-gray-400 text-sm">Build a verifiable track record. See your win rate, total funding secured, average grant size, and success rate by sector. Use these stats to win more clients.</p>
+                </div>
+                <div class="bg-card border border-border rounded-xl p-6 card-hover">
+                    <div class="w-12 h-12 bg-forest/20 rounded-lg flex items-center justify-center mb-4"><i class="fas fa-file-export text-forest text-xl"></i></div>
+                    <h3 class="text-white font-bold text-lg mb-3">Export Reports</h3>
+                    <p class="text-gray-400 text-sm">Generate professional reports for your clients showing matched grants, eligibility scores, and recommended next steps. Export as PDF or CSV.</p>
+                </div>
+                <div class="bg-card border border-border rounded-xl p-6 card-hover">
+                    <div class="w-12 h-12 bg-forest/20 rounded-lg flex items-center justify-center mb-4"><i class="fas fa-headset text-forest text-xl"></i></div>
+                    <h3 class="text-white font-bold text-lg mb-3">Priority Support</h3>
+                    <p class="text-gray-400 text-sm">Get dedicated support with faster response times. Our team understands the consulting workflow and can help you maximize the platform for your clients.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Workflow -->
+    <section class="py-16 px-4">
+        <div class="max-w-5xl mx-auto">
+            <h2 class="text-3xl font-bold text-white text-center mb-12">Your Consulting Workflow, Supercharged</h2>
+            <div class="space-y-8">
+                <div class="flex items-start gap-6">
+                    <div class="w-12 h-12 bg-forest rounded-full flex items-center justify-center flex-shrink-0"><span class="text-white font-bold">1</span></div>
+                    <div><h3 class="text-white font-bold text-lg mb-2">Onboard a New Client</h3><p class="text-gray-400">Create their organization profile in minutes. Add their sector, size, location, and funding goals.</p></div>
+                </div>
+                <div class="flex items-start gap-6">
+                    <div class="w-12 h-12 bg-forest rounded-full flex items-center justify-center flex-shrink-0"><span class="text-white font-bold">2</span></div>
+                    <div><h3 class="text-white font-bold text-lg mb-2">Review AI Matches</h3><p class="text-gray-400">Within minutes, see every grant your client is eligible for, ranked by match score. Filter by deadline, amount, and sector.</p></div>
+                </div>
+                <div class="flex items-start gap-6">
+                    <div class="w-12 h-12 bg-forest rounded-full flex items-center justify-center flex-shrink-0"><span class="text-white font-bold">3</span></div>
+                    <div><h3 class="text-white font-bold text-lg mb-2">Send Client Reports</h3><p class="text-gray-400">Export a professional grant matching report showing opportunities, deadlines, and your recommendations.</p></div>
+                </div>
+                <div class="flex items-start gap-6">
+                    <div class="w-12 h-12 bg-forest rounded-full flex items-center justify-center flex-shrink-0"><span class="text-white font-bold">4</span></div>
+                    <div><h3 class="text-white font-bold text-lg mb-2">Track & Win</h3><p class="text-gray-400">Log applications, track outcomes, and build your success analytics. Show clients your real win rate.</p></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing -->
+    <section class="py-16 px-4 bg-card/50">
+        <div class="max-w-lg mx-auto">
+            <h2 class="text-3xl font-bold text-white text-center mb-8">Consultant Plan</h2>
+            <div class="bg-card border-2 border-gold rounded-2xl p-8 text-center">
+                <div class="inline-block bg-gold/20 text-gold px-4 py-1 rounded-full text-sm font-medium mb-4">MOST POPULAR FOR CONSULTANTS</div>
+                <p class="text-5xl font-black text-white mb-1">$499<span class="text-lg text-gray-400 font-normal">/month</span></p>
+                <p class="text-gray-400 mb-8">Everything you need to manage grant consulting at scale</p>
+                <ul class="text-left space-y-3 mb-8">
+                    <li class="flex items-center gap-3 text-gray-300"><i class="fas fa-check text-forest"></i>Manage 10 client organizations</li>
+                    <li class="flex items-center gap-3 text-gray-300"><i class="fas fa-check text-forest"></i>AI matching for all clients</li>
+                    <li class="flex items-center gap-3 text-gray-300"><i class="fas fa-check text-forest"></i>Unlimited grant matches per client</li>
+                    <li class="flex items-center gap-3 text-gray-300"><i class="fas fa-check text-forest"></i>Application tracking dashboard</li>
+                    <li class="flex items-center gap-3 text-gray-300"><i class="fas fa-check text-forest"></i>Success rate analytics</li>
+                    <li class="flex items-center gap-3 text-gray-300"><i class="fas fa-check text-forest"></i>Export PDF/CSV reports</li>
+                    <li class="flex items-center gap-3 text-gray-300"><i class="fas fa-check text-forest"></i>AI match explanations</li>
+                    <li class="flex items-center gap-3 text-gray-300"><i class="fas fa-check text-forest"></i>Email deadline alerts</li>
+                    <li class="flex items-center gap-3 text-gray-300"><i class="fas fa-check text-forest"></i>Priority support</li>
+                </ul>
+                <button onclick="startCheckout('consultant')" class="w-full bg-gold hover:bg-gold-light text-dark py-4 rounded-xl font-bold text-lg transition"><i class="fas fa-crown mr-2"></i>Start Your Consultant Account</button>
+                <p class="text-gray-500 text-xs mt-4">Cancel anytime. No long-term contracts.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="py-16 px-4">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-3xl font-bold text-white mb-4">Ready to Scale Your Grant Consulting?</h2>
+            <p class="text-gray-400 mb-8">Join consultants who are winning more grants for more clients with less manual work.</p>
+            <a href="contact.html" class="inline-block border-2 border-forest text-forest hover:bg-forest hover:text-white px-8 py-4 rounded-xl text-lg font-bold transition"><i class="fas fa-envelope mr-2"></i>Contact Sales</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-16 px-4" style="background: #111;">
+        <div class="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8">
+            <div><h3 class="text-white font-bold mb-4"><span class="text-forest">Grant</span>Radar</h3><p class="text-gray-500 text-sm">AI-powered grant matching across 50+ countries.</p></div>
+            <div><h4 class="text-white font-bold mb-4">Find Grants</h4><ul class="space-y-2 text-sm"><li><a href="find-grant.html" class="text-gray-400 hover:text-forest transition">All Grants</a></li><li><a href="find-government-grant.html" class="text-gray-400 hover:text-forest transition">Government</a></li><li><a href="find-startup-grant.html" class="text-gray-400 hover:text-forest transition">Startups</a></li><li><a href="find-nonprofit-grant.html" class="text-gray-400 hover:text-forest transition">Nonprofits</a></li></ul></div>
+            <div><h4 class="text-white font-bold mb-4">Platform</h4><ul class="space-y-2 text-sm"><li><a href="how-it-works.html" class="text-gray-400 hover:text-forest transition">How It Works</a></li><li><a href="pricing.html" class="text-gray-400 hover:text-forest transition">Pricing</a></li><li><a href="for-consultants.html" class="text-gray-400 hover:text-forest transition">For Consultants</a></li><li><a href="grant-calendar.html" class="text-gray-400 hover:text-forest transition">Calendar</a></li></ul></div>
+            <div><h4 class="text-white font-bold mb-4">Company</h4><ul class="space-y-2 text-sm"><li><a href="blog.html" class="text-gray-400 hover:text-forest transition">Blog</a></li><li><a href="contact.html" class="text-gray-400 hover:text-forest transition">Contact</a></li><li><a href="#" class="text-gray-400 hover:text-forest transition">Privacy Policy</a></li><li><a href="#" class="text-gray-400 hover:text-forest transition">Terms of Service</a></li></ul></div>
+        </div>
+        <div class="max-w-7xl mx-auto mt-12 pt-8 border-t border-border text-center"><p class="text-gray-500 text-sm">&copy; 2026 GrantRadar. All rights reserved.</p></div>
+    </footer>
+    <script>
+        document.getElementById('mobile-menu-btn').addEventListener('click',function(){document.querySelector('.nav-links').classList.toggle('active');});
+        async function startCheckout(plan) {
+            const token = localStorage.getItem('token');
+            if (!token) { window.location.href = 'eligibility-quiz.html'; return; }
+            try {
+                const res = await fetch(`${window.API_BASE}/api/stripe/create-checkout`, { method: 'POST', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` }, body: JSON.stringify({ plan }) });
+                const data = await res.json();
+                if (data.url) window.location.href = data.url;
+            } catch(e) { alert('Please sign up first to start a subscription.'); }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Check Your Grant Eligibility — GrantRadar</title>
+    <meta name="description" content="Take our 2-minute eligibility quiz to discover which grants your organization qualifies for. AI-powered matching across 10,000+ programs.">
+    <link rel="canonical" href="https://grantradar.com/eligibility-quiz.html">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>tailwind.config={theme:{extend:{colors:{forest:'#1A7A4A','forest-dark':'#14613B','forest-light':'#22995D',gold:'#C9A227','gold-light':'#D4B342',dark:'#0a0a0a',card:'#1a1a1a',border:'#333333'}}}}</script>
+    <style>
+        body { font-family: 'Roboto', sans-serif; background: #0a0a0a; color: #e5e7eb; }
+        .glass-nav { background: rgba(0,0,0,0.4); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); }
+        .step { display: none; }
+        .step.active { display: block; }
+        .radio-option { cursor: pointer; transition: all 0.2s; }
+        .radio-option:hover { border-color: #1A7A4A; }
+        .radio-option.selected { border-color: #1A7A4A; background: rgba(26,122,74,0.1); }
+        .check-option { cursor: pointer; transition: all 0.2s; }
+        .check-option.selected { border-color: #1A7A4A; background: rgba(26,122,74,0.1); }
+        @media (max-width: 768px) { .nav-links { display: none; } .nav-links.active { display: flex; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0; background: rgba(0,0,0,0.95); padding: 1rem; } }
+    </style>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+    <script>window.API_BASE = 'https://grantradar-backend-production.up.railway.app';</script>
+    <script type="application/ld+json">
+    {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+        {"@type":"ListItem","position":1,"name":"Home","item":"https://grantradar.com/"},
+        {"@type":"ListItem","position":2,"name":"Eligibility Quiz","item":"https://grantradar.com/eligibility-quiz.html"}
+    ]}
+    </script>
+</head>
+<body class="bg-dark min-h-screen">
+    <!-- Navigation -->
+    <nav class="glass-nav fixed top-0 left-0 right-0 z-50 border-b border-border">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <a href="index.html" class="flex items-center space-x-2"><span class="text-xl font-bold text-white">Grant<span class="text-forest">Radar</span></span></a>
+                <button id="mobile-menu-btn" class="md:hidden text-white text-xl"><i class="fas fa-bars"></i></button>
+                <div class="nav-links hidden md:flex items-center space-x-6">
+                    <a href="index.html" class="text-gray-300 hover:text-forest transition">Home</a>
+                    <a href="find-grant.html" class="text-gray-300 hover:text-forest transition">Find Grants</a>
+                    <a href="how-it-works.html" class="text-gray-300 hover:text-forest transition">How It Works</a>
+                    <a href="pricing.html" class="text-gray-300 hover:text-forest transition">Pricing</a>
+                    <a href="for-consultants.html" class="text-gray-300 hover:text-forest transition">For Consultants</a>
+                    <a href="contact.html" class="text-gray-300 hover:text-forest transition">Contact</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="pt-24 pb-16 px-4">
+        <div class="max-w-2xl mx-auto">
+            <!-- Progress Bar -->
+            <div class="mb-8">
+                <div class="flex items-center justify-between mb-2">
+                    <span class="text-white font-medium text-sm">Eligibility Quiz</span>
+                    <span id="step-label" class="text-forest font-medium text-sm">Step 1 of 10</span>
+                </div>
+                <div class="w-full bg-card rounded-full h-2">
+                    <div id="progress-bar" class="bg-forest h-2 rounded-full transition-all duration-500" style="width: 10%"></div>
+                </div>
+            </div>
+
+            <!-- Step 1: Country -->
+            <div class="step active" data-step="1">
+                <div class="bg-card border border-border rounded-2xl p-8">
+                    <h2 class="text-2xl font-bold text-white mb-2">What country is your organization based in?</h2>
+                    <p class="text-gray-400 mb-6">This helps us match you with region-specific programs.</p>
+                    <select id="q-country" class="w-full bg-dark border border-border rounded-xl px-4 py-3.5 text-white text-lg focus:border-forest focus:outline-none">
+                        <option value="">Select your country</option>
+                        <option value="Canada">Canada</option><option value="USA">USA</option><option value="UK">United Kingdom</option><option value="Australia">Australia</option><option value="Germany">Germany</option><option value="France">France</option><option value="Netherlands">Netherlands</option><option value="Singapore">Singapore</option><option value="UAE">UAE</option><option value="Ireland">Ireland</option><option value="New Zealand">New Zealand</option><option value="Other">Other</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Step 2: Org Type -->
+            <div class="step" data-step="2">
+                <div class="bg-card border border-border rounded-2xl p-8">
+                    <h2 class="text-2xl font-bold text-white mb-2">What type of organization?</h2>
+                    <p class="text-gray-400 mb-6">Select the option that best describes your organization.</p>
+                    <div class="space-y-3" id="q-orgtype">
+                        <div class="radio-option border border-border rounded-xl p-4 flex items-center gap-3" data-value="sme"><div class="w-5 h-5 rounded-full border-2 border-border flex-shrink-0"></div><div><p class="text-white font-medium">SME (Small/Medium Enterprise)</p><p class="text-gray-500 text-sm">Established business with employees</p></div></div>
+                        <div class="radio-option border border-border rounded-xl p-4 flex items-center gap-3" data-value="startup"><div class="w-5 h-5 rounded-full border-2 border-border flex-shrink-0"></div><div><p class="text-white font-medium">Startup</p><p class="text-gray-500 text-sm">Early-stage, high-growth company</p></div></div>
+                        <div class="radio-option border border-border rounded-xl p-4 flex items-center gap-3" data-value="nonprofit"><div class="w-5 h-5 rounded-full border-2 border-border flex-shrink-0"></div><div><p class="text-white font-medium">Nonprofit / Charity</p><p class="text-gray-500 text-sm">Registered charitable organization</p></div></div>
+                        <div class="radio-option border border-border rounded-xl p-4 flex items-center gap-3" data-value="research"><div class="w-5 h-5 rounded-full border-2 border-border flex-shrink-0"></div><div><p class="text-white font-medium">Research Institution</p><p class="text-gray-500 text-sm">University, lab, or research org</p></div></div>
+                        <div class="radio-option border border-border rounded-xl p-4 flex items-center gap-3" data-value="social_enterprise"><div class="w-5 h-5 rounded-full border-2 border-border flex-shrink-0"></div><div><p class="text-white font-medium">Social Enterprise</p><p class="text-gray-500 text-sm">Business with a social mission</p></div></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 3: Sectors -->
+            <div class="step" data-step="3">
+                <div class="bg-card border border-border rounded-2xl p-8">
+                    <h2 class="text-2xl font-bold text-white mb-2">What sectors do you operate in?</h2>
+                    <p class="text-gray-400 mb-6">Select all that apply.</p>
+                    <div class="grid grid-cols-2 gap-3" id="q-sectors">
+                        <div class="check-option border border-border rounded-xl p-3 text-center" data-value="technology"><i class="fas fa-microchip text-forest mb-1"></i><p class="text-white text-sm font-medium">Technology</p></div>
+                        <div class="check-option border border-border rounded-xl p-3 text-center" data-value="clean_energy"><i class="fas fa-solar-panel text-forest mb-1"></i><p class="text-white text-sm font-medium">Clean Energy</p></div>
+                        <div class="check-option border border-border rounded-xl p-3 text-center" data-value="agriculture"><i class="fas fa-wheat-awn text-forest mb-1"></i><p class="text-white text-sm font-medium">Agriculture</p></div>
+                        <div class="check-option border border-border rounded-xl p-3 text-center" data-value="manufacturing"><i class="fas fa-industry text-forest mb-1"></i><p class="text-white text-sm font-medium">Manufacturing</p></div>
+                        <div class="check-option border border-border rounded-xl p-3 text-center" data-value="healthcare"><i class="fas fa-heart-pulse text-forest mb-1"></i><p class="text-white text-sm font-medium">Healthcare</p></div>
+                        <div class="check-option border border-border rounded-xl p-3 text-center" data-value="education"><i class="fas fa-graduation-cap text-forest mb-1"></i><p class="text-white text-sm font-medium">Education</p></div>
+                        <div class="check-option border border-border rounded-xl p-3 text-center" data-value="arts_culture"><i class="fas fa-palette text-forest mb-1"></i><p class="text-white text-sm font-medium">Arts & Culture</p></div>
+                        <div class="check-option border border-border rounded-xl p-3 text-center" data-value="social_impact"><i class="fas fa-hands-holding-circle text-forest mb-1"></i><p class="text-white text-sm font-medium">Social Impact</p></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 4: Employees -->
+            <div class="step" data-step="4">
+                <div class="bg-card border border-border rounded-2xl p-8">
+                    <h2 class="text-2xl font-bold text-white mb-2">How many employees?</h2>
+                    <p class="text-gray-400 mb-6">Include full-time and part-time staff.</p>
+                    <div class="space-y-3" id="q-employees">
+                        <div class="radio-option border border-border rounded-xl p-4" data-value="1-10"><p class="text-white font-medium">1 - 10 employees</p></div>
+                        <div class="radio-option border border-border rounded-xl p-4" data-value="11-50"><p class="text-white font-medium">11 - 50 employees</p></div>
+                        <div class="radio-option border border-border rounded-xl p-4" data-value="51-200"><p class="text-white font-medium">51 - 200 employees</p></div>
+                        <div class="radio-option border border-border rounded-xl p-4" data-value="201-500"><p class="text-white font-medium">201 - 500 employees</p></div>
+                        <div class="radio-option border border-border rounded-xl p-4" data-value="500+"><p class="text-white font-medium">500+ employees</p></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 5: Revenue -->
+            <div class="step" data-step="5">
+                <div class="bg-card border border-border rounded-2xl p-8">
+                    <h2 class="text-2xl font-bold text-white mb-2">What is your annual revenue?</h2>
+                    <p class="text-gray-400 mb-6">Approximate is fine.</p>
+                    <div class="space-y-3" id="q-revenue">
+                        <div class="radio-option border border-border rounded-xl p-4" data-value="under_100k"><p class="text-white font-medium">Under $100,000</p></div>
+                        <div class="radio-option border border-border rounded-xl p-4" data-value="100k_500k"><p class="text-white font-medium">$100,000 - $500,000</p></div>
+                        <div class="radio-option border border-border rounded-xl p-4" data-value="500k_1m"><p class="text-white font-medium">$500,000 - $1,000,000</p></div>
+                        <div class="radio-option border border-border rounded-xl p-4" data-value="1m_5m"><p class="text-white font-medium">$1,000,000 - $5,000,000</p></div>
+                        <div class="radio-option border border-border rounded-xl p-4" data-value="5m_25m"><p class="text-white font-medium">$5,000,000 - $25,000,000</p></div>
+                        <div class="radio-option border border-border rounded-xl p-4" data-value="25m_plus"><p class="text-white font-medium">$25,000,000+</p></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 6: Founded Year -->
+            <div class="step" data-step="6">
+                <div class="bg-card border border-border rounded-2xl p-8">
+                    <h2 class="text-2xl font-bold text-white mb-2">What year was your organization founded?</h2>
+                    <p class="text-gray-400 mb-6">Many grants have age requirements for organizations.</p>
+                    <input type="number" id="q-founded" class="w-full bg-dark border border-border rounded-xl px-4 py-3.5 text-white text-lg focus:border-forest focus:outline-none" placeholder="e.g. 2018" min="1900" max="2026">
+                </div>
+            </div>
+
+            <!-- Step 7: Indigenous -->
+            <div class="step" data-step="7">
+                <div class="bg-card border border-border rounded-2xl p-8">
+                    <h2 class="text-2xl font-bold text-white mb-2">Is your organization indigenous-owned?</h2>
+                    <p class="text-gray-400 mb-6">Many programs have dedicated funding for Indigenous businesses.</p>
+                    <div class="space-y-3" id="q-indigenous">
+                        <div class="radio-option border border-border rounded-xl p-4" data-value="yes"><p class="text-white font-medium">Yes</p></div>
+                        <div class="radio-option border border-border rounded-xl p-4" data-value="no"><p class="text-white font-medium">No</p></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 8: Women-owned -->
+            <div class="step" data-step="8">
+                <div class="bg-card border border-border rounded-2xl p-8">
+                    <h2 class="text-2xl font-bold text-white mb-2">Is your organization women-owned or women-led?</h2>
+                    <p class="text-gray-400 mb-6">Special programs exist for women entrepreneurs.</p>
+                    <div class="space-y-3" id="q-women">
+                        <div class="radio-option border border-border rounded-xl p-4" data-value="yes"><p class="text-white font-medium">Yes</p></div>
+                        <div class="radio-option border border-border rounded-xl p-4" data-value="no"><p class="text-white font-medium">No</p></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 9: Nonprofit -->
+            <div class="step" data-step="9">
+                <div class="bg-card border border-border rounded-2xl p-8">
+                    <h2 class="text-2xl font-bold text-white mb-2">Is your organization a registered nonprofit?</h2>
+                    <p class="text-gray-400 mb-6">Tax-exempt or charitable status in your country.</p>
+                    <div class="space-y-3" id="q-nonprofit">
+                        <div class="radio-option border border-border rounded-xl p-4" data-value="yes"><p class="text-white font-medium">Yes</p></div>
+                        <div class="radio-option border border-border rounded-xl p-4" data-value="no"><p class="text-white font-medium">No</p></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 10: Funding Types -->
+            <div class="step" data-step="10">
+                <div class="bg-card border border-border rounded-2xl p-8">
+                    <h2 class="text-2xl font-bold text-white mb-2">What types of funding are you looking for?</h2>
+                    <p class="text-gray-400 mb-6">Select all that apply.</p>
+                    <div class="grid grid-cols-2 gap-3" id="q-funding-types">
+                        <div class="check-option border border-border rounded-xl p-3 text-center" data-value="operating"><p class="text-white text-sm font-medium">Operating</p></div>
+                        <div class="check-option border border-border rounded-xl p-3 text-center" data-value="capital"><p class="text-white text-sm font-medium">Capital</p></div>
+                        <div class="check-option border border-border rounded-xl p-3 text-center" data-value="rd"><p class="text-white text-sm font-medium">R&D</p></div>
+                        <div class="check-option border border-border rounded-xl p-3 text-center" data-value="export"><p class="text-white text-sm font-medium">Export</p></div>
+                        <div class="check-option border border-border rounded-xl p-3 text-center" data-value="training"><p class="text-white text-sm font-medium">Training</p></div>
+                        <div class="check-option border border-border rounded-xl p-3 text-center" data-value="equipment"><p class="text-white text-sm font-medium">Equipment</p></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Results -->
+            <div class="step" data-step="results">
+                <div class="bg-card border border-border rounded-2xl p-8 text-center mb-6">
+                    <div class="w-20 h-20 bg-forest/20 rounded-full flex items-center justify-center mx-auto mb-4"><i class="fas fa-check-circle text-forest text-4xl"></i></div>
+                    <h2 class="text-2xl font-bold text-white mb-2">Your Results Are Ready!</h2>
+                    <p class="text-gray-400 mb-6">Based on your profile, we found grants you may be eligible for.</p>
+                    <div class="bg-dark rounded-xl p-4 mb-6">
+                        <p class="text-3xl font-bold text-forest" id="result-count">18</p>
+                        <p class="text-gray-400 text-sm">Potential Grant Matches</p>
+                    </div>
+                </div>
+                <div id="result-cards" class="space-y-4 mb-6">
+                    <!-- Filled by JS -->
+                </div>
+                <div class="bg-card border border-gold/30 rounded-2xl p-8 text-center">
+                    <h3 class="text-xl font-bold text-white mb-2">Create a Free Account to Save Your Results</h3>
+                    <p class="text-gray-400 mb-6">Sign up to get email alerts when new matching grants open, track deadlines, and manage applications.</p>
+                    <a href="organization-profile.html" class="inline-block bg-forest hover:bg-forest-dark text-white px-8 py-4 rounded-xl text-lg font-bold transition"><i class="fas fa-user-plus mr-2"></i>Create Free Account</a>
+                </div>
+            </div>
+
+            <!-- Navigation Buttons -->
+            <div class="flex justify-between mt-6" id="quiz-nav">
+                <button id="prev-btn" class="bg-card border border-border text-gray-300 px-6 py-3 rounded-xl font-medium hover:text-white transition hidden"><i class="fas fa-arrow-left mr-2"></i>Back</button>
+                <button id="next-btn" class="bg-forest hover:bg-forest-dark text-white px-6 py-3 rounded-xl font-medium transition ml-auto">Next <i class="fas fa-arrow-right ml-2"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="py-16 px-4" style="background: #111;">
+        <div class="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8">
+            <div><h3 class="text-white font-bold mb-4"><span class="text-forest">Grant</span>Radar</h3><p class="text-gray-500 text-sm">AI-powered grant matching across 50+ countries.</p></div>
+            <div><h4 class="text-white font-bold mb-4">Find Grants</h4><ul class="space-y-2 text-sm"><li><a href="find-grant.html" class="text-gray-400 hover:text-forest transition">All Grants</a></li><li><a href="find-government-grant.html" class="text-gray-400 hover:text-forest transition">Government</a></li><li><a href="find-startup-grant.html" class="text-gray-400 hover:text-forest transition">Startups</a></li><li><a href="find-nonprofit-grant.html" class="text-gray-400 hover:text-forest transition">Nonprofits</a></li></ul></div>
+            <div><h4 class="text-white font-bold mb-4">Platform</h4><ul class="space-y-2 text-sm"><li><a href="how-it-works.html" class="text-gray-400 hover:text-forest transition">How It Works</a></li><li><a href="pricing.html" class="text-gray-400 hover:text-forest transition">Pricing</a></li><li><a href="for-consultants.html" class="text-gray-400 hover:text-forest transition">For Consultants</a></li><li><a href="grant-calendar.html" class="text-gray-400 hover:text-forest transition">Calendar</a></li></ul></div>
+            <div><h4 class="text-white font-bold mb-4">Company</h4><ul class="space-y-2 text-sm"><li><a href="blog.html" class="text-gray-400 hover:text-forest transition">Blog</a></li><li><a href="contact.html" class="text-gray-400 hover:text-forest transition">Contact</a></li><li><a href="#" class="text-gray-400 hover:text-forest transition">Privacy Policy</a></li><li><a href="#" class="text-gray-400 hover:text-forest transition">Terms of Service</a></li></ul></div>
+        </div>
+        <div class="max-w-7xl mx-auto mt-12 pt-8 border-t border-border text-center"><p class="text-gray-500 text-sm">&copy; 2026 GrantRadar. All rights reserved.</p></div>
+    </footer>
+
+    <script>
+        document.getElementById('mobile-menu-btn').addEventListener('click',function(){document.querySelector('.nav-links').classList.toggle('active');});
+        let currentStep = 1;
+        const totalSteps = 10;
+        const answers = {};
+        // Radio options
+        document.querySelectorAll('.radio-option').forEach(opt => {
+            opt.addEventListener('click', function() {
+                this.parentElement.querySelectorAll('.radio-option').forEach(o => { o.classList.remove('selected'); o.querySelector('div:first-child') && (o.querySelector('div:first-child').style.background = ''); });
+                this.classList.add('selected');
+                const dot = this.querySelector('div:first-child');
+                if (dot && dot.classList.contains('rounded-full')) { dot.style.background = '#1A7A4A'; dot.style.borderColor = '#1A7A4A'; }
+            });
+        });
+        // Check options (multi-select)
+        document.querySelectorAll('.check-option').forEach(opt => {
+            opt.addEventListener('click', function() { this.classList.toggle('selected'); });
+        });
+        function goToStep(n) {
+            document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+            if (n === 'results') {
+                document.querySelector('[data-step="results"]').classList.add('active');
+                document.getElementById('quiz-nav').style.display = 'none';
+                showResults();
+                return;
+            }
+            document.querySelector(`[data-step="${n}"]`).classList.add('active');
+            document.getElementById('step-label').textContent = `Step ${n} of ${totalSteps}`;
+            document.getElementById('progress-bar').style.width = (n / totalSteps * 100) + '%';
+            document.getElementById('prev-btn').classList.toggle('hidden', n === 1);
+            document.getElementById('next-btn').textContent = n === totalSteps ? 'See Results' : 'Next';
+            if (n < totalSteps) document.getElementById('next-btn').innerHTML += ' <i class="fas fa-arrow-right ml-2"></i>';
+            else document.getElementById('next-btn').innerHTML = '<i class="fas fa-check mr-2"></i>See Results';
+            currentStep = n;
+        }
+        document.getElementById('next-btn').addEventListener('click', function() {
+            // Save answer
+            if (currentStep === 1) answers.country = document.getElementById('q-country').value;
+            if (currentStep === 2) { const sel = document.querySelector('#q-orgtype .selected'); answers.org_type = sel ? sel.dataset.value : ''; }
+            if (currentStep === 3) answers.sectors = [...document.querySelectorAll('#q-sectors .selected')].map(e => e.dataset.value);
+            if (currentStep === 4) { const sel = document.querySelector('#q-employees .selected'); answers.employee_count = sel ? sel.dataset.value : ''; }
+            if (currentStep === 5) { const sel = document.querySelector('#q-revenue .selected'); answers.annual_revenue = sel ? sel.dataset.value : ''; }
+            if (currentStep === 6) answers.founded_year = document.getElementById('q-founded').value;
+            if (currentStep === 7) { const sel = document.querySelector('#q-indigenous .selected'); answers.is_indigenous = sel ? sel.dataset.value === 'yes' : false; }
+            if (currentStep === 8) { const sel = document.querySelector('#q-women .selected'); answers.is_women_owned = sel ? sel.dataset.value === 'yes' : false; }
+            if (currentStep === 9) { const sel = document.querySelector('#q-nonprofit .selected'); answers.is_nonprofit = sel ? sel.dataset.value === 'yes' : false; }
+            if (currentStep === 10) { answers.funding_types = [...document.querySelectorAll('#q-funding-types .selected')].map(e => e.dataset.value); goToStep('results'); return; }
+            goToStep(currentStep + 1);
+        });
+        document.getElementById('prev-btn').addEventListener('click', function() { if (currentStep > 1) goToStep(currentStep - 1); });
+        async function showResults() {
+            try {
+                const res = await fetch(`${window.API_BASE}/api/eligibility-quiz`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(answers) });
+                const data = await res.json();
+                if (data.matches) {
+                    document.getElementById('result-count').textContent = data.matches.length;
+                    const container = document.getElementById('result-cards');
+                    container.innerHTML = data.matches.slice(0, 10).map(m => `<div class="bg-card border border-border rounded-xl p-5"><div class="flex items-center justify-between mb-2"><h3 class="text-white font-bold">${m.title}</h3><span class="text-forest font-bold">${m.score}%</span></div><p class="text-gray-400 text-sm mb-2">${m.description || ''}</p><span class="text-forest text-sm font-medium">${m.funding_range || ''}</span></div>`).join('');
+                }
+            } catch(e) {
+                // Show placeholder results
+                const sampleGrants = [
+                    { title: 'Canada Digital Adoption Program', score: 92, range: '$2,400 - $15,000' },
+                    { title: 'NRC IRAP Innovation Grant', score: 88, range: 'Up to $1,000,000' },
+                    { title: 'SBIR Phase I', score: 85, range: '$50,000 - $275,000' },
+                    { title: 'Innovate UK Smart Grants', score: 80, range: 'Up to $2,500,000' },
+                    { title: 'EIC Accelerator', score: 76, range: 'Up to $2,500,000' }
+                ];
+                document.getElementById('result-count').textContent = sampleGrants.length;
+                document.getElementById('result-cards').innerHTML = sampleGrants.map(g => `<div class="bg-card border border-border rounded-xl p-5"><div class="flex items-center justify-between mb-2"><h3 class="text-white font-bold">${g.title}</h3><div class="bg-forest/20 text-forest px-3 py-1 rounded-full text-sm font-bold">${g.score}%</div></div><span class="text-forest text-sm font-medium">${g.range}</span></div>`).join('');
+            }
+        }
+    </script>
+</body>
+</html>

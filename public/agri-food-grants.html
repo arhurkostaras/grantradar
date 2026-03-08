@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agriculture and Agri-Food Grants | GrantRadar</title>
+    <meta name="description" content="Find agriculture and agri-food grants worldwide. Farm innovation funding, food processing grants, agtech programs, and rural development support from government agencies.">
+    <link rel="canonical" href="https://grantradar.com/agri-food-grants.html">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { theme: { extend: { colors: { forest: '#1A7A4A', 'forest-dark': '#14613B', 'forest-light': '#22995D', gold: '#C9A227', 'gold-light': '#D4B342', dark: '#0a0a0a', card: '#1a1a1a', border: '#333333' } } } }
+    </script>
+    <style>
+        body { font-family: 'Roboto', sans-serif; background: #0a0a0a; color: #e5e7eb; }
+        .glass-nav { background: rgba(0,0,0,0.4); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); }
+        .card-hover { transition: transform 0.3s, box-shadow 0.3s; }
+        .card-hover:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(26,122,74,0.15); }
+        .grant-count-badge { background: linear-gradient(135deg, #1A7A4A, #C9A227); }
+        .gold-gradient { background: linear-gradient(135deg, #C9A227, #D4B342); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        @media (max-width: 768px) { .nav-links { display: none; } .nav-links.active { display: flex; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0; background: rgba(0,0,0,0.95); padding: 1rem; } }
+    </style>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+    <script>window.API_BASE = 'https://grantradar-backend-production.up.railway.app';</script>
+    <script type="application/ld+json">
+    { "@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://grantradar.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Agriculture and Agri-Food Grants", "item": "https://grantradar.com/agri-food-grants.html" }
+    ]}
+    </script>
+    <script type="application/ld+json">
+    { "@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
+        { "@type": "Question", "name": "What grants are available for agriculture and farming?", "acceptedAnswer": { "@type": "Answer", "text": "Agricultural grants include USDA programs (Conservation Stewardship, EQIP, Value-Added Producer Grants), Agriculture and Agri-Food Canada's CAP programs, EU Common Agricultural Policy funding, and state/provincial programs for farm innovation, land stewardship, and food processing modernization." }},
+        { "@type": "Question", "name": "How do I apply for USDA agricultural grants?", "acceptedAnswer": { "@type": "Answer", "text": "USDA grants are available through various agencies including NIFA, FSA, NRCS, and Rural Development. Applications typically require a SAM.gov registration, a project narrative, budget, and supporting documents. Programs like EQIP and CSP are applied for through your local USDA Service Center." }},
+        { "@type": "Question", "name": "Are there grants for agri-food technology companies?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, agtech companies can access innovation grants including USDA SBIR, Agriculture and Agri-Food Canada's AgriInnovate, Innovate UK Farming Innovation, and various state/provincial programs. Precision agriculture, vertical farming, alternative proteins, and agricultural AI/IoT are heavily funded sectors." }},
+        { "@type": "Question", "name": "What grants exist for food processing businesses?", "acceptedAnswer": { "@type": "Answer", "text": "Food processors can access USDA Value-Added Producer Grants, Canada's CAP AgriProcessing grants, state Manufacturing Extension Partnership funding, and regional economic development grants. Programs support equipment modernization, food safety certification, product development, and export market expansion." }},
+        { "@type": "Question", "name": "Can organic farmers get special grants?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, organic farmers have access to specific programs including USDA Organic Certification Cost Share, EQIP Organic Initiative, and Transition to Organic Research grants. Canada offers Organic Farming Innovation grants through various provincial programs. Many general agriculture grants also give preference to organic and sustainable practices." }}
+    ]}
+    </script>
+    <script type="application/ld+json">
+    { "@context": "https://schema.org", "@type": "ItemList", "name": "Agriculture and Agri-Food Grants", "numberOfItems": 5, "itemListElement": [] }
+    </script>
+</head>
+<body class="bg-dark min-h-screen">
+    <nav class="glass-nav fixed top-0 left-0 right-0 z-50 border-b border-border">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <a href="index.html" class="flex items-center space-x-2">
+                    <span class="text-xl font-bold text-white">Grant<span class="text-forest">Radar</span></span>
+                </a>
+                <button id="mobile-menu-btn" class="md:hidden text-white text-xl"><i class="fas fa-bars"></i></button>
+                <div class="nav-links hidden md:flex items-center space-x-6">
+                    <a href="index.html" class="text-gray-300 hover:text-forest transition">Home</a>
+                    <a href="find-grant.html" class="text-gray-300 hover:text-forest transition">Find Grants</a>
+                    <a href="how-it-works.html" class="text-gray-300 hover:text-forest transition">How It Works</a>
+                    <a href="pricing.html" class="text-gray-300 hover:text-forest transition">Pricing</a>
+                    <a href="for-consultants.html" class="text-gray-300 hover:text-forest transition">For Consultants</a>
+                    <a href="contact.html" class="text-gray-300 hover:text-forest transition">Contact</a>
+                    <a href="eligibility-quiz.html" class="bg-forest hover:bg-forest-dark text-white px-4 py-2 rounded-lg transition font-medium">Check Eligibility</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section class="pt-28 pb-16 px-4">
+        <div class="max-w-4xl mx-auto text-center">
+            <div class="grant-count-badge inline-block px-5 py-1.5 rounded-full text-sm font-bold mb-6 text-white" id="grantCount">Loading agri-food grants...</div>
+            <h1 class="text-4xl md:text-5xl font-bold text-white mb-5">Agriculture and <span class="gold-gradient">Agri-Food Grants</span></h1>
+            <p class="text-gray-400 text-lg max-w-2xl mx-auto mb-8">Government funding for farm innovation, food processing, agtech, rural development, and sustainable agriculture practices worldwide.</p>
+            <a href="find-grant.html?sector=agriculture" class="bg-forest hover:bg-forest-dark text-white px-8 py-3 rounded-lg text-lg font-medium inline-block transition"><i class="fas fa-tractor mr-2"></i>Browse All Agri-Food Grants</a>
+        </div>
+    </section>
+
+    <section class="py-16 px-4">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl font-bold text-white mb-4 text-center">Agriculture Grant Categories</h2>
+            <p class="text-gray-400 text-center mb-10 max-w-2xl mx-auto">From farm-level conservation to food processing modernization, agri-food grants cover every step of the value chain.</p>
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="bg-card border border-border rounded-xl p-6 card-hover">
+                    <div class="w-12 h-12 bg-green-500/20 rounded-lg flex items-center justify-center mb-4"><i class="fas fa-seedling text-green-400 text-xl"></i></div>
+                    <h3 class="text-lg font-bold text-white mb-2">Farm Innovation</h3>
+                    <p class="text-gray-400 text-sm">Precision agriculture, new crop varieties, irrigation technology, soil health programs, and sustainable farming practices. Grants for on-farm R&D and demonstration projects.</p>
+                </div>
+                <div class="bg-card border border-border rounded-xl p-6 card-hover">
+                    <div class="w-12 h-12 bg-yellow-500/20 rounded-lg flex items-center justify-center mb-4"><i class="fas fa-wheat-awn text-yellow-400 text-xl"></i></div>
+                    <h3 class="text-lg font-bold text-white mb-2">Food Processing</h3>
+                    <p class="text-gray-400 text-sm">Equipment modernization, value-added products, food safety certification, packaging innovation, and supply chain optimization for food manufacturers.</p>
+                </div>
+                <div class="bg-card border border-border rounded-xl p-6 card-hover">
+                    <div class="w-12 h-12 bg-blue-500/20 rounded-lg flex items-center justify-center mb-4"><i class="fas fa-microchip text-blue-400 text-xl"></i></div>
+                    <h3 class="text-lg font-bold text-white mb-2">AgTech & Innovation</h3>
+                    <p class="text-gray-400 text-sm">Agricultural AI, IoT sensors, drone technology, vertical farming, alternative proteins, and food waste reduction technologies.</p>
+                </div>
+                <div class="bg-card border border-border rounded-xl p-6 card-hover">
+                    <div class="w-12 h-12 bg-emerald-500/20 rounded-lg flex items-center justify-center mb-4"><i class="fas fa-tree text-emerald-400 text-xl"></i></div>
+                    <h3 class="text-lg font-bold text-white mb-2">Conservation & Stewardship</h3>
+                    <p class="text-gray-400 text-sm">EQIP, Conservation Stewardship, wetland restoration, and carbon sequestration programs. Payments for environmental practices on agricultural land.</p>
+                </div>
+                <div class="bg-card border border-border rounded-xl p-6 card-hover">
+                    <div class="w-12 h-12 bg-orange-500/20 rounded-lg flex items-center justify-center mb-4"><i class="fas fa-globe text-orange-400 text-xl"></i></div>
+                    <h3 class="text-lg font-bold text-white mb-2">Export & Market Development</h3>
+                    <p class="text-gray-400 text-sm">Market access programs, trade show funding, export certification support, and international market development for agricultural products.</p>
+                </div>
+                <div class="bg-card border border-border rounded-xl p-6 card-hover">
+                    <div class="w-12 h-12 bg-red-500/20 rounded-lg flex items-center justify-center mb-4"><i class="fas fa-house-chimney text-red-400 text-xl"></i></div>
+                    <h3 class="text-lg font-bold text-white mb-2">Rural Development</h3>
+                    <p class="text-gray-400 text-sm">Rural broadband, community facilities, rural energy programs, and rural business enterprise grants supporting agricultural communities.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 px-4 bg-card/30">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl font-bold text-white mb-4 text-center">Major Agri-Food Funders</h2>
+            <p class="text-gray-400 text-center mb-10 max-w-2xl mx-auto">Government agencies worldwide dedicated to agricultural funding and rural development.</p>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div class="bg-card border border-border rounded-xl p-5 card-hover">
+                    <h4 class="font-bold text-white mb-1">USDA (USA)</h4>
+                    <p class="text-gray-400 text-xs">NIFA, FSA, NRCS, Rural Development, SBIR</p>
+                </div>
+                <div class="bg-card border border-border rounded-xl p-5 card-hover">
+                    <h4 class="font-bold text-white mb-1">AAFC (Canada)</h4>
+                    <p class="text-gray-400 text-xs">CAP, AgriInnovate, AgriScience, AgriDiversity</p>
+                </div>
+                <div class="bg-card border border-border rounded-xl p-5 card-hover">
+                    <h4 class="font-bold text-white mb-1">EU CAP</h4>
+                    <p class="text-gray-400 text-xs">Horizon Europe, LIFE, Rural Development Pillar II</p>
+                </div>
+                <div class="bg-card border border-border rounded-xl p-5 card-hover">
+                    <h4 class="font-bold text-white mb-1">DAFF (Australia)</h4>
+                    <p class="text-gray-400 text-xs">Rural R&D Corps, Drought Hub, NFF Innovation</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 px-4">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl font-bold text-white mb-8 text-center">Featured Agri-Food Grants</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6" id="grantGrid"></div>
+            <div class="text-center mt-8">
+                <a href="find-grant.html?sector=agriculture" class="bg-gold hover:bg-gold-light text-dark px-6 py-3 rounded-lg font-medium inline-block transition">See All Agri-Food Grants &rarr;</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 px-4 bg-card/30">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-3xl font-bold text-white mb-8 text-center">Frequently Asked Questions</h2>
+            <div class="space-y-4">
+                <div class="bg-card border border-border rounded-xl p-6">
+                    <h3 class="font-bold text-white mb-2">What grants are available for agriculture and farming?</h3>
+                    <p class="text-gray-400 text-sm">Agricultural grants include USDA programs (Conservation Stewardship, EQIP, Value-Added Producer Grants), Agriculture and Agri-Food Canada's CAP programs, EU Common Agricultural Policy funding, and state/provincial programs for farm innovation and food processing.</p>
+                </div>
+                <div class="bg-card border border-border rounded-xl p-6">
+                    <h3 class="font-bold text-white mb-2">How do I apply for USDA agricultural grants?</h3>
+                    <p class="text-gray-400 text-sm">USDA grants are available through NIFA, FSA, NRCS, and Rural Development. Applications typically require SAM.gov registration, a project narrative, budget, and supporting documents. Programs like EQIP and CSP are applied for through your local USDA Service Center.</p>
+                </div>
+                <div class="bg-card border border-border rounded-xl p-6">
+                    <h3 class="font-bold text-white mb-2">Are there grants for agri-food technology companies?</h3>
+                    <p class="text-gray-400 text-sm">Yes, agtech companies can access innovation grants including USDA SBIR, AAFC AgriInnovate, Innovate UK Farming Innovation, and various state/provincial programs. Precision agriculture, vertical farming, alternative proteins, and agricultural AI are heavily funded.</p>
+                </div>
+                <div class="bg-card border border-border rounded-xl p-6">
+                    <h3 class="font-bold text-white mb-2">What grants exist for food processing businesses?</h3>
+                    <p class="text-gray-400 text-sm">Food processors can access USDA Value-Added Producer Grants, Canada's CAP AgriProcessing, state MEP funding, and regional economic development grants. Programs support equipment modernization, food safety, product development, and export expansion.</p>
+                </div>
+                <div class="bg-card border border-border rounded-xl p-6">
+                    <h3 class="font-bold text-white mb-2">Can organic farmers get special grants?</h3>
+                    <p class="text-gray-400 text-sm">Yes, organic farmers have access to USDA Organic Certification Cost Share, EQIP Organic Initiative, and Transition to Organic Research grants. Canada offers Organic Farming Innovation grants through various provincial programs. Many general agriculture grants also give preference to organic practices.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 px-4 bg-gradient-to-r from-forest-dark to-forest">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-3xl font-bold text-white mb-4">Grow Your Agricultural Business with Grants</h2>
+            <p class="text-green-100 mb-8 text-lg">AI-powered matching across USDA, AAFC, EU CAP, and global agriculture funding programs.</p>
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="eligibility-quiz.html" class="bg-gold hover:bg-gold-light text-dark px-8 py-4 rounded-xl text-lg font-bold transition"><i class="fas fa-arrow-right mr-2"></i>Check Your Eligibility</a>
+                <a href="pricing.html" class="border-2 border-white text-white hover:bg-white hover:text-forest-dark px-8 py-4 rounded-xl text-lg font-bold transition">View Pricing</a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-16 px-4" style="background: #111;">
+        <div class="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8">
+            <div>
+                <h3 class="text-white font-bold mb-4"><span class="text-forest">Grant</span>Radar</h3>
+                <p class="text-gray-500 text-sm">AI-powered grant matching across 50+ countries. Find, match, and win funding for your organization.</p>
+            </div>
+            <div>
+                <h4 class="text-white font-bold mb-4">Find Grants</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="find-grant.html" class="text-gray-400 hover:text-forest transition">All Grants</a></li>
+                    <li><a href="find-government-grant.html" class="text-gray-400 hover:text-forest transition">Government Grants</a></li>
+                    <li><a href="find-startup-grant.html" class="text-gray-400 hover:text-forest transition">Startup Grants</a></li>
+                    <li><a href="find-nonprofit-grant.html" class="text-gray-400 hover:text-forest transition">Nonprofit Grants</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-bold mb-4">Resources</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="how-it-works.html" class="text-gray-400 hover:text-forest transition">How It Works</a></li>
+                    <li><a href="pricing.html" class="text-gray-400 hover:text-forest transition">Pricing</a></li>
+                    <li><a href="blog.html" class="text-gray-400 hover:text-forest transition">Blog</a></li>
+                    <li><a href="grant-calendar.html" class="text-gray-400 hover:text-forest transition">Grant Calendar</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-bold mb-4">Company</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="contact.html" class="text-gray-400 hover:text-forest transition">Contact</a></li>
+                    <li><a href="for-consultants.html" class="text-gray-400 hover:text-forest transition">For Consultants</a></li>
+                    <li><a href="success-stories.html" class="text-gray-400 hover:text-forest transition">Success Stories</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto mt-12 pt-8 border-t border-border text-center">
+            <p class="text-gray-500 text-sm">&copy; 2026 GrantRadar. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+            document.querySelector('.nav-links').classList.toggle('active');
+        });
+        const API_BASE = window.API_BASE;
+        async function loadGrants() {
+            try {
+                const res = await fetch(`${API_BASE}/api/grants?sector=agriculture&limit=5`);
+                const data = await res.json();
+                const total = data.total || data.grants?.length || 0;
+                document.getElementById('grantCount').textContent = `${total} Agri-Food Grants Available`;
+                const grants = data.grants || data.data || [];
+                const grid = document.getElementById('grantGrid');
+                if (grants.length === 0) { grid.innerHTML = '<p class="text-gray-400 col-span-3 text-center">No grants loaded yet. Check back soon.</p>'; return; }
+                grid.innerHTML = grants.slice(0, 5).map(g => `
+                    <div class="bg-card border border-border rounded-xl p-6 card-hover">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-xs bg-yellow-500/20 text-yellow-400 px-2 py-1 rounded">${g.country || 'Global'}</span>
+                            <span class="text-xs text-gray-500">${g.deadline ? new Date(g.deadline).toLocaleDateString() : 'Rolling'}</span>
+                        </div>
+                        <h3 class="font-bold text-white mb-2 text-sm leading-tight">${g.title}</h3>
+                        <p class="text-gray-400 text-xs mb-3 line-clamp-2">${g.funder_name || ''}</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-forest font-bold text-sm">${g.funding_amount_max ? '$' + Number(g.funding_amount_max).toLocaleString() : 'Varies'}</span>
+                            <a href="${g.application_url || g.source_url || '#'}" target="_blank" class="text-gold text-xs font-medium hover:underline">Apply &rarr;</a>
+                        </div>
+                    </div>
+                `).join('');
+            } catch (err) {
+                document.getElementById('grantCount').textContent = 'Agri-Food Grants Available';
+            }
+        }
+        loadGrants();
+    </script>
+</body>
+</html>

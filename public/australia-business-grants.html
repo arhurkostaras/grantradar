@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Australian Business Grants and R&D Incentives | GrantRadar</title>
+    <meta name="description" content="Discover Australian business grants from AusIndustry, R&D Tax Incentive, EMDG, and state government programs. Innovation funding for Australian SMEs updated daily.">
+    <link rel="canonical" href="https://grantradar.com/australia-business-grants.html">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { theme: { extend: { colors: { forest: '#1A7A4A', 'forest-dark': '#14613B', 'forest-light': '#22995D', gold: '#C9A227', 'gold-light': '#D4B342', dark: '#0a0a0a', card: '#1a1a1a', border: '#333333' } } } }
+    </script>
+    <style>
+        body { font-family: 'Roboto', sans-serif; background: #0a0a0a; color: #e5e7eb; }
+        .glass-nav { background: rgba(0,0,0,0.4); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); }
+        .card-hover { transition: transform 0.3s, box-shadow 0.3s; }
+        .card-hover:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(26,122,74,0.15); }
+        .grant-count-badge { background: linear-gradient(135deg, #1A7A4A, #C9A227); }
+        .gold-gradient { background: linear-gradient(135deg, #C9A227, #D4B342); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        @media (max-width: 768px) { .nav-links { display: none; } .nav-links.active { display: flex; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0; background: rgba(0,0,0,0.95); padding: 1rem; } }
+    </style>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+    <script>window.API_BASE = 'https://grantradar-backend-production.up.railway.app';</script>
+    <script type="application/ld+json">
+    { "@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://grantradar.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Australian Business Grants", "item": "https://grantradar.com/australia-business-grants.html" }
+    ]}
+    </script>
+    <script type="application/ld+json">
+    { "@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
+        { "@type": "Question", "name": "What business grants are available in Australia?", "acceptedAnswer": { "@type": "Answer", "text": "Australia offers numerous grants through AusIndustry including the R&D Tax Incentive, Export Market Development Grants (EMDG), Entrepreneurs' Programme, and Accelerating Commercialisation. State governments also provide grants through programs like LaunchVic, NSW Boosting Business Innovation, and QLD Advance Queensland." }},
+        { "@type": "Question", "name": "How does the Australian R&D Tax Incentive work?", "acceptedAnswer": { "@type": "Answer", "text": "The R&D Tax Incentive provides a tax offset for eligible R&D activities. Companies with aggregated turnover under $20M receive a refundable 43.5% tax offset. Larger companies receive a non-refundable offset of their corporate tax rate plus an 8.5% premium. Claims are made through AusIndustry and the ATO." }},
+        { "@type": "Question", "name": "What is the Export Market Development Grants (EMDG) program?", "acceptedAnswer": { "@type": "Answer", "text": "EMDG is an Australian Government financial assistance program for aspiring and current exporters. It reimburses up to 50% of eligible export promotion expenses above $5,000, with a maximum of $150,000 per grant. Eligible activities include overseas marketing, trade fairs, and market research." }},
+        { "@type": "Question", "name": "Can Australian startups get government grants?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, Australian startups can access Accelerating Commercialisation grants up to $1M, CSIRO Kick-Start vouchers for research collaboration, state-based startup funds like LaunchVic, and the ARC Linkage program for university-industry partnerships. Many programs target companies under 3 years old." }},
+        { "@type": "Question", "name": "Are there grants for Australian exporters?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, the EMDG program specifically supports exporters. Additionally, Austrade provides market entry support, the International Business Grant (in some states) funds export activities, and Export Finance Australia offers financial solutions for exporters including loans and guarantees." }}
+    ]}
+    </script>
+    <script type="application/ld+json">
+    { "@context": "https://schema.org", "@type": "ItemList", "name": "Australian Business Grants and R&D Incentives", "numberOfItems": 5, "itemListElement": [] }
+    </script>
+</head>
+<body class="bg-dark min-h-screen">
+    <nav class="glass-nav fixed top-0 left-0 right-0 z-50 border-b border-border">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <a href="index.html" class="flex items-center space-x-2">
+                    <span class="text-xl font-bold text-white">Grant<span class="text-forest">Radar</span></span>
+                </a>
+                <button id="mobile-menu-btn" class="md:hidden text-white text-xl"><i class="fas fa-bars"></i></button>
+                <div class="nav-links hidden md:flex items-center space-x-6">
+                    <a href="index.html" class="text-gray-300 hover:text-forest transition">Home</a>
+                    <a href="find-grant.html" class="text-gray-300 hover:text-forest transition">Find Grants</a>
+                    <a href="how-it-works.html" class="text-gray-300 hover:text-forest transition">How It Works</a>
+                    <a href="pricing.html" class="text-gray-300 hover:text-forest transition">Pricing</a>
+                    <a href="for-consultants.html" class="text-gray-300 hover:text-forest transition">For Consultants</a>
+                    <a href="contact.html" class="text-gray-300 hover:text-forest transition">Contact</a>
+                    <a href="eligibility-quiz.html" class="bg-forest hover:bg-forest-dark text-white px-4 py-2 rounded-lg transition font-medium">Check Eligibility</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section class="pt-28 pb-16 px-4">
+        <div class="max-w-4xl mx-auto text-center">
+            <div class="grant-count-badge inline-block px-5 py-1.5 rounded-full text-sm font-bold mb-6 text-white" id="grantCount">Loading Australian grants...</div>
+            <h1 class="text-4xl md:text-5xl font-bold text-white mb-5">Australian Business Grants <span class="gold-gradient">and R&D Incentives</span></h1>
+            <p class="text-gray-400 text-lg max-w-2xl mx-auto mb-8">Find AusIndustry programs, the R&D Tax Incentive, EMDG export grants, and state-based innovation funding for Australian businesses.</p>
+            <a href="find-grant.html?country=AU&funder_type=government" class="bg-forest hover:bg-forest-dark text-white px-8 py-3 rounded-lg text-lg font-medium inline-block transition"><i class="fas fa-search mr-2"></i>Browse All Australian Grants</a>
+        </div>
+    </section>
+
+    <section class="py-16 px-4">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl font-bold text-white mb-4 text-center">Federal Grant Programs</h2>
+            <p class="text-gray-400 text-center mb-10 max-w-2xl mx-auto">The Australian Government funds business innovation through AusIndustry, the ARC, CSIRO, and sector-specific agencies.</p>
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="bg-card border border-border rounded-xl p-6">
+                    <div class="w-12 h-12 bg-forest/20 rounded-lg flex items-center justify-center mb-4"><i class="fas fa-flask text-forest text-xl"></i></div>
+                    <h3 class="text-lg font-bold text-white mb-2">R&D Tax Incentive</h3>
+                    <p class="text-gray-400 text-sm">Refundable 43.5% tax offset for SMEs with turnover under $20M conducting eligible research and experimental development activities in Australia.</p>
+                </div>
+                <div class="bg-card border border-border rounded-xl p-6">
+                    <div class="w-12 h-12 bg-forest/20 rounded-lg flex items-center justify-center mb-4"><i class="fas fa-globe text-forest text-xl"></i></div>
+                    <h3 class="text-lg font-bold text-white mb-2">EMDG Export Grants</h3>
+                    <p class="text-gray-400 text-sm">Reimburses up to 50% of eligible export promotion expenses for Australian exporters, covering marketing, trade fairs, and overseas visits up to $150K.</p>
+                </div>
+                <div class="bg-card border border-border rounded-xl p-6">
+                    <div class="w-12 h-12 bg-forest/20 rounded-lg flex items-center justify-center mb-4"><i class="fas fa-rocket text-forest text-xl"></i></div>
+                    <h3 class="text-lg font-bold text-white mb-2">Accelerating Commercialisation</h3>
+                    <p class="text-gray-400 text-sm">Matched grants up to $1M for entrepreneurs and businesses to commercialise novel products, processes, and services in domestic and international markets.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 px-4 bg-card/30">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl font-bold text-white mb-4 text-center">State and Territory Programs</h2>
+            <p class="text-gray-400 text-center mb-10 max-w-2xl mx-auto">Each Australian state and territory operates its own innovation and business development grant programs.</p>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div class="bg-card border border-border rounded-xl p-5 text-center card-hover">
+                    <h4 class="font-bold text-white mb-1">New South Wales</h4>
+                    <p class="text-gray-400 text-xs">MVP Grant, Boosting Business Innovation</p>
+                </div>
+                <div class="bg-card border border-border rounded-xl p-5 text-center card-hover">
+                    <h4 class="font-bold text-white mb-1">Victoria</h4>
+                    <p class="text-gray-400 text-xs">LaunchVic, Victorian Innovation Hub</p>
+                </div>
+                <div class="bg-card border border-border rounded-xl p-5 text-center card-hover">
+                    <h4 class="font-bold text-white mb-1">Queensland</h4>
+                    <p class="text-gray-400 text-xs">Advance Queensland, Business Growth Fund</p>
+                </div>
+                <div class="bg-card border border-border rounded-xl p-5 text-center card-hover">
+                    <h4 class="font-bold text-white mb-1">Western Australia</h4>
+                    <p class="text-gray-400 text-xs">New Industries Fund, Innovation Vouchers</p>
+                </div>
+                <div class="bg-card border border-border rounded-xl p-5 text-center card-hover">
+                    <h4 class="font-bold text-white mb-1">South Australia</h4>
+                    <p class="text-gray-400 text-xs">Research Commercialisation, TechInSA</p>
+                </div>
+                <div class="bg-card border border-border rounded-xl p-5 text-center card-hover">
+                    <h4 class="font-bold text-white mb-1">Tasmania</h4>
+                    <p class="text-gray-400 text-xs">Innovation and Investment Fund</p>
+                </div>
+                <div class="bg-card border border-border rounded-xl p-5 text-center card-hover">
+                    <h4 class="font-bold text-white mb-1">ACT</h4>
+                    <p class="text-gray-400 text-xs">Innovation Connect Grant</p>
+                </div>
+                <div class="bg-card border border-border rounded-xl p-5 text-center card-hover">
+                    <h4 class="font-bold text-white mb-1">Northern Territory</h4>
+                    <p class="text-gray-400 text-xs">Business Innovation Grant</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 px-4">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl font-bold text-white mb-8 text-center">Featured Australian Grants</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6" id="grantGrid"></div>
+            <div class="text-center mt-8">
+                <a href="find-grant.html?country=AU&funder_type=government" class="bg-gold hover:bg-gold-light text-dark px-6 py-3 rounded-lg font-medium inline-block transition">See All Australian Grants &rarr;</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 px-4 bg-card/30">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-3xl font-bold text-white mb-8 text-center">Frequently Asked Questions</h2>
+            <div class="space-y-4">
+                <div class="bg-card border border-border rounded-xl p-6">
+                    <h3 class="font-bold text-white mb-2">What business grants are available in Australia?</h3>
+                    <p class="text-gray-400 text-sm">Australia offers numerous grants through AusIndustry including the R&D Tax Incentive, Export Market Development Grants (EMDG), Entrepreneurs' Programme, and Accelerating Commercialisation. State governments also provide grants through programs like LaunchVic, NSW Boosting Business Innovation, and QLD Advance Queensland.</p>
+                </div>
+                <div class="bg-card border border-border rounded-xl p-6">
+                    <h3 class="font-bold text-white mb-2">How does the Australian R&D Tax Incentive work?</h3>
+                    <p class="text-gray-400 text-sm">The R&D Tax Incentive provides a tax offset for eligible R&D activities. Companies with aggregated turnover under $20M receive a refundable 43.5% tax offset. Larger companies receive a non-refundable offset of their corporate tax rate plus an 8.5% premium. Claims are made through AusIndustry and the ATO.</p>
+                </div>
+                <div class="bg-card border border-border rounded-xl p-6">
+                    <h3 class="font-bold text-white mb-2">What is the Export Market Development Grants (EMDG) program?</h3>
+                    <p class="text-gray-400 text-sm">EMDG is an Australian Government financial assistance program for aspiring and current exporters. It reimburses up to 50% of eligible export promotion expenses above $5,000, with a maximum of $150,000 per grant. Eligible activities include overseas marketing, trade fairs, and market research.</p>
+                </div>
+                <div class="bg-card border border-border rounded-xl p-6">
+                    <h3 class="font-bold text-white mb-2">Can Australian startups get government grants?</h3>
+                    <p class="text-gray-400 text-sm">Yes, Australian startups can access Accelerating Commercialisation grants up to $1M, CSIRO Kick-Start vouchers for research collaboration, state-based startup funds like LaunchVic, and the ARC Linkage program for university-industry partnerships. Many programs target companies under 3 years old.</p>
+                </div>
+                <div class="bg-card border border-border rounded-xl p-6">
+                    <h3 class="font-bold text-white mb-2">Are there grants for Australian exporters?</h3>
+                    <p class="text-gray-400 text-sm">Yes, the EMDG program specifically supports exporters. Additionally, Austrade provides market entry support, the International Business Grant (in some states) funds export activities, and Export Finance Australia offers financial solutions for exporters including loans and guarantees.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 px-4 bg-gradient-to-r from-forest-dark to-forest">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-3xl font-bold text-white mb-4">Find Australian Grants for Your Business</h2>
+            <p class="text-green-100 mb-8 text-lg">AI-powered matching across AusIndustry, state programs, and R&D incentives. Find your best grant in minutes.</p>
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="eligibility-quiz.html" class="bg-gold hover:bg-gold-light text-dark px-8 py-4 rounded-xl text-lg font-bold transition"><i class="fas fa-arrow-right mr-2"></i>Check Your Eligibility</a>
+                <a href="pricing.html" class="border-2 border-white text-white hover:bg-white hover:text-forest-dark px-8 py-4 rounded-xl text-lg font-bold transition">View Pricing</a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-16 px-4" style="background: #111;">
+        <div class="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8">
+            <div>
+                <h3 class="text-white font-bold mb-4"><span class="text-forest">Grant</span>Radar</h3>
+                <p class="text-gray-500 text-sm">AI-powered grant matching across 50+ countries. Find, match, and win funding for your organization.</p>
+            </div>
+            <div>
+                <h4 class="text-white font-bold mb-4">Find Grants</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="find-grant.html" class="text-gray-400 hover:text-forest transition">All Grants</a></li>
+                    <li><a href="find-government-grant.html" class="text-gray-400 hover:text-forest transition">Government Grants</a></li>
+                    <li><a href="find-startup-grant.html" class="text-gray-400 hover:text-forest transition">Startup Grants</a></li>
+                    <li><a href="find-nonprofit-grant.html" class="text-gray-400 hover:text-forest transition">Nonprofit Grants</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-bold mb-4">Resources</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="how-it-works.html" class="text-gray-400 hover:text-forest transition">How It Works</a></li>
+                    <li><a href="pricing.html" class="text-gray-400 hover:text-forest transition">Pricing</a></li>
+                    <li><a href="blog.html" class="text-gray-400 hover:text-forest transition">Blog</a></li>
+                    <li><a href="grant-calendar.html" class="text-gray-400 hover:text-forest transition">Grant Calendar</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-bold mb-4">Company</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="contact.html" class="text-gray-400 hover:text-forest transition">Contact</a></li>
+                    <li><a href="for-consultants.html" class="text-gray-400 hover:text-forest transition">For Consultants</a></li>
+                    <li><a href="success-stories.html" class="text-gray-400 hover:text-forest transition">Success Stories</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto mt-12 pt-8 border-t border-border text-center">
+            <p class="text-gray-500 text-sm">&copy; 2026 GrantRadar. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+            document.querySelector('.nav-links').classList.toggle('active');
+        });
+        const API_BASE = window.API_BASE;
+        async function loadGrants() {
+            try {
+                const res = await fetch(`${API_BASE}/api/grants?country=AU&funder_type=government&limit=5`);
+                const data = await res.json();
+                const total = data.total || data.grants?.length || 0;
+                document.getElementById('grantCount').textContent = `${total} Australian Business Grants Available`;
+                const grants = data.grants || data.data || [];
+                const grid = document.getElementById('grantGrid');
+                if (grants.length === 0) { grid.innerHTML = '<p class="text-gray-400 col-span-3 text-center">No grants loaded yet. Check back soon.</p>'; return; }
+                grid.innerHTML = grants.slice(0, 5).map(g => `
+                    <div class="bg-card border border-border rounded-xl p-6 card-hover">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-xs bg-yellow-500/20 text-yellow-400 px-2 py-1 rounded">${g.funder_type || 'Government'}</span>
+                            <span class="text-xs text-gray-500">${g.deadline ? new Date(g.deadline).toLocaleDateString() : 'Rolling'}</span>
+                        </div>
+                        <h3 class="font-bold text-white mb-2 text-sm leading-tight">${g.title}</h3>
+                        <p class="text-gray-400 text-xs mb-3 line-clamp-2">${g.funder_name || ''}</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-forest font-bold text-sm">${g.funding_amount_max ? 'A$' + Number(g.funding_amount_max).toLocaleString() : 'Varies'}</span>
+                            <a href="${g.application_url || g.source_url || '#'}" target="_blank" class="text-gold text-xs font-medium hover:underline">Apply &rarr;</a>
+                        </div>
+                    </div>
+                `).join('');
+            } catch (err) {
+                document.getElementById('grantCount').textContent = 'Australian Business Grants Available';
+            }
+        }
+        loadGrants();
+    </script>
+</body>
+</html>

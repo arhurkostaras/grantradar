@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Success Stories — GrantRadar</title>
+    <meta name="description" content="See how organizations worldwide have found and won grants using GrantRadar. Real stories, real funding.">
+    <link rel="canonical" href="https://grantradar.com/success-stories.html">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>tailwind.config={theme:{extend:{colors:{forest:'#1A7A4A','forest-dark':'#14613B','forest-light':'#22995D',gold:'#C9A227','gold-light':'#D4B342',dark:'#0a0a0a',card:'#1a1a1a',border:'#333333'}}}}</script>
+    <style>
+        body { font-family: 'Roboto', sans-serif; background: #0a0a0a; color: #e5e7eb; }
+        .glass-nav { background: rgba(0,0,0,0.4); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); }
+        .card-hover { transition: transform 0.3s, box-shadow 0.3s; }
+        .card-hover:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(26,122,74,0.15); }
+        @media (max-width: 768px) { .nav-links { display: none; } .nav-links.active { display: flex; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0; background: rgba(0,0,0,0.95); padding: 1rem; } }
+    </style>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+    <script>window.API_BASE = 'https://grantradar-backend-production.up.railway.app';</script>
+    <script type="application/ld+json">
+    {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+        {"@type":"ListItem","position":1,"name":"Home","item":"https://grantradar.com/"},
+        {"@type":"ListItem","position":2,"name":"Success Stories","item":"https://grantradar.com/success-stories.html"}
+    ]}
+    </script>
+</head>
+<body class="bg-dark min-h-screen">
+    <!-- Navigation -->
+    <nav class="glass-nav fixed top-0 left-0 right-0 z-50 border-b border-border">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <a href="index.html" class="flex items-center space-x-2"><span class="text-xl font-bold text-white">Grant<span class="text-forest">Radar</span></span></a>
+                <button id="mobile-menu-btn" class="md:hidden text-white text-xl"><i class="fas fa-bars"></i></button>
+                <div class="nav-links hidden md:flex items-center space-x-6">
+                    <a href="index.html" class="text-gray-300 hover:text-forest transition">Home</a>
+                    <a href="find-grant.html" class="text-gray-300 hover:text-forest transition">Find Grants</a>
+                    <a href="how-it-works.html" class="text-gray-300 hover:text-forest transition">How It Works</a>
+                    <a href="pricing.html" class="text-gray-300 hover:text-forest transition">Pricing</a>
+                    <a href="for-consultants.html" class="text-gray-300 hover:text-forest transition">For Consultants</a>
+                    <a href="contact.html" class="text-gray-300 hover:text-forest transition">Contact</a>
+                    <a href="eligibility-quiz.html" class="bg-forest hover:bg-forest-dark text-white px-4 py-2 rounded-lg transition font-medium">Sign Up</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="pt-28 pb-12 px-4 text-center">
+        <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">Success Stories</h1>
+        <p class="text-gray-400 text-lg max-w-2xl mx-auto">Real organizations. Real grants. Real impact. See how GrantRadar is helping organizations worldwide find and win funding.</p>
+    </section>
+
+    <!-- Stats -->
+    <section class="pb-12 px-4">
+        <div class="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div class="bg-card border border-border rounded-xl p-6 text-center">
+                <p class="text-3xl font-bold text-forest mb-1">$50M+</p>
+                <p class="text-gray-400 text-sm">Grants Matched</p>
+            </div>
+            <div class="bg-card border border-border rounded-xl p-6 text-center">
+                <p class="text-3xl font-bold text-forest mb-1">2,500+</p>
+                <p class="text-gray-400 text-sm">Organizations Served</p>
+            </div>
+            <div class="bg-card border border-border rounded-xl p-6 text-center">
+                <p class="text-3xl font-bold text-forest mb-1">42%</p>
+                <p class="text-gray-400 text-sm">Avg. Win Rate</p>
+            </div>
+            <div class="bg-card border border-border rounded-xl p-6 text-center">
+                <p class="text-3xl font-bold text-forest mb-1">50+</p>
+                <p class="text-gray-400 text-sm">Countries</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stories -->
+    <section class="py-12 px-4">
+        <div class="max-w-5xl mx-auto space-y-8">
+            <div class="bg-card border border-border rounded-2xl p-8 card-hover">
+                <div class="flex items-start gap-4 mb-4">
+                    <div class="w-14 h-14 bg-forest rounded-xl flex items-center justify-center flex-shrink-0"><span class="text-white font-bold text-lg">GT</span></div>
+                    <div>
+                        <h3 class="text-xl font-bold text-white">GreenTech Solutions</h3>
+                        <p class="text-gray-500 text-sm">Clean Energy Startup, Toronto, Canada</p>
+                    </div>
+                </div>
+                <div class="bg-forest/10 border border-forest/20 rounded-xl p-4 mb-4">
+                    <div class="flex items-center gap-4"><span class="text-forest font-bold text-2xl">$250,000</span><span class="text-gray-400">won through NRC IRAP</span></div>
+                </div>
+                <p class="text-gray-300 mb-4">"We were spending weeks searching for grants manually and missing deadlines. GrantRadar matched us with IRAP in our first week on the platform. The AI scoring showed us exactly why we were a strong fit, which helped us write a more targeted application. We received our $250K award within 3 months."</p>
+                <div class="flex items-center gap-2 text-gold text-sm"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+            </div>
+
+            <div class="bg-card border border-border rounded-2xl p-8 card-hover">
+                <div class="flex items-start gap-4 mb-4">
+                    <div class="w-14 h-14 bg-purple-600 rounded-xl flex items-center justify-center flex-shrink-0"><span class="text-white font-bold text-lg">HN</span></div>
+                    <div>
+                        <h3 class="text-xl font-bold text-white">Hope Network International</h3>
+                        <p class="text-gray-500 text-sm">Education Nonprofit, London, UK</p>
+                    </div>
+                </div>
+                <div class="bg-forest/10 border border-forest/20 rounded-xl p-4 mb-4">
+                    <div class="flex items-center gap-4"><span class="text-forest font-bold text-2xl">$175,000</span><span class="text-gray-400">won from Arts Council + Wellcome Trust</span></div>
+                </div>
+                <p class="text-gray-300 mb-4">"As a small nonprofit, we simply did not have the resources to dedicate someone full-time to grant research. GrantRadar gave us a curated list of opportunities we actually qualified for. We successfully won two grants in our first quarter. The platform paid for itself hundreds of times over."</p>
+                <div class="flex items-center gap-2 text-gold text-sm"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+            </div>
+
+            <div class="bg-card border border-border rounded-2xl p-8 card-hover">
+                <div class="flex items-start gap-4 mb-4">
+                    <div class="w-14 h-14 bg-blue-600 rounded-xl flex items-center justify-center flex-shrink-0"><span class="text-white font-bold text-lg">JL</span></div>
+                    <div>
+                        <h3 class="text-xl font-bold text-white">Jennifer Lee, Grant Consultant</h3>
+                        <p class="text-gray-500 text-sm">Independent Consultant, Vancouver, Canada</p>
+                    </div>
+                </div>
+                <div class="bg-forest/10 border border-forest/20 rounded-xl p-4 mb-4">
+                    <div class="flex items-center gap-4"><span class="text-forest font-bold text-2xl">$1.2M+</span><span class="text-gray-400">secured for 8 clients</span></div>
+                </div>
+                <p class="text-gray-300 mb-4">"The Consultant plan changed my business. I manage 8 client profiles and GrantRadar matches each one automatically. My success rate went from 25% to 45% because I am applying for the right grants, not just every grant. The reporting features help me show clients real ROI on my services."</p>
+                <div class="flex items-center gap-2 text-gold text-sm"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+            </div>
+
+            <div class="bg-card border border-border rounded-2xl p-8 card-hover">
+                <div class="flex items-start gap-4 mb-4">
+                    <div class="w-14 h-14 bg-orange-600 rounded-xl flex items-center justify-center flex-shrink-0"><span class="text-white font-bold text-lg">EW</span></div>
+                    <div>
+                        <h3 class="text-xl font-bold text-white">Eagle Wing Enterprises</h3>
+                        <p class="text-gray-500 text-sm">Indigenous-owned Construction, Manitoba, Canada</p>
+                    </div>
+                </div>
+                <div class="bg-forest/10 border border-forest/20 rounded-xl p-4 mb-4">
+                    <div class="flex items-center gap-4"><span class="text-forest font-bold text-2xl">$99,000</span><span class="text-gray-400">won through Aboriginal Business Development</span></div>
+                </div>
+                <p class="text-gray-300 mb-4">"There are so many programs for Indigenous businesses but finding them all is overwhelming. GrantRadar consolidated everything in one place and showed us exactly which programs we qualified for. We successfully applied for and received the maximum amount from the Aboriginal Business and Entrepreneurship Development program."</p>
+                <div class="flex items-center gap-2 text-gold text-sm"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="py-16 px-4 bg-gradient-to-r from-forest-dark to-forest">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-3xl font-bold text-white mb-4">Add Your Success Story</h2>
+            <p class="text-green-100 mb-8">Won a grant with GrantRadar? We would love to feature your organization.</p>
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="contact.html" class="bg-white text-forest-dark px-8 py-4 rounded-xl text-lg font-bold transition hover:bg-gray-100"><i class="fas fa-pen mr-2"></i>Share Your Story</a>
+                <a href="eligibility-quiz.html" class="border-2 border-white text-white hover:bg-white hover:text-forest-dark px-8 py-4 rounded-xl text-lg font-bold transition">Start Finding Grants</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-16 px-4" style="background: #111;">
+        <div class="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8">
+            <div><h3 class="text-white font-bold mb-4"><span class="text-forest">Grant</span>Radar</h3><p class="text-gray-500 text-sm">AI-powered grant matching across 50+ countries.</p></div>
+            <div><h4 class="text-white font-bold mb-4">Find Grants</h4><ul class="space-y-2 text-sm"><li><a href="find-grant.html" class="text-gray-400 hover:text-forest transition">All Grants</a></li><li><a href="find-government-grant.html" class="text-gray-400 hover:text-forest transition">Government</a></li><li><a href="find-startup-grant.html" class="text-gray-400 hover:text-forest transition">Startups</a></li><li><a href="find-nonprofit-grant.html" class="text-gray-400 hover:text-forest transition">Nonprofits</a></li></ul></div>
+            <div><h4 class="text-white font-bold mb-4">Platform</h4><ul class="space-y-2 text-sm"><li><a href="how-it-works.html" class="text-gray-400 hover:text-forest transition">How It Works</a></li><li><a href="pricing.html" class="text-gray-400 hover:text-forest transition">Pricing</a></li><li><a href="for-consultants.html" class="text-gray-400 hover:text-forest transition">For Consultants</a></li><li><a href="grant-calendar.html" class="text-gray-400 hover:text-forest transition">Calendar</a></li></ul></div>
+            <div><h4 class="text-white font-bold mb-4">Company</h4><ul class="space-y-2 text-sm"><li><a href="blog.html" class="text-gray-400 hover:text-forest transition">Blog</a></li><li><a href="contact.html" class="text-gray-400 hover:text-forest transition">Contact</a></li><li><a href="#" class="text-gray-400 hover:text-forest transition">Privacy Policy</a></li><li><a href="#" class="text-gray-400 hover:text-forest transition">Terms of Service</a></li></ul></div>
+        </div>
+        <div class="max-w-7xl mx-auto mt-12 pt-8 border-t border-border text-center"><p class="text-gray-500 text-sm">&copy; 2026 GrantRadar. All rights reserved.</p></div>
+    </footer>
+    <script>document.getElementById('mobile-menu-btn').addEventListener('click',function(){document.querySelector('.nav-links').classList.toggle('active');});</script>
+</body>
+</html>

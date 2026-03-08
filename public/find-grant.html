@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find Grants — GrantRadar</title>
+    <meta name="description" content="Search and filter grants from 50+ countries. Government, foundation, corporate, and startup funding — all in one searchable database.">
+    <link rel="canonical" href="https://grantradar.com/find-grant.html">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { theme: { extend: { colors: { forest: '#1A7A4A', 'forest-dark': '#14613B', 'forest-light': '#22995D', gold: '#C9A227', 'gold-light': '#D4B342', dark: '#0a0a0a', card: '#1a1a1a', border: '#333333' } } } }
+    </script>
+    <style>
+        body { font-family: 'Roboto', sans-serif; background: #0a0a0a; color: #e5e7eb; }
+        .glass-nav { background: rgba(0,0,0,0.4); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); }
+        .card-hover { transition: transform 0.3s, box-shadow 0.3s; }
+        .card-hover:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(26,122,74,0.15); }
+        .filter-checkbox input:checked + span { background: #1A7A4A; border-color: #1A7A4A; }
+        .range-slider { -webkit-appearance: none; width: 100%; height: 6px; background: #333; border-radius: 3px; outline: none; }
+        .range-slider::-webkit-slider-thumb { -webkit-appearance: none; width: 18px; height: 18px; background: #1A7A4A; border-radius: 50%; cursor: pointer; }
+        @media (max-width: 768px) { .nav-links { display: none; } .nav-links.active { display: flex; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0; background: rgba(0,0,0,0.95); padding: 1rem; } }
+    </style>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+    <script>window.API_BASE = 'https://grantradar-backend-production.up.railway.app';</script>
+    <script type="application/ld+json">
+    { "@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://grantradar.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Find Grants", "item": "https://grantradar.com/find-grant.html" }
+    ]}
+    </script>
+</head>
+<body class="bg-dark min-h-screen">
+    <!-- Navigation -->
+    <nav class="glass-nav fixed top-0 left-0 right-0 z-50 border-b border-border">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <a href="index.html" class="flex items-center space-x-2">
+                    <span class="text-xl font-bold text-white">Grant<span class="text-forest">Radar</span></span>
+                </a>
+                <button id="mobile-menu-btn" class="md:hidden text-white text-xl"><i class="fas fa-bars"></i></button>
+                <div class="nav-links hidden md:flex items-center space-x-6">
+                    <a href="index.html" class="text-gray-300 hover:text-forest transition">Home</a>
+                    <a href="find-grant.html" class="text-white font-medium hover:text-forest transition">Find Grants</a>
+                    <a href="how-it-works.html" class="text-gray-300 hover:text-forest transition">How It Works</a>
+                    <a href="pricing.html" class="text-gray-300 hover:text-forest transition">Pricing</a>
+                    <a href="for-consultants.html" class="text-gray-300 hover:text-forest transition">For Consultants</a>
+                    <a href="contact.html" class="text-gray-300 hover:text-forest transition">Contact</a>
+                    <a href="eligibility-quiz.html" class="bg-forest hover:bg-forest-dark text-white px-4 py-2 rounded-lg transition font-medium">Sign Up</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="pt-24 pb-16 px-4">
+        <div class="max-w-7xl mx-auto">
+            <div class="mb-8">
+                <h1 class="text-3xl md:text-4xl font-bold text-white mb-2">Find Grants</h1>
+                <p class="text-gray-400">Search <span id="total-grants" class="text-forest font-bold">10,000+</span> grants across 50+ countries</p>
+            </div>
+
+            <!-- Mobile Filter Toggle -->
+            <button id="filter-toggle" class="md:hidden w-full bg-card border border-border rounded-xl p-3 mb-4 text-white flex items-center justify-between">
+                <span><i class="fas fa-filter mr-2 text-forest"></i>Filters</span>
+                <i class="fas fa-chevron-down"></i>
+            </button>
+
+            <div class="flex flex-col md:flex-row gap-6">
+                <!-- Filter Sidebar -->
+                <div id="filter-sidebar" class="hidden md:block w-full md:w-80 flex-shrink-0">
+                    <div class="bg-card border border-border rounded-xl p-6 sticky top-24 space-y-6">
+                        <!-- Keyword Search -->
+                        <div>
+                            <label class="text-white font-medium text-sm mb-2 block">Keyword Search</label>
+                            <div class="relative">
+                                <input type="text" id="keyword" placeholder="e.g. clean energy, AI, agriculture" class="w-full bg-dark border border-border rounded-lg px-4 py-2.5 text-white placeholder-gray-500 focus:border-forest focus:outline-none text-sm">
+                                <i class="fas fa-search absolute right-3 top-3 text-gray-500"></i>
+                            </div>
+                        </div>
+
+                        <!-- Country -->
+                        <div>
+                            <label class="text-white font-medium text-sm mb-2 block">Country</label>
+                            <div class="space-y-2">
+                                <label class="filter-checkbox flex items-center gap-2 cursor-pointer text-sm text-gray-300"><input type="checkbox" name="country" value="Canada" class="hidden"><span class="w-4 h-4 border border-border rounded flex items-center justify-center text-xs text-white"><i class="fas fa-check hidden"></i></span>Canada</label>
+                                <label class="filter-checkbox flex items-center gap-2 cursor-pointer text-sm text-gray-300"><input type="checkbox" name="country" value="USA" class="hidden"><span class="w-4 h-4 border border-border rounded flex items-center justify-center text-xs text-white"><i class="fas fa-check hidden"></i></span>USA</label>
+                                <label class="filter-checkbox flex items-center gap-2 cursor-pointer text-sm text-gray-300"><input type="checkbox" name="country" value="UK" class="hidden"><span class="w-4 h-4 border border-border rounded flex items-center justify-center text-xs text-white"><i class="fas fa-check hidden"></i></span>UK</label>
+                                <label class="filter-checkbox flex items-center gap-2 cursor-pointer text-sm text-gray-300"><input type="checkbox" name="country" value="Australia" class="hidden"><span class="w-4 h-4 border border-border rounded flex items-center justify-center text-xs text-white"><i class="fas fa-check hidden"></i></span>Australia</label>
+                                <label class="filter-checkbox flex items-center gap-2 cursor-pointer text-sm text-gray-300"><input type="checkbox" name="country" value="EU" class="hidden"><span class="w-4 h-4 border border-border rounded flex items-center justify-center text-xs text-white"><i class="fas fa-check hidden"></i></span>EU</label>
+                                <label class="filter-checkbox flex items-center gap-2 cursor-pointer text-sm text-gray-300"><input type="checkbox" name="country" value="Singapore" class="hidden"><span class="w-4 h-4 border border-border rounded flex items-center justify-center text-xs text-white"><i class="fas fa-check hidden"></i></span>Singapore</label>
+                                <label class="filter-checkbox flex items-center gap-2 cursor-pointer text-sm text-gray-300"><input type="checkbox" name="country" value="UAE" class="hidden"><span class="w-4 h-4 border border-border rounded flex items-center justify-center text-xs text-white"><i class="fas fa-check hidden"></i></span>UAE</label>
+                            </div>
+                        </div>
+
+                        <!-- Organization Type -->
+                        <div>
+                            <label class="text-white font-medium text-sm mb-2 block">Organization Type</label>
+                            <div class="space-y-2">
+                                <label class="filter-checkbox flex items-center gap-2 cursor-pointer text-sm text-gray-300"><input type="checkbox" name="org_type" value="sme" class="hidden"><span class="w-4 h-4 border border-border rounded flex items-center justify-center text-xs text-white"><i class="fas fa-check hidden"></i></span>SME</label>
+                                <label class="filter-checkbox flex items-center gap-2 cursor-pointer text-sm text-gray-300"><input type="checkbox" name="org_type" value="startup" class="hidden"><span class="w-4 h-4 border border-border rounded flex items-center justify-center text-xs text-white"><i class="fas fa-check hidden"></i></span>Startup</label>
+                                <label class="filter-checkbox flex items-center gap-2 cursor-pointer text-sm text-gray-300"><input type="checkbox" name="org_type" value="nonprofit" class="hidden"><span class="w-4 h-4 border border-border rounded flex items-center justify-center text-xs text-white"><i class="fas fa-check hidden"></i></span>Nonprofit</label>
+                                <label class="filter-checkbox flex items-center gap-2 cursor-pointer text-sm text-gray-300"><input type="checkbox" name="org_type" value="research" class="hidden"><span class="w-4 h-4 border border-border rounded flex items-center justify-center text-xs text-white"><i class="fas fa-check hidden"></i></span>Research</label>
+                                <label class="filter-checkbox flex items-center gap-2 cursor-pointer text-sm text-gray-300"><input type="checkbox" name="org_type" value="indigenous" class="hidden"><span class="w-4 h-4 border border-border rounded flex items-center justify-center text-xs text-white"><i class="fas fa-check hidden"></i></span>Indigenous</label>
+                                <label class="filter-checkbox flex items-center gap-2 cursor-pointer text-sm text-gray-300"><input type="checkbox" name="org_type" value="women_owned" class="hidden"><span class="w-4 h-4 border border-border rounded flex items-center justify-center text-xs text-white"><i class="fas fa-check hidden"></i></span>Women-Owned</label>
+                                <label class="filter-checkbox flex items-center gap-2 cursor-pointer text-sm text-gray-300"><input type="checkbox" name="org_type" value="social_enterprise" class="hidden"><span class="w-4 h-4 border border-border rounded flex items-center justify-center text-xs text-white"><i class="fas fa-check hidden"></i></span>Social Enterprise</label>
+                            </div>
+                        </div>
+
+                        <!-- Sector -->
+                        <div>
+                            <label class="text-white font-medium text-sm mb-2 block">Sector</label>
+                            <select id="sector" class="w-full bg-dark border border-border rounded-lg px-4 py-2.5 text-white focus:border-forest focus:outline-none text-sm">
+                                <option value="">All Sectors</option>
+                                <option value="technology">Technology</option>
+                                <option value="clean_energy">Clean Energy</option>
+                                <option value="agriculture">Agriculture</option>
+                                <option value="manufacturing">Manufacturing</option>
+                                <option value="healthcare">Healthcare</option>
+                                <option value="education">Education</option>
+                                <option value="arts_culture">Arts & Culture</option>
+                                <option value="social_impact">Social Impact</option>
+                            </select>
+                        </div>
+
+                        <!-- Funding Amount -->
+                        <div>
+                            <label class="text-white font-medium text-sm mb-2 block">Max Funding Amount</label>
+                            <input type="range" id="funding-range" class="range-slider" min="0" max="10000000" step="50000" value="10000000">
+                            <div class="flex justify-between text-xs text-gray-500 mt-1">
+                                <span>$0</span>
+                                <span id="funding-display" class="text-forest font-medium">$10M+</span>
+                            </div>
+                        </div>
+
+                        <!-- Deadline -->
+                        <div>
+                            <label class="text-white font-medium text-sm mb-2 block">Deadline</label>
+                            <select id="deadline" class="w-full bg-dark border border-border rounded-lg px-4 py-2.5 text-white focus:border-forest focus:outline-none text-sm">
+                                <option value="">All Deadlines</option>
+                                <option value="30">Next 30 Days</option>
+                                <option value="60">Next 60 Days</option>
+                                <option value="90">Next 90 Days</option>
+                                <option value="180">Next 180 Days</option>
+                                <option value="rolling">Rolling Only</option>
+                            </select>
+                        </div>
+
+                        <!-- Apply Filters -->
+                        <button id="apply-filters" class="w-full bg-forest hover:bg-forest-dark text-white py-3 rounded-lg font-medium transition">
+                            <i class="fas fa-search mr-2"></i>Search Grants
+                        </button>
+                        <button id="clear-filters" class="w-full border border-border text-gray-400 hover:text-white py-2 rounded-lg text-sm transition">Clear All Filters</button>
+                    </div>
+                </div>
+
+                <!-- Results Grid -->
+                <div class="flex-1">
+                    <!-- Sort Bar -->
+                    <div class="flex items-center justify-between mb-4 bg-card border border-border rounded-xl p-3">
+                        <span id="result-count" class="text-gray-400 text-sm">Loading grants...</span>
+                        <select id="sort" class="bg-dark border border-border rounded-lg px-3 py-1.5 text-white text-sm focus:border-forest focus:outline-none">
+                            <option value="relevance">Sort: Relevance</option>
+                            <option value="deadline">Deadline (Soonest)</option>
+                            <option value="amount_high">Amount (High to Low)</option>
+                            <option value="amount_low">Amount (Low to High)</option>
+                            <option value="newest">Newest First</option>
+                        </select>
+                    </div>
+
+                    <!-- Grant Cards -->
+                    <div id="grants-grid" class="space-y-4">
+                        <!-- Placeholder cards -->
+                        <div class="bg-card border border-border rounded-xl p-6 card-hover">
+                            <div class="flex items-start justify-between mb-3">
+                                <div class="flex-1">
+                                    <div class="flex items-center gap-2 mb-2">
+                                        <span class="bg-blue-500/20 text-blue-400 text-xs px-2 py-1 rounded font-medium">Government</span>
+                                        <span class="text-gray-500 text-xs">Canada</span>
+                                    </div>
+                                    <h3 class="text-lg font-bold text-white mb-1">Canada Digital Adoption Program</h3>
+                                    <p class="text-gray-400 text-sm mb-3">Up to $15,000 for SMEs to adopt digital technologies and e-commerce solutions.</p>
+                                </div>
+                            </div>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="bg-dark text-gray-300 text-xs px-2 py-1 rounded">SME</span>
+                                <span class="bg-dark text-gray-300 text-xs px-2 py-1 rounded">Technology</span>
+                                <span class="bg-dark text-gray-300 text-xs px-2 py-1 rounded">E-Commerce</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center gap-4">
+                                    <span class="text-forest font-bold">$2,400 - $15,000</span>
+                                    <span class="text-yellow-400 text-sm"><i class="fas fa-clock mr-1"></i>45 days left</span>
+                                </div>
+                                <div class="flex gap-2">
+                                    <a href="#" class="bg-forest/20 text-forest px-4 py-2 rounded-lg text-sm font-medium hover:bg-forest hover:text-white transition">View Details</a>
+                                    <a href="#" class="bg-gold/20 text-gold px-4 py-2 rounded-lg text-sm font-medium hover:bg-gold hover:text-dark transition">Apply</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-card border border-border rounded-xl p-6 card-hover">
+                            <div class="flex items-start justify-between mb-3">
+                                <div class="flex-1">
+                                    <div class="flex items-center gap-2 mb-2">
+                                        <span class="bg-purple-500/20 text-purple-400 text-xs px-2 py-1 rounded font-medium">Foundation</span>
+                                        <span class="text-gray-500 text-xs">USA</span>
+                                    </div>
+                                    <h3 class="text-lg font-bold text-white mb-1">Gates Foundation Global Health Grant</h3>
+                                    <p class="text-gray-400 text-sm mb-3">Research grants for innovative solutions to global health challenges in developing nations.</p>
+                                </div>
+                            </div>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="bg-dark text-gray-300 text-xs px-2 py-1 rounded">Research</span>
+                                <span class="bg-dark text-gray-300 text-xs px-2 py-1 rounded">Healthcare</span>
+                                <span class="bg-dark text-gray-300 text-xs px-2 py-1 rounded">Nonprofit</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center gap-4">
+                                    <span class="text-forest font-bold">$100,000 - $2,000,000</span>
+                                    <span class="text-red-400 text-sm"><i class="fas fa-exclamation-triangle mr-1"></i>12 days left</span>
+                                </div>
+                                <div class="flex gap-2">
+                                    <a href="#" class="bg-forest/20 text-forest px-4 py-2 rounded-lg text-sm font-medium hover:bg-forest hover:text-white transition">View Details</a>
+                                    <a href="#" class="bg-gold/20 text-gold px-4 py-2 rounded-lg text-sm font-medium hover:bg-gold hover:text-dark transition">Apply</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-card border border-border rounded-xl p-6 card-hover">
+                            <div class="flex items-start justify-between mb-3">
+                                <div class="flex-1">
+                                    <div class="flex items-center gap-2 mb-2">
+                                        <span class="bg-green-500/20 text-green-400 text-xs px-2 py-1 rounded font-medium">EU Program</span>
+                                        <span class="text-gray-500 text-xs">EU</span>
+                                    </div>
+                                    <h3 class="text-lg font-bold text-white mb-1">Horizon Europe - Clean Energy Transition</h3>
+                                    <p class="text-gray-400 text-sm mb-3">EU framework program funding for clean energy research and innovation partnerships.</p>
+                                </div>
+                            </div>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="bg-dark text-gray-300 text-xs px-2 py-1 rounded">Clean Energy</span>
+                                <span class="bg-dark text-gray-300 text-xs px-2 py-1 rounded">Research</span>
+                                <span class="bg-dark text-gray-300 text-xs px-2 py-1 rounded">Innovation</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center gap-4">
+                                    <span class="text-forest font-bold">$500,000 - $5,000,000</span>
+                                    <span class="text-gray-400 text-sm"><i class="fas fa-sync-alt mr-1"></i>Rolling</span>
+                                </div>
+                                <div class="flex gap-2">
+                                    <a href="#" class="bg-forest/20 text-forest px-4 py-2 rounded-lg text-sm font-medium hover:bg-forest hover:text-white transition">View Details</a>
+                                    <a href="#" class="bg-gold/20 text-gold px-4 py-2 rounded-lg text-sm font-medium hover:bg-gold hover:text-dark transition">Apply</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Pagination -->
+                    <div class="flex items-center justify-center gap-2 mt-8">
+                        <button class="w-10 h-10 bg-card border border-border rounded-lg text-gray-400 hover:text-white hover:border-forest transition"><i class="fas fa-chevron-left"></i></button>
+                        <button class="w-10 h-10 bg-forest text-white rounded-lg font-medium">1</button>
+                        <button class="w-10 h-10 bg-card border border-border rounded-lg text-gray-400 hover:text-white hover:border-forest transition">2</button>
+                        <button class="w-10 h-10 bg-card border border-border rounded-lg text-gray-400 hover:text-white hover:border-forest transition">3</button>
+                        <span class="text-gray-500 px-2">...</span>
+                        <button class="w-10 h-10 bg-card border border-border rounded-lg text-gray-400 hover:text-white hover:border-forest transition">50</button>
+                        <button class="w-10 h-10 bg-card border border-border rounded-lg text-gray-400 hover:text-white hover:border-forest transition"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="py-16 px-4" style="background: #111;">
+        <div class="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8">
+            <div>
+                <h3 class="text-white font-bold mb-4"><span class="text-forest">Grant</span>Radar</h3>
+                <p class="text-gray-500 text-sm">AI-powered grant matching across 50+ countries.</p>
+            </div>
+            <div>
+                <h4 class="text-white font-bold mb-4">Find Grants</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="find-grant.html" class="text-gray-400 hover:text-forest transition">All Grants</a></li>
+                    <li><a href="find-government-grant.html" class="text-gray-400 hover:text-forest transition">Government</a></li>
+                    <li><a href="find-startup-grant.html" class="text-gray-400 hover:text-forest transition">Startups</a></li>
+                    <li><a href="find-nonprofit-grant.html" class="text-gray-400 hover:text-forest transition">Nonprofits</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-bold mb-4">Platform</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="how-it-works.html" class="text-gray-400 hover:text-forest transition">How It Works</a></li>
+                    <li><a href="pricing.html" class="text-gray-400 hover:text-forest transition">Pricing</a></li>
+                    <li><a href="for-consultants.html" class="text-gray-400 hover:text-forest transition">For Consultants</a></li>
+                    <li><a href="grant-calendar.html" class="text-gray-400 hover:text-forest transition">Calendar</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-bold mb-4">Company</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="blog.html" class="text-gray-400 hover:text-forest transition">Blog</a></li>
+                    <li><a href="contact.html" class="text-gray-400 hover:text-forest transition">Contact</a></li>
+                    <li><a href="#" class="text-gray-400 hover:text-forest transition">Privacy Policy</a></li>
+                    <li><a href="#" class="text-gray-400 hover:text-forest transition">Terms of Service</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto mt-12 pt-8 border-t border-border text-center">
+            <p class="text-gray-500 text-sm">&copy; 2026 GrantRadar. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+            document.querySelector('.nav-links').classList.toggle('active');
+        });
+        document.getElementById('filter-toggle').addEventListener('click', function() {
+            const sidebar = document.getElementById('filter-sidebar');
+            sidebar.classList.toggle('hidden');
+        });
+        // Checkbox toggle
+        document.querySelectorAll('.filter-checkbox').forEach(label => {
+            label.addEventListener('click', function() {
+                const cb = this.querySelector('input');
+                cb.checked = !cb.checked;
+                const icon = this.querySelector('.fa-check');
+                const span = this.querySelector('span');
+                if (cb.checked) { icon.classList.remove('hidden'); span.style.background = '#1A7A4A'; span.style.borderColor = '#1A7A4A'; }
+                else { icon.classList.add('hidden'); span.style.background = ''; span.style.borderColor = ''; }
+            });
+        });
+        // Range slider
+        const slider = document.getElementById('funding-range');
+        const display = document.getElementById('funding-display');
+        slider.addEventListener('input', function() {
+            const v = parseInt(this.value);
+            display.textContent = v >= 10000000 ? '$10M+' : v >= 1000000 ? '$' + (v/1000000).toFixed(1) + 'M' : '$' + (v/1000).toFixed(0) + 'K';
+        });
+        // Search from URL params
+        const params = new URLSearchParams(window.location.search);
+        if (params.get('q')) document.getElementById('keyword').value = params.get('q');
+        // Apply filters
+        document.getElementById('apply-filters').addEventListener('click', async function() {
+            const countries = [...document.querySelectorAll('input[name="country"]:checked')].map(c => c.value);
+            const orgTypes = [...document.querySelectorAll('input[name="org_type"]:checked')].map(c => c.value);
+            const qs = new URLSearchParams();
+            if (document.getElementById('keyword').value) qs.set('q', document.getElementById('keyword').value);
+            if (countries.length) qs.set('country', countries.join(','));
+            if (orgTypes.length) qs.set('org_type', orgTypes.join(','));
+            if (document.getElementById('sector').value) qs.set('sector', document.getElementById('sector').value);
+            if (document.getElementById('deadline').value) qs.set('deadline_within', document.getElementById('deadline').value);
+            qs.set('max_amount', slider.value);
+            qs.set('sort', document.getElementById('sort').value);
+            try {
+                const res = await fetch(`${window.API_BASE}/api/grants?${qs.toString()}`);
+                const data = await res.json();
+                document.getElementById('result-count').textContent = `${data.total || 0} grants found`;
+            } catch(e) {
+                document.getElementById('result-count').textContent = 'Showing sample grants';
+            }
+        });
+        document.getElementById('result-count').textContent = 'Showing sample grants — connect your backend to see live data';
+    </script>
+</body>
+</html>

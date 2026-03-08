@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Organization Profile — GrantRadar</title>
+    <meta name="description" content="Manage your organization profile to get AI-powered grant matches.">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>tailwind.config={theme:{extend:{colors:{forest:'#1A7A4A','forest-dark':'#14613B','forest-light':'#22995D',gold:'#C9A227','gold-light':'#D4B342',dark:'#0a0a0a',card:'#1a1a1a',border:'#333333'}}}}</script>
+    <style>
+        body { font-family: 'Roboto', sans-serif; background: #0a0a0a; color: #e5e7eb; }
+        .glass-nav { background: rgba(0,0,0,0.4); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); }
+        @media (max-width: 768px) { .nav-links { display: none; } .nav-links.active { display: flex; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0; background: rgba(0,0,0,0.95); padding: 1rem; } }
+        .form-input { width: 100%; background: #0a0a0a; border: 1px solid #333; border-radius: 0.5rem; padding: 0.625rem 1rem; color: #fff; font-size: 0.875rem; outline: none; transition: border-color 0.2s; }
+        .form-input:focus { border-color: #1A7A4A; }
+        .form-label { display: block; color: #fff; font-weight: 500; font-size: 0.875rem; margin-bottom: 0.5rem; }
+        .sector-check input:checked + span { background: #1A7A4A; border-color: #1A7A4A; }
+    </style>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+    <script>window.API_BASE = 'https://grantradar-backend-production.up.railway.app';</script>
+</head>
+<body class="bg-dark min-h-screen">
+    <!-- Navigation -->
+    <nav class="glass-nav fixed top-0 left-0 right-0 z-50 border-b border-border">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <a href="index.html" class="flex items-center space-x-2"><span class="text-xl font-bold text-white">Grant<span class="text-forest">Radar</span></span></a>
+                <button id="mobile-menu-btn" class="md:hidden text-white text-xl"><i class="fas fa-bars"></i></button>
+                <div class="nav-links hidden md:flex items-center space-x-6">
+                    <a href="index.html" class="text-gray-300 hover:text-forest transition">Home</a>
+                    <a href="find-grant.html" class="text-gray-300 hover:text-forest transition">Find Grants</a>
+                    <a href="my-matches.html" class="text-gray-300 hover:text-forest transition">My Matches</a>
+                    <a href="organization-profile.html" class="text-white font-medium hover:text-forest transition">Profile</a>
+                    <a href="pricing.html" class="text-gray-300 hover:text-forest transition">Pricing</a>
+                    <button id="logout-btn" class="text-gray-300 hover:text-red-400 transition">Logout</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="pt-24 pb-16 px-4">
+        <div class="max-w-3xl mx-auto">
+            <h1 class="text-3xl font-bold text-white mb-2">Organization Profile</h1>
+            <p class="text-gray-400 mb-8">Complete your profile to get the most accurate AI grant matches.</p>
+
+            <!-- Profile Completion -->
+            <div class="bg-card border border-border rounded-xl p-5 mb-8">
+                <div class="flex items-center justify-between mb-3">
+                    <span class="text-white font-medium">Profile Completion</span>
+                    <span id="completion-pct" class="text-forest font-bold">0%</span>
+                </div>
+                <div class="w-full bg-dark rounded-full h-3">
+                    <div id="completion-bar" class="bg-forest h-3 rounded-full transition-all duration-500" style="width: 0%"></div>
+                </div>
+                <p class="text-gray-500 text-xs mt-2">Complete all fields to maximize your match accuracy.</p>
+            </div>
+
+            <!-- Subscription Status -->
+            <div id="sub-status" class="bg-card border border-border rounded-xl p-5 mb-8">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-white font-medium">Subscription</p>
+                        <p id="sub-plan" class="text-gray-400 text-sm">Free Plan</p>
+                    </div>
+                    <a href="pricing.html" class="bg-gold/20 text-gold px-4 py-2 rounded-lg text-sm font-medium hover:bg-gold hover:text-dark transition">Upgrade</a>
+                </div>
+            </div>
+
+            <!-- Profile Form -->
+            <form id="profile-form" class="space-y-6">
+                <div class="bg-card border border-border rounded-xl p-6">
+                    <h2 class="text-lg font-bold text-white mb-4"><i class="fas fa-building mr-2 text-forest"></i>Organization Details</h2>
+                    <div class="space-y-4">
+                        <div>
+                            <label class="form-label">Organization Name *</label>
+                            <input type="text" name="name" class="form-input" placeholder="e.g. GreenTech Solutions Inc." required>
+                        </div>
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="form-label">Country *</label>
+                                <select name="country" class="form-input" required>
+                                    <option value="">Select Country</option>
+                                    <option value="Canada">Canada</option>
+                                    <option value="USA">USA</option>
+                                    <option value="UK">UK</option>
+                                    <option value="Australia">Australia</option>
+                                    <option value="Germany">Germany</option>
+                                    <option value="France">France</option>
+                                    <option value="Singapore">Singapore</option>
+                                    <option value="UAE">UAE</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="form-label">Organization Type *</label>
+                                <select name="org_type" class="form-input" required>
+                                    <option value="">Select Type</option>
+                                    <option value="sme">SME (Small/Medium Enterprise)</option>
+                                    <option value="startup">Startup</option>
+                                    <option value="nonprofit">Nonprofit / Charity</option>
+                                    <option value="research">Research Institution</option>
+                                    <option value="social_enterprise">Social Enterprise</option>
+                                    <option value="cooperative">Cooperative</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="form-label">Sectors (select all that apply) *</label>
+                            <div class="grid grid-cols-2 md:grid-cols-4 gap-2">
+                                <label class="sector-check flex items-center gap-2 cursor-pointer text-sm text-gray-300 bg-dark border border-border rounded-lg p-2.5"><input type="checkbox" name="sectors" value="technology" class="hidden"><span class="w-4 h-4 border border-border rounded flex items-center justify-center text-xs text-white flex-shrink-0"><i class="fas fa-check hidden"></i></span>Technology</label>
+                                <label class="sector-check flex items-center gap-2 cursor-pointer text-sm text-gray-300 bg-dark border border-border rounded-lg p-2.5"><input type="checkbox" name="sectors" value="clean_energy" class="hidden"><span class="w-4 h-4 border border-border rounded flex items-center justify-center text-xs text-white flex-shrink-0"><i class="fas fa-check hidden"></i></span>Clean Energy</label>
+                                <label class="sector-check flex items-center gap-2 cursor-pointer text-sm text-gray-300 bg-dark border border-border rounded-lg p-2.5"><input type="checkbox" name="sectors" value="agriculture" class="hidden"><span class="w-4 h-4 border border-border rounded flex items-center justify-center text-xs text-white flex-shrink-0"><i class="fas fa-check hidden"></i></span>Agriculture</label>
+                                <label class="sector-check flex items-center gap-2 cursor-pointer text-sm text-gray-300 bg-dark border border-border rounded-lg p-2.5"><input type="checkbox" name="sectors" value="manufacturing" class="hidden"><span class="w-4 h-4 border border-border rounded flex items-center justify-center text-xs text-white flex-shrink-0"><i class="fas fa-check hidden"></i></span>Manufacturing</label>
+                                <label class="sector-check flex items-center gap-2 cursor-pointer text-sm text-gray-300 bg-dark border border-border rounded-lg p-2.5"><input type="checkbox" name="sectors" value="healthcare" class="hidden"><span class="w-4 h-4 border border-border rounded flex items-center justify-center text-xs text-white flex-shrink-0"><i class="fas fa-check hidden"></i></span>Healthcare</label>
+                                <label class="sector-check flex items-center gap-2 cursor-pointer text-sm text-gray-300 bg-dark border border-border rounded-lg p-2.5"><input type="checkbox" name="sectors" value="education" class="hidden"><span class="w-4 h-4 border border-border rounded flex items-center justify-center text-xs text-white flex-shrink-0"><i class="fas fa-check hidden"></i></span>Education</label>
+                                <label class="sector-check flex items-center gap-2 cursor-pointer text-sm text-gray-300 bg-dark border border-border rounded-lg p-2.5"><input type="checkbox" name="sectors" value="arts_culture" class="hidden"><span class="w-4 h-4 border border-border rounded flex items-center justify-center text-xs text-white flex-shrink-0"><i class="fas fa-check hidden"></i></span>Arts & Culture</label>
+                                <label class="sector-check flex items-center gap-2 cursor-pointer text-sm text-gray-300 bg-dark border border-border rounded-lg p-2.5"><input type="checkbox" name="sectors" value="social_impact" class="hidden"><span class="w-4 h-4 border border-border rounded flex items-center justify-center text-xs text-white flex-shrink-0"><i class="fas fa-check hidden"></i></span>Social Impact</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-card border border-border rounded-xl p-6">
+                    <h2 class="text-lg font-bold text-white mb-4"><i class="fas fa-chart-pie mr-2 text-forest"></i>Organization Size</h2>
+                    <div class="grid md:grid-cols-3 gap-4">
+                        <div>
+                            <label class="form-label">Employees</label>
+                            <select name="employee_count" class="form-input">
+                                <option value="">Select</option>
+                                <option value="1-10">1-10</option>
+                                <option value="11-50">11-50</option>
+                                <option value="51-200">51-200</option>
+                                <option value="201-500">201-500</option>
+                                <option value="500+">500+</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="form-label">Annual Revenue</label>
+                            <select name="annual_revenue" class="form-input">
+                                <option value="">Select</option>
+                                <option value="under_100k">Under $100K</option>
+                                <option value="100k_500k">$100K - $500K</option>
+                                <option value="500k_1m">$500K - $1M</option>
+                                <option value="1m_5m">$1M - $5M</option>
+                                <option value="5m_25m">$5M - $25M</option>
+                                <option value="25m_plus">$25M+</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="form-label">Founded Year</label>
+                            <input type="number" name="founded_year" class="form-input" placeholder="e.g. 2018" min="1900" max="2026">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-card border border-border rounded-xl p-6">
+                    <h2 class="text-lg font-bold text-white mb-4"><i class="fas fa-tags mr-2 text-forest"></i>Additional Qualifiers</h2>
+                    <div class="space-y-4">
+                        <label class="flex items-center gap-3 cursor-pointer">
+                            <input type="checkbox" name="is_indigenous" class="w-5 h-5 rounded border-border bg-dark text-forest focus:ring-forest">
+                            <span class="text-gray-300">Indigenous-owned or led organization</span>
+                        </label>
+                        <label class="flex items-center gap-3 cursor-pointer">
+                            <input type="checkbox" name="is_women_owned" class="w-5 h-5 rounded border-border bg-dark text-forest focus:ring-forest">
+                            <span class="text-gray-300">Women-owned or women-led organization</span>
+                        </label>
+                        <label class="flex items-center gap-3 cursor-pointer">
+                            <input type="checkbox" name="is_nonprofit" class="w-5 h-5 rounded border-border bg-dark text-forest focus:ring-forest">
+                            <span class="text-gray-300">Registered nonprofit / charity</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div id="form-msg" class="hidden bg-forest/20 text-forest border border-forest/30 rounded-xl p-4 text-center font-medium"></div>
+
+                <button type="submit" class="w-full bg-forest hover:bg-forest-dark text-white py-4 rounded-xl font-bold text-lg transition">
+                    <i class="fas fa-save mr-2"></i>Save Profile
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="py-16 px-4" style="background: #111;">
+        <div class="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8">
+            <div><h3 class="text-white font-bold mb-4"><span class="text-forest">Grant</span>Radar</h3><p class="text-gray-500 text-sm">AI-powered grant matching across 50+ countries.</p></div>
+            <div><h4 class="text-white font-bold mb-4">Find Grants</h4><ul class="space-y-2 text-sm"><li><a href="find-grant.html" class="text-gray-400 hover:text-forest transition">All Grants</a></li><li><a href="find-government-grant.html" class="text-gray-400 hover:text-forest transition">Government</a></li><li><a href="find-startup-grant.html" class="text-gray-400 hover:text-forest transition">Startups</a></li><li><a href="find-nonprofit-grant.html" class="text-gray-400 hover:text-forest transition">Nonprofits</a></li></ul></div>
+            <div><h4 class="text-white font-bold mb-4">Platform</h4><ul class="space-y-2 text-sm"><li><a href="how-it-works.html" class="text-gray-400 hover:text-forest transition">How It Works</a></li><li><a href="pricing.html" class="text-gray-400 hover:text-forest transition">Pricing</a></li><li><a href="for-consultants.html" class="text-gray-400 hover:text-forest transition">For Consultants</a></li><li><a href="grant-calendar.html" class="text-gray-400 hover:text-forest transition">Calendar</a></li></ul></div>
+            <div><h4 class="text-white font-bold mb-4">Company</h4><ul class="space-y-2 text-sm"><li><a href="blog.html" class="text-gray-400 hover:text-forest transition">Blog</a></li><li><a href="contact.html" class="text-gray-400 hover:text-forest transition">Contact</a></li><li><a href="#" class="text-gray-400 hover:text-forest transition">Privacy Policy</a></li><li><a href="#" class="text-gray-400 hover:text-forest transition">Terms of Service</a></li></ul></div>
+        </div>
+        <div class="max-w-7xl mx-auto mt-12 pt-8 border-t border-border text-center"><p class="text-gray-500 text-sm">&copy; 2026 GrantRadar. All rights reserved.</p></div>
+    </footer>
+
+    <script>
+        document.getElementById('mobile-menu-btn').addEventListener('click',function(){document.querySelector('.nav-links').classList.toggle('active');});
+        // Auth check
+        const token = localStorage.getItem('token');
+        if (!token) { window.location.href = 'eligibility-quiz.html'; }
+        // Sector checkboxes
+        document.querySelectorAll('.sector-check').forEach(label => {
+            label.addEventListener('click', function(e) {
+                e.preventDefault();
+                const cb = this.querySelector('input');
+                cb.checked = !cb.checked;
+                const icon = this.querySelector('.fa-check');
+                const span = this.querySelector('span');
+                if (cb.checked) { icon.classList.remove('hidden'); span.style.background = '#1A7A4A'; span.style.borderColor = '#1A7A4A'; }
+                else { icon.classList.add('hidden'); span.style.background = ''; span.style.borderColor = ''; }
+                updateCompletion();
+            });
+        });
+        // Completion bar
+        function updateCompletion() {
+            const form = document.getElementById('profile-form');
+            const fields = ['name','country','org_type','employee_count','annual_revenue','founded_year'];
+            let filled = 0;
+            fields.forEach(f => { if (form.querySelector(`[name="${f}"]`).value) filled++; });
+            if (document.querySelectorAll('input[name="sectors"]:checked').length > 0) filled++;
+            const checkers = ['is_indigenous','is_women_owned','is_nonprofit'];
+            checkers.forEach(f => { if (form.querySelector(`[name="${f}"]`).checked) filled += 0.33; });
+            const pct = Math.min(100, Math.round((filled / 8) * 100));
+            document.getElementById('completion-pct').textContent = pct + '%';
+            document.getElementById('completion-bar').style.width = pct + '%';
+        }
+        document.querySelectorAll('.form-input, input[type="checkbox"]').forEach(el => el.addEventListener('change', updateCompletion));
+        // Load profile
+        async function loadProfile() {
+            try {
+                const res = await fetch(`${window.API_BASE}/api/profile`, { headers: { 'Authorization': `Bearer ${token}` } });
+                if (!res.ok) return;
+                const data = await res.json();
+                if (data.name) document.querySelector('[name="name"]').value = data.name;
+                if (data.country) document.querySelector('[name="country"]').value = data.country;
+                if (data.org_type) document.querySelector('[name="org_type"]').value = data.org_type;
+                if (data.employee_count) document.querySelector('[name="employee_count"]').value = data.employee_count;
+                if (data.annual_revenue) document.querySelector('[name="annual_revenue"]').value = data.annual_revenue;
+                if (data.founded_year) document.querySelector('[name="founded_year"]').value = data.founded_year;
+                if (data.is_indigenous) document.querySelector('[name="is_indigenous"]').checked = true;
+                if (data.is_women_owned) document.querySelector('[name="is_women_owned"]').checked = true;
+                if (data.is_nonprofit) document.querySelector('[name="is_nonprofit"]').checked = true;
+                if (data.sectors && Array.isArray(data.sectors)) {
+                    data.sectors.forEach(s => {
+                        const cb = document.querySelector(`input[name="sectors"][value="${s}"]`);
+                        if (cb) { cb.checked = true; const icon = cb.parentElement.querySelector('.fa-check'); const span = cb.parentElement.querySelector('span'); icon.classList.remove('hidden'); span.style.background='#1A7A4A'; span.style.borderColor='#1A7A4A'; }
+                    });
+                }
+                updateCompletion();
+            } catch(e) { console.log('Could not load profile'); }
+        }
+        loadProfile();
+        // Save profile
+        document.getElementById('profile-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const sectors = [...document.querySelectorAll('input[name="sectors"]:checked')].map(c => c.value);
+            const body = {
+                name: this.querySelector('[name="name"]').value,
+                country: this.querySelector('[name="country"]').value,
+                org_type: this.querySelector('[name="org_type"]').value,
+                sectors: sectors,
+                employee_count: this.querySelector('[name="employee_count"]').value,
+                annual_revenue: this.querySelector('[name="annual_revenue"]').value,
+                founded_year: this.querySelector('[name="founded_year"]').value ? parseInt(this.querySelector('[name="founded_year"]').value) : null,
+                is_indigenous: this.querySelector('[name="is_indigenous"]').checked,
+                is_women_owned: this.querySelector('[name="is_women_owned"]').checked,
+                is_nonprofit: this.querySelector('[name="is_nonprofit"]').checked
+            };
+            try {
+                const res = await fetch(`${window.API_BASE}/api/profile`, { method: 'PUT', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` }, body: JSON.stringify(body) });
+                const msg = document.getElementById('form-msg');
+                msg.classList.remove('hidden');
+                if (res.ok) { msg.textContent = 'Profile saved successfully! Your grant matches will update shortly.'; msg.className = 'bg-forest/20 text-forest border border-forest/30 rounded-xl p-4 text-center font-medium'; }
+                else { msg.textContent = 'Failed to save profile. Please try again.'; msg.className = 'bg-red-500/20 text-red-400 border border-red-500/30 rounded-xl p-4 text-center font-medium'; }
+            } catch(e) { alert('Error saving profile'); }
+        });
+        document.getElementById('logout-btn').addEventListener('click', function() { localStorage.removeItem('token'); window.location.href = 'index.html'; });
+    </script>
+</body>
+</html>

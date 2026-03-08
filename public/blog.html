@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog — GrantRadar</title>
+    <meta name="description" content="Grant tips, success stories, industry news, and how-to guides for finding and winning grants worldwide.">
+    <link rel="canonical" href="https://grantradar.com/blog.html">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>tailwind.config={theme:{extend:{colors:{forest:'#1A7A4A','forest-dark':'#14613B','forest-light':'#22995D',gold:'#C9A227','gold-light':'#D4B342',dark:'#0a0a0a',card:'#1a1a1a',border:'#333333'}}}}</script>
+    <style>
+        body { font-family: 'Roboto', sans-serif; background: #0a0a0a; color: #e5e7eb; }
+        .glass-nav { background: rgba(0,0,0,0.4); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); }
+        .card-hover { transition: transform 0.3s, box-shadow 0.3s; }
+        .card-hover:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(26,122,74,0.15); }
+        @media (max-width: 768px) { .nav-links { display: none; } .nav-links.active { display: flex; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0; background: rgba(0,0,0,0.95); padding: 1rem; } }
+    </style>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+    <script>window.API_BASE = 'https://grantradar-backend-production.up.railway.app';</script>
+    <script type="application/ld+json">
+    {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+        {"@type":"ListItem","position":1,"name":"Home","item":"https://grantradar.com/"},
+        {"@type":"ListItem","position":2,"name":"Blog","item":"https://grantradar.com/blog.html"}
+    ]}
+    </script>
+</head>
+<body class="bg-dark min-h-screen">
+    <!-- Navigation -->
+    <nav class="glass-nav fixed top-0 left-0 right-0 z-50 border-b border-border">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <a href="index.html" class="flex items-center space-x-2"><span class="text-xl font-bold text-white">Grant<span class="text-forest">Radar</span></span></a>
+                <button id="mobile-menu-btn" class="md:hidden text-white text-xl"><i class="fas fa-bars"></i></button>
+                <div class="nav-links hidden md:flex items-center space-x-6">
+                    <a href="index.html" class="text-gray-300 hover:text-forest transition">Home</a>
+                    <a href="find-grant.html" class="text-gray-300 hover:text-forest transition">Find Grants</a>
+                    <a href="how-it-works.html" class="text-gray-300 hover:text-forest transition">How It Works</a>
+                    <a href="pricing.html" class="text-gray-300 hover:text-forest transition">Pricing</a>
+                    <a href="for-consultants.html" class="text-gray-300 hover:text-forest transition">For Consultants</a>
+                    <a href="contact.html" class="text-gray-300 hover:text-forest transition">Contact</a>
+                    <a href="eligibility-quiz.html" class="bg-forest hover:bg-forest-dark text-white px-4 py-2 rounded-lg transition font-medium">Sign Up</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="pt-24 pb-16 px-4">
+        <div class="max-w-7xl mx-auto">
+            <h1 class="text-4xl font-bold text-white mb-2">Blog</h1>
+            <p class="text-gray-400 mb-8">Grant tips, industry news, success stories, and how-to guides.</p>
+
+            <!-- Categories -->
+            <div class="flex flex-wrap gap-3 mb-8">
+                <button class="bg-forest text-white px-4 py-2 rounded-full text-sm font-medium">All</button>
+                <button class="bg-card border border-border text-gray-300 px-4 py-2 rounded-full text-sm font-medium hover:border-forest transition">Grant Tips</button>
+                <button class="bg-card border border-border text-gray-300 px-4 py-2 rounded-full text-sm font-medium hover:border-forest transition">Success Stories</button>
+                <button class="bg-card border border-border text-gray-300 px-4 py-2 rounded-full text-sm font-medium hover:border-forest transition">Industry News</button>
+                <button class="bg-card border border-border text-gray-300 px-4 py-2 rounded-full text-sm font-medium hover:border-forest transition">How-To Guides</button>
+            </div>
+
+            <!-- Blog Grid -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <article class="bg-card border border-border rounded-xl overflow-hidden card-hover">
+                    <div class="h-48 bg-gradient-to-br from-forest/30 to-dark flex items-center justify-center">
+                        <i class="fas fa-lightbulb text-forest text-5xl opacity-50"></i>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center gap-2 mb-3">
+                            <span class="bg-forest/20 text-forest text-xs px-2 py-1 rounded font-medium">Grant Tips</span>
+                            <span class="text-gray-500 text-xs">Mar 5, 2026</span>
+                        </div>
+                        <h2 class="text-lg font-bold text-white mb-2">10 Common Grant Application Mistakes (And How to Avoid Them)</h2>
+                        <p class="text-gray-400 text-sm mb-4">From missing eligibility criteria to weak project descriptions, these are the mistakes that get applications rejected.</p>
+                        <a href="#" class="text-forest text-sm font-medium hover:underline">Read More <i class="fas fa-arrow-right ml-1"></i></a>
+                    </div>
+                </article>
+
+                <article class="bg-card border border-border rounded-xl overflow-hidden card-hover">
+                    <div class="h-48 bg-gradient-to-br from-gold/30 to-dark flex items-center justify-center">
+                        <i class="fas fa-trophy text-gold text-5xl opacity-50"></i>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center gap-2 mb-3">
+                            <span class="bg-gold/20 text-gold text-xs px-2 py-1 rounded font-medium">Success Stories</span>
+                            <span class="text-gray-500 text-xs">Mar 1, 2026</span>
+                        </div>
+                        <h2 class="text-lg font-bold text-white mb-2">How a Toronto Startup Won $250K in Non-Dilutive Funding</h2>
+                        <p class="text-gray-400 text-sm mb-4">GreenTech Solutions shares their journey from grant discovery to award using AI-powered matching.</p>
+                        <a href="#" class="text-forest text-sm font-medium hover:underline">Read More <i class="fas fa-arrow-right ml-1"></i></a>
+                    </div>
+                </article>
+
+                <article class="bg-card border border-border rounded-xl overflow-hidden card-hover">
+                    <div class="h-48 bg-gradient-to-br from-blue-500/30 to-dark flex items-center justify-center">
+                        <i class="fas fa-newspaper text-blue-400 text-5xl opacity-50"></i>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center gap-2 mb-3">
+                            <span class="bg-blue-500/20 text-blue-400 text-xs px-2 py-1 rounded font-medium">Industry News</span>
+                            <span class="text-gray-500 text-xs">Feb 25, 2026</span>
+                        </div>
+                        <h2 class="text-lg font-bold text-white mb-2">2026 Federal Budget: New Grant Programs for Clean Energy</h2>
+                        <p class="text-gray-400 text-sm mb-4">Canada announces $2.5B in new clean energy funding. Here is what it means for your business.</p>
+                        <a href="#" class="text-forest text-sm font-medium hover:underline">Read More <i class="fas fa-arrow-right ml-1"></i></a>
+                    </div>
+                </article>
+
+                <article class="bg-card border border-border rounded-xl overflow-hidden card-hover">
+                    <div class="h-48 bg-gradient-to-br from-purple-500/30 to-dark flex items-center justify-center">
+                        <i class="fas fa-book text-purple-400 text-5xl opacity-50"></i>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center gap-2 mb-3">
+                            <span class="bg-purple-500/20 text-purple-400 text-xs px-2 py-1 rounded font-medium">How-To Guide</span>
+                            <span class="text-gray-500 text-xs">Feb 20, 2026</span>
+                        </div>
+                        <h2 class="text-lg font-bold text-white mb-2">Complete Guide to Writing a Winning Grant Proposal</h2>
+                        <p class="text-gray-400 text-sm mb-4">Step-by-step guide covering executive summaries, budgets, impact statements, and supporting documents.</p>
+                        <a href="#" class="text-forest text-sm font-medium hover:underline">Read More <i class="fas fa-arrow-right ml-1"></i></a>
+                    </div>
+                </article>
+
+                <article class="bg-card border border-border rounded-xl overflow-hidden card-hover">
+                    <div class="h-48 bg-gradient-to-br from-green-500/30 to-dark flex items-center justify-center">
+                        <i class="fas fa-hand-holding-dollar text-green-400 text-5xl opacity-50"></i>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center gap-2 mb-3">
+                            <span class="bg-forest/20 text-forest text-xs px-2 py-1 rounded font-medium">Grant Tips</span>
+                            <span class="text-gray-500 text-xs">Feb 15, 2026</span>
+                        </div>
+                        <h2 class="text-lg font-bold text-white mb-2">Non-Dilutive Funding vs. Venture Capital: Which is Right for You?</h2>
+                        <p class="text-gray-400 text-sm mb-4">Understanding when to pursue grants versus equity financing, and how to stack both for maximum runway.</p>
+                        <a href="#" class="text-forest text-sm font-medium hover:underline">Read More <i class="fas fa-arrow-right ml-1"></i></a>
+                    </div>
+                </article>
+
+                <article class="bg-card border border-border rounded-xl overflow-hidden card-hover">
+                    <div class="h-48 bg-gradient-to-br from-orange-500/30 to-dark flex items-center justify-center">
+                        <i class="fas fa-globe text-orange-400 text-5xl opacity-50"></i>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center gap-2 mb-3">
+                            <span class="bg-blue-500/20 text-blue-400 text-xs px-2 py-1 rounded font-medium">Industry News</span>
+                            <span class="text-gray-500 text-xs">Feb 10, 2026</span>
+                        </div>
+                        <h2 class="text-lg font-bold text-white mb-2">EU Horizon Europe: New Calls Open for 2026-2027</h2>
+                        <p class="text-gray-400 text-sm mb-4">The European Commission opens new Horizon Europe calls worth over 10 billion euros across multiple pillars.</p>
+                        <a href="#" class="text-forest text-sm font-medium hover:underline">Read More <i class="fas fa-arrow-right ml-1"></i></a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="py-16 px-4" style="background: #111;">
+        <div class="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8">
+            <div><h3 class="text-white font-bold mb-4"><span class="text-forest">Grant</span>Radar</h3><p class="text-gray-500 text-sm">AI-powered grant matching across 50+ countries.</p></div>
+            <div><h4 class="text-white font-bold mb-4">Find Grants</h4><ul class="space-y-2 text-sm"><li><a href="find-grant.html" class="text-gray-400 hover:text-forest transition">All Grants</a></li><li><a href="find-government-grant.html" class="text-gray-400 hover:text-forest transition">Government</a></li><li><a href="find-startup-grant.html" class="text-gray-400 hover:text-forest transition">Startups</a></li><li><a href="find-nonprofit-grant.html" class="text-gray-400 hover:text-forest transition">Nonprofits</a></li></ul></div>
+            <div><h4 class="text-white font-bold mb-4">Platform</h4><ul class="space-y-2 text-sm"><li><a href="how-it-works.html" class="text-gray-400 hover:text-forest transition">How It Works</a></li><li><a href="pricing.html" class="text-gray-400 hover:text-forest transition">Pricing</a></li><li><a href="for-consultants.html" class="text-gray-400 hover:text-forest transition">For Consultants</a></li><li><a href="grant-calendar.html" class="text-gray-400 hover:text-forest transition">Calendar</a></li></ul></div>
+            <div><h4 class="text-white font-bold mb-4">Company</h4><ul class="space-y-2 text-sm"><li><a href="blog.html" class="text-gray-400 hover:text-forest transition">Blog</a></li><li><a href="contact.html" class="text-gray-400 hover:text-forest transition">Contact</a></li><li><a href="#" class="text-gray-400 hover:text-forest transition">Privacy Policy</a></li><li><a href="#" class="text-gray-400 hover:text-forest transition">Terms of Service</a></li></ul></div>
+        </div>
+        <div class="max-w-7xl mx-auto mt-12 pt-8 border-t border-border text-center"><p class="text-gray-500 text-sm">&copy; 2026 GrantRadar. All rights reserved.</p></div>
+    </footer>
+    <script>document.getElementById('mobile-menu-btn').addEventListener('click',function(){document.querySelector('.nav-links').classList.toggle('active');});</script>
+</body>
+</html>

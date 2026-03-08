@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Startup Grants and Non-Dilutive Funding Worldwide | GrantRadar</title>
+    <meta name="description" content="Find startup grants and non-dilutive funding worldwide. Government programs, accelerator grants, and innovation prizes for early-stage companies. No equity required.">
+    <link rel="canonical" href="https://grantradar.com/startup-grants.html">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { theme: { extend: { colors: { forest: '#1A7A4A', 'forest-dark': '#14613B', 'forest-light': '#22995D', gold: '#C9A227', 'gold-light': '#D4B342', dark: '#0a0a0a', card: '#1a1a1a', border: '#333333' } } } }
+    </script>
+    <style>
+        body { font-family: 'Roboto', sans-serif; background: #0a0a0a; color: #e5e7eb; }
+        .glass-nav { background: rgba(0,0,0,0.4); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); }
+        .card-hover { transition: transform 0.3s, box-shadow 0.3s; }
+        .card-hover:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(26,122,74,0.15); }
+        .grant-count-badge { background: linear-gradient(135deg, #1A7A4A, #C9A227); }
+        .gold-gradient { background: linear-gradient(135deg, #C9A227, #D4B342); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        @media (max-width: 768px) { .nav-links { display: none; } .nav-links.active { display: flex; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0; background: rgba(0,0,0,0.95); padding: 1rem; } }
+    </style>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+    <script>window.API_BASE = 'https://grantradar-backend-production.up.railway.app';</script>
+    <script type="application/ld+json">
+    { "@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://grantradar.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Startup Grants", "item": "https://grantradar.com/startup-grants.html" }
+    ]}
+    </script>
+    <script type="application/ld+json">
+    { "@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
+        { "@type": "Question", "name": "What are non-dilutive grants for startups?", "acceptedAnswer": { "@type": "Answer", "text": "Non-dilutive grants are funding you receive without giving up equity in your company. Unlike venture capital, grants do not require you to surrender ownership or board seats. Government innovation programs, SBIR/STTR awards, and foundation grants are all non-dilutive, meaning founders retain 100% of their company." }},
+        { "@type": "Question", "name": "Why should startups pursue grants instead of VC funding?", "acceptedAnswer": { "@type": "Answer", "text": "Grants preserve founder equity, have no repayment obligation, validate your technology for future investors, and extend runway without dilution. Many successful startups combine grants with VC funding — using grants for early R&D and VC for scaling. Programs like SBIR have funded companies that later raised billions." }},
+        { "@type": "Question", "name": "What types of startup grants exist?", "acceptedAnswer": { "@type": "Answer", "text": "Startup grants include government innovation programs (SBIR, IRAP, Innovate UK), accelerator grants, pitch competition prizes, foundation funding, corporate innovation challenges, and university commercialization grants. Amounts range from $5K pitch prizes to $1.5M SBIR Phase II awards." }},
+        { "@type": "Question", "name": "How do startups qualify for government grants?", "acceptedAnswer": { "@type": "Answer", "text": "Most startup grants require incorporation in the funding country, a technology innovation or R&D component, a qualified team, and a clear commercialization plan. Some programs require minimum operating history (6-24 months) while others accept pre-revenue companies. GrantRadar matches your profile to eligible programs." }},
+        { "@type": "Question", "name": "Can pre-revenue startups get grants?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, many programs specifically target pre-revenue startups. SBIR Phase I, Innovate UK Smart Grants, NRC IRAP, and most accelerator grants accept companies without revenue. The key requirements are usually a viable technology concept, a strong team, and a clear path to market." }}
+    ]}
+    </script>
+    <script type="application/ld+json">
+    { "@context": "https://schema.org", "@type": "ItemList", "name": "Startup Grants and Non-Dilutive Funding Worldwide", "numberOfItems": 5, "itemListElement": [] }
+    </script>
+</head>
+<body class="bg-dark min-h-screen">
+    <nav class="glass-nav fixed top-0 left-0 right-0 z-50 border-b border-border">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <a href="index.html" class="flex items-center space-x-2">
+                    <span class="text-xl font-bold text-white">Grant<span class="text-forest">Radar</span></span>
+                </a>
+                <button id="mobile-menu-btn" class="md:hidden text-white text-xl"><i class="fas fa-bars"></i></button>
+                <div class="nav-links hidden md:flex items-center space-x-6">
+                    <a href="index.html" class="text-gray-300 hover:text-forest transition">Home</a>
+                    <a href="find-grant.html" class="text-gray-300 hover:text-forest transition">Find Grants</a>
+                    <a href="how-it-works.html" class="text-gray-300 hover:text-forest transition">How It Works</a>
+                    <a href="pricing.html" class="text-gray-300 hover:text-forest transition">Pricing</a>
+                    <a href="for-consultants.html" class="text-gray-300 hover:text-forest transition">For Consultants</a>
+                    <a href="contact.html" class="text-gray-300 hover:text-forest transition">Contact</a>
+                    <a href="eligibility-quiz.html" class="bg-forest hover:bg-forest-dark text-white px-4 py-2 rounded-lg transition font-medium">Check Eligibility</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section class="pt-28 pb-16 px-4">
+        <div class="max-w-4xl mx-auto text-center">
+            <div class="grant-count-badge inline-block px-5 py-1.5 rounded-full text-sm font-bold mb-6 text-white" id="grantCount">Loading startup grants...</div>
+            <h1 class="text-4xl md:text-5xl font-bold text-white mb-5">Startup Grants and <span class="gold-gradient">Non-Dilutive Funding</span> Worldwide</h1>
+            <p class="text-gray-400 text-lg max-w-2xl mx-auto mb-8">Keep 100% of your equity. Find government innovation programs, accelerator grants, and pitch prizes for startups across 50+ countries.</p>
+            <a href="find-grant.html?eligibility_type=startup" class="bg-forest hover:bg-forest-dark text-white px-8 py-3 rounded-lg text-lg font-medium inline-block transition"><i class="fas fa-rocket mr-2"></i>Browse All Startup Grants</a>
+        </div>
+    </section>
+
+    <section class="py-16 px-4">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl font-bold text-white mb-4 text-center">Why Grants Over VC?</h2>
+            <p class="text-gray-400 text-center mb-10 max-w-2xl mx-auto">Non-dilutive funding lets you build your product, validate your market, and grow your team without giving away equity.</p>
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="bg-card border border-border rounded-xl p-6 text-center">
+                    <div class="w-14 h-14 bg-forest/20 rounded-full flex items-center justify-center mx-auto mb-4"><i class="fas fa-shield-alt text-forest text-2xl"></i></div>
+                    <h3 class="text-lg font-bold text-white mb-2">Preserve Equity</h3>
+                    <p class="text-gray-400 text-sm">Grants require zero equity dilution. Keep full ownership and control while funding early-stage R&D and product development.</p>
+                </div>
+                <div class="bg-card border border-border rounded-xl p-6 text-center">
+                    <div class="w-14 h-14 bg-forest/20 rounded-full flex items-center justify-center mx-auto mb-4"><i class="fas fa-award text-forest text-2xl"></i></div>
+                    <h3 class="text-lg font-bold text-white mb-2">Validate Technology</h3>
+                    <p class="text-gray-400 text-sm">Government grant awards serve as third-party validation of your technology and business model, making future fundraising easier.</p>
+                </div>
+                <div class="bg-card border border-border rounded-xl p-6 text-center">
+                    <div class="w-14 h-14 bg-forest/20 rounded-full flex items-center justify-center mx-auto mb-4"><i class="fas fa-money-bill-wave text-forest text-2xl"></i></div>
+                    <h3 class="text-lg font-bold text-white mb-2">No Repayment</h3>
+                    <p class="text-gray-400 text-sm">Most grants are non-repayable contributions. Unlike loans or convertible notes, you never pay the money back regardless of outcome.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 px-4 bg-card/30">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl font-bold text-white mb-4 text-center">Types of Startup Grants</h2>
+            <p class="text-gray-400 text-center mb-10 max-w-2xl mx-auto">From early-stage innovation awards to scale-up funding, there is a grant for every startup stage.</p>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="bg-card border border-border rounded-xl p-6 card-hover">
+                    <div class="w-12 h-12 bg-blue-500/20 rounded-lg flex items-center justify-center mb-4"><i class="fas fa-landmark text-blue-400 text-xl"></i></div>
+                    <h3 class="text-lg font-bold text-white mb-2">Government Innovation</h3>
+                    <p class="text-gray-400 text-sm">SBIR/STTR (USA), IRAP (Canada), Innovate UK, AusIndustry — flagship programs providing $50K to $1.5M+ for technology startups.</p>
+                </div>
+                <div class="bg-card border border-border rounded-xl p-6 card-hover">
+                    <div class="w-12 h-12 bg-green-500/20 rounded-lg flex items-center justify-center mb-4"><i class="fas fa-graduation-cap text-green-400 text-xl"></i></div>
+                    <h3 class="text-lg font-bold text-white mb-2">Accelerator Grants</h3>
+                    <p class="text-gray-400 text-sm">Non-equity accelerator programs and bootcamps offering $10K-$150K in funding plus mentorship and office space.</p>
+                </div>
+                <div class="bg-card border border-border rounded-xl p-6 card-hover">
+                    <div class="w-12 h-12 bg-yellow-500/20 rounded-lg flex items-center justify-center mb-4"><i class="fas fa-trophy text-yellow-400 text-xl"></i></div>
+                    <h3 class="text-lg font-bold text-white mb-2">Pitch Competitions</h3>
+                    <p class="text-gray-400 text-sm">Cash prizes from $5K to $1M+ at startup competitions, demo days, and innovation challenges worldwide.</p>
+                </div>
+                <div class="bg-card border border-border rounded-xl p-6 card-hover">
+                    <div class="w-12 h-12 bg-purple-500/20 rounded-lg flex items-center justify-center mb-4"><i class="fas fa-building text-purple-400 text-xl"></i></div>
+                    <h3 class="text-lg font-bold text-white mb-2">Corporate Innovation</h3>
+                    <p class="text-gray-400 text-sm">Fortune 500 companies funding startups through innovation challenges, pilot programs, and corporate venture grants.</p>
+                </div>
+                <div class="bg-card border border-border rounded-xl p-6 card-hover">
+                    <div class="w-12 h-12 bg-red-500/20 rounded-lg flex items-center justify-center mb-4"><i class="fas fa-university text-red-400 text-xl"></i></div>
+                    <h3 class="text-lg font-bold text-white mb-2">University Commercialization</h3>
+                    <p class="text-gray-400 text-sm">Proof-of-concept grants, I-Corps funding, and technology transfer programs for university spinout companies.</p>
+                </div>
+                <div class="bg-card border border-border rounded-xl p-6 card-hover">
+                    <div class="w-12 h-12 bg-cyan-500/20 rounded-lg flex items-center justify-center mb-4"><i class="fas fa-hand-holding-heart text-cyan-400 text-xl"></i></div>
+                    <h3 class="text-lg font-bold text-white mb-2">Foundation Grants</h3>
+                    <p class="text-gray-400 text-sm">Impact-focused grants from Gates, Rockefeller, and other foundations for startups tackling social and environmental challenges.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 px-4">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl font-bold text-white mb-8 text-center">Featured Startup Grants</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6" id="grantGrid"></div>
+            <div class="text-center mt-8">
+                <a href="find-grant.html?eligibility_type=startup" class="bg-gold hover:bg-gold-light text-dark px-6 py-3 rounded-lg font-medium inline-block transition">See All Startup Grants &rarr;</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 px-4 bg-card/30">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-3xl font-bold text-white mb-8 text-center">Frequently Asked Questions</h2>
+            <div class="space-y-4">
+                <div class="bg-card border border-border rounded-xl p-6">
+                    <h3 class="font-bold text-white mb-2">What are non-dilutive grants for startups?</h3>
+                    <p class="text-gray-400 text-sm">Non-dilutive grants are funding you receive without giving up equity in your company. Unlike venture capital, grants do not require you to surrender ownership or board seats. Government innovation programs, SBIR/STTR awards, and foundation grants are all non-dilutive, meaning founders retain 100% of their company.</p>
+                </div>
+                <div class="bg-card border border-border rounded-xl p-6">
+                    <h3 class="font-bold text-white mb-2">Why should startups pursue grants instead of VC funding?</h3>
+                    <p class="text-gray-400 text-sm">Grants preserve founder equity, have no repayment obligation, validate your technology for future investors, and extend runway without dilution. Many successful startups combine grants with VC funding — using grants for early R&D and VC for scaling.</p>
+                </div>
+                <div class="bg-card border border-border rounded-xl p-6">
+                    <h3 class="font-bold text-white mb-2">What types of startup grants exist?</h3>
+                    <p class="text-gray-400 text-sm">Startup grants include government innovation programs (SBIR, IRAP, Innovate UK), accelerator grants, pitch competition prizes, foundation funding, corporate innovation challenges, and university commercialization grants. Amounts range from $5K pitch prizes to $1.5M SBIR Phase II awards.</p>
+                </div>
+                <div class="bg-card border border-border rounded-xl p-6">
+                    <h3 class="font-bold text-white mb-2">How do startups qualify for government grants?</h3>
+                    <p class="text-gray-400 text-sm">Most startup grants require incorporation in the funding country, a technology innovation or R&D component, a qualified team, and a clear commercialization plan. Some programs require minimum operating history (6-24 months) while others accept pre-revenue companies.</p>
+                </div>
+                <div class="bg-card border border-border rounded-xl p-6">
+                    <h3 class="font-bold text-white mb-2">Can pre-revenue startups get grants?</h3>
+                    <p class="text-gray-400 text-sm">Yes, many programs specifically target pre-revenue startups. SBIR Phase I, Innovate UK Smart Grants, NRC IRAP, and most accelerator grants accept companies without revenue. The key requirements are usually a viable technology concept, a strong team, and a clear path to market.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 px-4 bg-gradient-to-r from-forest-dark to-forest">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-3xl font-bold text-white mb-4">Find Non-Dilutive Funding for Your Startup</h2>
+            <p class="text-green-100 mb-8 text-lg">Join thousands of founders using AI-powered matching to discover grants they never knew existed.</p>
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="eligibility-quiz.html" class="bg-gold hover:bg-gold-light text-dark px-8 py-4 rounded-xl text-lg font-bold transition"><i class="fas fa-arrow-right mr-2"></i>Check Your Eligibility</a>
+                <a href="pricing.html" class="border-2 border-white text-white hover:bg-white hover:text-forest-dark px-8 py-4 rounded-xl text-lg font-bold transition">View Pricing</a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-16 px-4" style="background: #111;">
+        <div class="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8">
+            <div>
+                <h3 class="text-white font-bold mb-4"><span class="text-forest">Grant</span>Radar</h3>
+                <p class="text-gray-500 text-sm">AI-powered grant matching across 50+ countries. Find, match, and win funding for your organization.</p>
+            </div>
+            <div>
+                <h4 class="text-white font-bold mb-4">Find Grants</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="find-grant.html" class="text-gray-400 hover:text-forest transition">All Grants</a></li>
+                    <li><a href="find-government-grant.html" class="text-gray-400 hover:text-forest transition">Government Grants</a></li>
+                    <li><a href="find-startup-grant.html" class="text-gray-400 hover:text-forest transition">Startup Grants</a></li>
+                    <li><a href="find-nonprofit-grant.html" class="text-gray-400 hover:text-forest transition">Nonprofit Grants</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-bold mb-4">Resources</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="how-it-works.html" class="text-gray-400 hover:text-forest transition">How It Works</a></li>
+                    <li><a href="pricing.html" class="text-gray-400 hover:text-forest transition">Pricing</a></li>
+                    <li><a href="blog.html" class="text-gray-400 hover:text-forest transition">Blog</a></li>
+                    <li><a href="grant-calendar.html" class="text-gray-400 hover:text-forest transition">Grant Calendar</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-bold mb-4">Company</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="contact.html" class="text-gray-400 hover:text-forest transition">Contact</a></li>
+                    <li><a href="for-consultants.html" class="text-gray-400 hover:text-forest transition">For Consultants</a></li>
+                    <li><a href="success-stories.html" class="text-gray-400 hover:text-forest transition">Success Stories</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto mt-12 pt-8 border-t border-border text-center">
+            <p class="text-gray-500 text-sm">&copy; 2026 GrantRadar. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+            document.querySelector('.nav-links').classList.toggle('active');
+        });
+        const API_BASE = window.API_BASE;
+        async function loadGrants() {
+            try {
+                const res = await fetch(`${API_BASE}/api/grants?eligibility_type=startup&limit=5`);
+                const data = await res.json();
+                const total = data.total || data.grants?.length || 0;
+                document.getElementById('grantCount').textContent = `${total} Startup Grants Available`;
+                const grants = data.grants || data.data || [];
+                const grid = document.getElementById('grantGrid');
+                if (grants.length === 0) { grid.innerHTML = '<p class="text-gray-400 col-span-3 text-center">No grants loaded yet. Check back soon.</p>'; return; }
+                grid.innerHTML = grants.slice(0, 5).map(g => `
+                    <div class="bg-card border border-border rounded-xl p-6 card-hover">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-xs bg-green-500/20 text-green-400 px-2 py-1 rounded">${g.country || 'Global'}</span>
+                            <span class="text-xs text-gray-500">${g.deadline ? new Date(g.deadline).toLocaleDateString() : 'Rolling'}</span>
+                        </div>
+                        <h3 class="font-bold text-white mb-2 text-sm leading-tight">${g.title}</h3>
+                        <p class="text-gray-400 text-xs mb-3 line-clamp-2">${g.funder_name || ''}</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-forest font-bold text-sm">${g.funding_amount_max ? '$' + Number(g.funding_amount_max).toLocaleString() : 'Varies'}</span>
+                            <a href="${g.application_url || g.source_url || '#'}" target="_blank" class="text-gold text-xs font-medium hover:underline">Apply &rarr;</a>
+                        </div>
+                    </div>
+                `).join('');
+            } catch (err) {
+                document.getElementById('grantCount').textContent = 'Startup Grants Available';
+            }
+        }
+        loadGrants();
+    </script>
+</body>
+</html>

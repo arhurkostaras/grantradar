@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How It Works — GrantRadar</title>
+    <meta name="description" content="Learn how GrantRadar uses AI to match your organization with grants from 50+ countries. Build your profile, get matched, and apply with confidence.">
+    <link rel="canonical" href="https://grantradar.com/how-it-works.html">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>tailwind.config={theme:{extend:{colors:{forest:'#1A7A4A','forest-dark':'#14613B','forest-light':'#22995D',gold:'#C9A227','gold-light':'#D4B342',dark:'#0a0a0a',card:'#1a1a1a',border:'#333333'}}}}</script>
+    <style>
+        body { font-family: 'Roboto', sans-serif; background: #0a0a0a; color: #e5e7eb; }
+        .glass-nav { background: rgba(0,0,0,0.4); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); }
+        @media (max-width: 768px) { .nav-links { display: none; } .nav-links.active { display: flex; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0; background: rgba(0,0,0,0.95); padding: 1rem; } }
+    </style>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+    <script>window.API_BASE = 'https://grantradar-backend-production.up.railway.app';</script>
+    <script type="application/ld+json">
+    {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+        {"@type":"ListItem","position":1,"name":"Home","item":"https://grantradar.com/"},
+        {"@type":"ListItem","position":2,"name":"How It Works","item":"https://grantradar.com/how-it-works.html"}
+    ]}
+    </script>
+</head>
+<body class="bg-dark min-h-screen">
+    <!-- Navigation -->
+    <nav class="glass-nav fixed top-0 left-0 right-0 z-50 border-b border-border">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <a href="index.html" class="flex items-center space-x-2"><span class="text-xl font-bold text-white">Grant<span class="text-forest">Radar</span></span></a>
+                <button id="mobile-menu-btn" class="md:hidden text-white text-xl"><i class="fas fa-bars"></i></button>
+                <div class="nav-links hidden md:flex items-center space-x-6">
+                    <a href="index.html" class="text-gray-300 hover:text-forest transition">Home</a>
+                    <a href="find-grant.html" class="text-gray-300 hover:text-forest transition">Find Grants</a>
+                    <a href="how-it-works.html" class="text-white font-medium hover:text-forest transition">How It Works</a>
+                    <a href="pricing.html" class="text-gray-300 hover:text-forest transition">Pricing</a>
+                    <a href="for-consultants.html" class="text-gray-300 hover:text-forest transition">For Consultants</a>
+                    <a href="contact.html" class="text-gray-300 hover:text-forest transition">Contact</a>
+                    <a href="eligibility-quiz.html" class="bg-forest hover:bg-forest-dark text-white px-4 py-2 rounded-lg transition font-medium">Sign Up</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="pt-28 pb-12 px-4 text-center">
+        <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">How GrantRadar Works</h1>
+        <p class="text-gray-400 text-lg max-w-2xl mx-auto">Four simple steps from profile to funding. Our AI does the heavy lifting so you can focus on what matters.</p>
+    </section>
+
+    <!-- Steps -->
+    <section class="py-12 px-4">
+        <div class="max-w-5xl mx-auto space-y-16">
+            <!-- Step 1 -->
+            <div class="flex flex-col md:flex-row items-center gap-8">
+                <div class="w-full md:w-1/3 text-center">
+                    <div class="w-24 h-24 bg-forest/20 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-building text-forest text-4xl"></i>
+                    </div>
+                    <div class="bg-forest text-white w-10 h-10 rounded-full flex items-center justify-center mx-auto text-lg font-bold -mt-2 relative z-10">1</div>
+                </div>
+                <div class="flex-1 bg-card border border-border rounded-2xl p-8">
+                    <h2 class="text-2xl font-bold text-white mb-3">Build Your Organization Profile</h2>
+                    <p class="text-gray-400 mb-4">Tell us about your organization in under 5 minutes. We need to know your:</p>
+                    <ul class="space-y-2">
+                        <li class="flex items-center gap-2 text-gray-300"><i class="fas fa-check text-forest"></i>Country and location</li>
+                        <li class="flex items-center gap-2 text-gray-300"><i class="fas fa-check text-forest"></i>Organization type (SME, startup, nonprofit, research)</li>
+                        <li class="flex items-center gap-2 text-gray-300"><i class="fas fa-check text-forest"></i>Industry sectors</li>
+                        <li class="flex items-center gap-2 text-gray-300"><i class="fas fa-check text-forest"></i>Size, revenue, and founding year</li>
+                        <li class="flex items-center gap-2 text-gray-300"><i class="fas fa-check text-forest"></i>Special qualifiers (Indigenous, women-owned, nonprofit status)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Step 2 -->
+            <div class="flex flex-col md:flex-row-reverse items-center gap-8">
+                <div class="w-full md:w-1/3 text-center">
+                    <div class="w-24 h-24 bg-forest/20 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-robot text-forest text-4xl"></i>
+                    </div>
+                    <div class="bg-forest text-white w-10 h-10 rounded-full flex items-center justify-center mx-auto text-lg font-bold -mt-2 relative z-10">2</div>
+                </div>
+                <div class="flex-1 bg-card border border-border rounded-2xl p-8">
+                    <h2 class="text-2xl font-bold text-white mb-3">AI Scans 10,000+ Grants Daily</h2>
+                    <p class="text-gray-400 mb-4">Our AI engine continuously crawls and indexes grant programs from around the world. It checks:</p>
+                    <ul class="space-y-2">
+                        <li class="flex items-center gap-2 text-gray-300"><i class="fas fa-check text-forest"></i>Eligibility criteria against your profile</li>
+                        <li class="flex items-center gap-2 text-gray-300"><i class="fas fa-check text-forest"></i>Sector and industry alignment</li>
+                        <li class="flex items-center gap-2 text-gray-300"><i class="fas fa-check text-forest"></i>Geographic requirements</li>
+                        <li class="flex items-center gap-2 text-gray-300"><i class="fas fa-check text-forest"></i>Organization size and type requirements</li>
+                        <li class="flex items-center gap-2 text-gray-300"><i class="fas fa-check text-forest"></i>Funding amount appropriateness</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Step 3 -->
+            <div class="flex flex-col md:flex-row items-center gap-8">
+                <div class="w-full md:w-1/3 text-center">
+                    <div class="w-24 h-24 bg-forest/20 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-bullseye text-forest text-4xl"></i>
+                    </div>
+                    <div class="bg-forest text-white w-10 h-10 rounded-full flex items-center justify-center mx-auto text-lg font-bold -mt-2 relative z-10">3</div>
+                </div>
+                <div class="flex-1 bg-card border border-border rounded-2xl p-8">
+                    <h2 class="text-2xl font-bold text-white mb-3">Get Scored and Ranked Matches</h2>
+                    <p class="text-gray-400 mb-4">Every grant is scored against your profile on a 0-100% scale. You see:</p>
+                    <ul class="space-y-2">
+                        <li class="flex items-center gap-2 text-gray-300"><i class="fas fa-check text-forest"></i>Match percentage showing how well you fit</li>
+                        <li class="flex items-center gap-2 text-gray-300"><i class="fas fa-check text-forest"></i>Match reasons (what criteria you meet)</li>
+                        <li class="flex items-center gap-2 text-gray-300"><i class="fas fa-check text-forest"></i>Funding range and deadline countdown</li>
+                        <li class="flex items-center gap-2 text-gray-300"><i class="fas fa-check text-forest"></i>Email alerts when new matches appear</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Step 4 -->
+            <div class="flex flex-col md:flex-row-reverse items-center gap-8">
+                <div class="w-full md:w-1/3 text-center">
+                    <div class="w-24 h-24 bg-forest/20 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-trophy text-forest text-4xl"></i>
+                    </div>
+                    <div class="bg-forest text-white w-10 h-10 rounded-full flex items-center justify-center mx-auto text-lg font-bold -mt-2 relative z-10">4</div>
+                </div>
+                <div class="flex-1 bg-card border border-border rounded-2xl p-8">
+                    <h2 class="text-2xl font-bold text-white mb-3">Apply With Confidence</h2>
+                    <p class="text-gray-400 mb-4">We give you everything you need to submit winning applications:</p>
+                    <ul class="space-y-2">
+                        <li class="flex items-center gap-2 text-gray-300"><i class="fas fa-check text-forest"></i>Direct links to application portals</li>
+                        <li class="flex items-center gap-2 text-gray-300"><i class="fas fa-check text-forest"></i>Deadline tracking with reminders</li>
+                        <li class="flex items-center gap-2 text-gray-300"><i class="fas fa-check text-forest"></i>Application status tracking</li>
+                        <li class="flex items-center gap-2 text-gray-300"><i class="fas fa-check text-forest"></i>Success rate analytics</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Data Sources -->
+    <section class="py-16 px-4 bg-card/50">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-3xl font-bold text-white text-center mb-4">Our Data Sources</h2>
+            <p class="text-gray-400 text-center mb-12 max-w-2xl mx-auto">We aggregate grants from the most comprehensive public funding databases worldwide.</p>
+            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
+                <div class="bg-card border border-border rounded-xl p-4 text-center"><p class="text-white text-sm font-medium">Grants.gov</p><p class="text-gray-500 text-xs">USA</p></div>
+                <div class="bg-card border border-border rounded-xl p-4 text-center"><p class="text-white text-sm font-medium">Canada.ca</p><p class="text-gray-500 text-xs">Canada</p></div>
+                <div class="bg-card border border-border rounded-xl p-4 text-center"><p class="text-white text-sm font-medium">EU Funding Portal</p><p class="text-gray-500 text-xs">European Union</p></div>
+                <div class="bg-card border border-border rounded-xl p-4 text-center"><p class="text-white text-sm font-medium">Innovate UK</p><p class="text-gray-500 text-xs">United Kingdom</p></div>
+                <div class="bg-card border border-border rounded-xl p-4 text-center"><p class="text-white text-sm font-medium">business.gov.au</p><p class="text-gray-500 text-xs">Australia</p></div>
+                <div class="bg-card border border-border rounded-xl p-4 text-center"><p class="text-white text-sm font-medium">Enterprise SG</p><p class="text-gray-500 text-xs">Singapore</p></div>
+                <div class="bg-card border border-border rounded-xl p-4 text-center"><p class="text-white text-sm font-medium">NSF</p><p class="text-gray-500 text-xs">USA Research</p></div>
+                <div class="bg-card border border-border rounded-xl p-4 text-center"><p class="text-white text-sm font-medium">NSERC / SSHRC</p><p class="text-gray-500 text-xs">Canada Research</p></div>
+                <div class="bg-card border border-border rounded-xl p-4 text-center"><p class="text-white text-sm font-medium">ERC</p><p class="text-gray-500 text-xs">EU Research</p></div>
+                <div class="bg-card border border-border rounded-xl p-4 text-center"><p class="text-white text-sm font-medium">Foundation Dir.</p><p class="text-gray-500 text-xs">Private Foundations</p></div>
+                <div class="bg-card border border-border rounded-xl p-4 text-center"><p class="text-white text-sm font-medium">UN Agencies</p><p class="text-gray-500 text-xs">International</p></div>
+                <div class="bg-card border border-border rounded-xl p-4 text-center"><p class="text-white text-sm font-medium">And 40+ more</p><p class="text-gray-500 text-xs">Worldwide</p></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="py-16 px-4">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-3xl font-bold text-white mb-4">Ready to Find Your Grants?</h2>
+            <p class="text-gray-400 mb-8">Take the 2-minute eligibility quiz and see which grants you qualify for today.</p>
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="eligibility-quiz.html" class="bg-forest hover:bg-forest-dark text-white px-8 py-4 rounded-xl text-lg font-bold transition"><i class="fas fa-clipboard-check mr-2"></i>Take Eligibility Quiz</a>
+                <a href="find-grant.html" class="border-2 border-border text-gray-300 hover:text-white hover:border-forest px-8 py-4 rounded-xl text-lg font-bold transition">Browse All Grants</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-16 px-4" style="background: #111;">
+        <div class="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8">
+            <div><h3 class="text-white font-bold mb-4"><span class="text-forest">Grant</span>Radar</h3><p class="text-gray-500 text-sm">AI-powered grant matching across 50+ countries.</p></div>
+            <div><h4 class="text-white font-bold mb-4">Find Grants</h4><ul class="space-y-2 text-sm"><li><a href="find-grant.html" class="text-gray-400 hover:text-forest transition">All Grants</a></li><li><a href="find-government-grant.html" class="text-gray-400 hover:text-forest transition">Government</a></li><li><a href="find-startup-grant.html" class="text-gray-400 hover:text-forest transition">Startups</a></li><li><a href="find-nonprofit-grant.html" class="text-gray-400 hover:text-forest transition">Nonprofits</a></li></ul></div>
+            <div><h4 class="text-white font-bold mb-4">Platform</h4><ul class="space-y-2 text-sm"><li><a href="how-it-works.html" class="text-gray-400 hover:text-forest transition">How It Works</a></li><li><a href="pricing.html" class="text-gray-400 hover:text-forest transition">Pricing</a></li><li><a href="for-consultants.html" class="text-gray-400 hover:text-forest transition">For Consultants</a></li><li><a href="grant-calendar.html" class="text-gray-400 hover:text-forest transition">Calendar</a></li></ul></div>
+            <div><h4 class="text-white font-bold mb-4">Company</h4><ul class="space-y-2 text-sm"><li><a href="blog.html" class="text-gray-400 hover:text-forest transition">Blog</a></li><li><a href="contact.html" class="text-gray-400 hover:text-forest transition">Contact</a></li><li><a href="#" class="text-gray-400 hover:text-forest transition">Privacy Policy</a></li><li><a href="#" class="text-gray-400 hover:text-forest transition">Terms of Service</a></li></ul></div>
+        </div>
+        <div class="max-w-7xl mx-auto mt-12 pt-8 border-t border-border text-center"><p class="text-gray-500 text-sm">&copy; 2026 GrantRadar. All rights reserved.</p></div>
+    </footer>
+    <script>document.getElementById('mobile-menu-btn').addEventListener('click',function(){document.querySelector('.nav-links').classList.toggle('active');});</script>
+</body>
+</html>

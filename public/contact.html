@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us — GrantRadar</title>
+    <meta name="description" content="Get in touch with the GrantRadar team. Questions about grant matching, pricing, or enterprise solutions? We are here to help.">
+    <link rel="canonical" href="https://grantradar.com/contact.html">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>tailwind.config={theme:{extend:{colors:{forest:'#1A7A4A','forest-dark':'#14613B','forest-light':'#22995D',gold:'#C9A227','gold-light':'#D4B342',dark:'#0a0a0a',card:'#1a1a1a',border:'#333333'}}}}</script>
+    <style>
+        body { font-family: 'Roboto', sans-serif; background: #0a0a0a; color: #e5e7eb; }
+        .glass-nav { background: rgba(0,0,0,0.4); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); }
+        .form-input { width: 100%; background: #0a0a0a; border: 1px solid #333; border-radius: 0.5rem; padding: 0.75rem 1rem; color: #fff; font-size: 0.875rem; outline: none; transition: border-color 0.2s; }
+        .form-input:focus { border-color: #1A7A4A; }
+        @media (max-width: 768px) { .nav-links { display: none; } .nav-links.active { display: flex; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0; background: rgba(0,0,0,0.95); padding: 1rem; } }
+    </style>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+    <script>window.API_BASE = 'https://grantradar-backend-production.up.railway.app';</script>
+    <script type="application/ld+json">
+    {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+        {"@type":"ListItem","position":1,"name":"Home","item":"https://grantradar.com/"},
+        {"@type":"ListItem","position":2,"name":"Contact","item":"https://grantradar.com/contact.html"}
+    ]}
+    </script>
+</head>
+<body class="bg-dark min-h-screen">
+    <!-- Navigation -->
+    <nav class="glass-nav fixed top-0 left-0 right-0 z-50 border-b border-border">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <a href="index.html" class="flex items-center space-x-2"><span class="text-xl font-bold text-white">Grant<span class="text-forest">Radar</span></span></a>
+                <button id="mobile-menu-btn" class="md:hidden text-white text-xl"><i class="fas fa-bars"></i></button>
+                <div class="nav-links hidden md:flex items-center space-x-6">
+                    <a href="index.html" class="text-gray-300 hover:text-forest transition">Home</a>
+                    <a href="find-grant.html" class="text-gray-300 hover:text-forest transition">Find Grants</a>
+                    <a href="how-it-works.html" class="text-gray-300 hover:text-forest transition">How It Works</a>
+                    <a href="pricing.html" class="text-gray-300 hover:text-forest transition">Pricing</a>
+                    <a href="for-consultants.html" class="text-gray-300 hover:text-forest transition">For Consultants</a>
+                    <a href="contact.html" class="text-white font-medium hover:text-forest transition">Contact</a>
+                    <a href="eligibility-quiz.html" class="bg-forest hover:bg-forest-dark text-white px-4 py-2 rounded-lg transition font-medium">Sign Up</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="pt-24 pb-16 px-4">
+        <div class="max-w-5xl mx-auto">
+            <h1 class="text-4xl font-bold text-white mb-2 text-center">Contact Us</h1>
+            <p class="text-gray-400 text-center mb-12">Have a question? We would love to hear from you.</p>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Contact Form -->
+                <div class="md:col-span-2">
+                    <div class="bg-card border border-border rounded-2xl p-8">
+                        <h2 class="text-xl font-bold text-white mb-6">Send Us a Message</h2>
+                        <form id="contact-form" class="space-y-5">
+                            <div class="grid md:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-white font-medium text-sm mb-2">Name *</label>
+                                    <input type="text" name="name" class="form-input" placeholder="Your full name" required>
+                                </div>
+                                <div>
+                                    <label class="block text-white font-medium text-sm mb-2">Email *</label>
+                                    <input type="email" name="email" class="form-input" placeholder="you@company.com" required>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-white font-medium text-sm mb-2">Subject *</label>
+                                <select name="subject" class="form-input" required>
+                                    <option value="">Select a topic</option>
+                                    <option value="general">General Inquiry</option>
+                                    <option value="pricing">Pricing Question</option>
+                                    <option value="enterprise">Enterprise Sales</option>
+                                    <option value="consultant">Consultant Plan</option>
+                                    <option value="support">Technical Support</option>
+                                    <option value="partnership">Partnership</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-white font-medium text-sm mb-2">Message *</label>
+                                <textarea name="message" rows="5" class="form-input" placeholder="How can we help you?" required></textarea>
+                            </div>
+                            <div id="contact-msg" class="hidden"></div>
+                            <button type="submit" class="w-full bg-forest hover:bg-forest-dark text-white py-3.5 rounded-xl font-bold text-lg transition">
+                                <i class="fas fa-paper-plane mr-2"></i>Send Message
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Sidebar -->
+                <div class="space-y-6">
+                    <div class="bg-card border border-border rounded-2xl p-6">
+                        <h3 class="text-white font-bold mb-4">Get in Touch</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-start gap-3">
+                                <div class="w-10 h-10 bg-forest/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                                    <i class="fas fa-envelope text-forest"></i>
+                                </div>
+                                <div>
+                                    <p class="text-white font-medium text-sm">Email</p>
+                                    <a href="mailto:hello@grantradar.com" class="text-forest text-sm hover:underline">hello@grantradar.com</a>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <div class="w-10 h-10 bg-forest/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                                    <i class="fas fa-clock text-forest"></i>
+                                </div>
+                                <div>
+                                    <p class="text-white font-medium text-sm">Response Time</p>
+                                    <p class="text-gray-400 text-sm">Within 24 hours</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <div class="w-10 h-10 bg-forest/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                                    <i class="fas fa-globe text-forest"></i>
+                                </div>
+                                <div>
+                                    <p class="text-white font-medium text-sm">Serving</p>
+                                    <p class="text-gray-400 text-sm">50+ countries worldwide</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-card border border-border rounded-2xl p-6">
+                        <h3 class="text-white font-bold mb-4">Quick Links</h3>
+                        <ul class="space-y-3">
+                            <li><a href="pricing.html" class="text-forest text-sm hover:underline flex items-center gap-2"><i class="fas fa-tag"></i>View Pricing Plans</a></li>
+                            <li><a href="eligibility-quiz.html" class="text-forest text-sm hover:underline flex items-center gap-2"><i class="fas fa-clipboard-check"></i>Take Eligibility Quiz</a></li>
+                            <li><a href="how-it-works.html" class="text-forest text-sm hover:underline flex items-center gap-2"><i class="fas fa-question-circle"></i>How It Works</a></li>
+                            <li><a href="for-consultants.html" class="text-forest text-sm hover:underline flex items-center gap-2"><i class="fas fa-users"></i>For Consultants</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-forest/10 border border-forest/20 rounded-2xl p-6">
+                        <h3 class="text-white font-bold mb-2">Enterprise Inquiries</h3>
+                        <p class="text-gray-400 text-sm mb-4">Need API access, custom integrations, or dedicated support? Let us discuss your enterprise needs.</p>
+                        <a href="mailto:enterprise@grantradar.com" class="text-forest text-sm font-medium hover:underline">enterprise@grantradar.com</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="py-16 px-4" style="background: #111;">
+        <div class="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8">
+            <div><h3 class="text-white font-bold mb-4"><span class="text-forest">Grant</span>Radar</h3><p class="text-gray-500 text-sm">AI-powered grant matching across 50+ countries.</p></div>
+            <div><h4 class="text-white font-bold mb-4">Find Grants</h4><ul class="space-y-2 text-sm"><li><a href="find-grant.html" class="text-gray-400 hover:text-forest transition">All Grants</a></li><li><a href="find-government-grant.html" class="text-gray-400 hover:text-forest transition">Government</a></li><li><a href="find-startup-grant.html" class="text-gray-400 hover:text-forest transition">Startups</a></li><li><a href="find-nonprofit-grant.html" class="text-gray-400 hover:text-forest transition">Nonprofits</a></li></ul></div>
+            <div><h4 class="text-white font-bold mb-4">Platform</h4><ul class="space-y-2 text-sm"><li><a href="how-it-works.html" class="text-gray-400 hover:text-forest transition">How It Works</a></li><li><a href="pricing.html" class="text-gray-400 hover:text-forest transition">Pricing</a></li><li><a href="for-consultants.html" class="text-gray-400 hover:text-forest transition">For Consultants</a></li><li><a href="grant-calendar.html" class="text-gray-400 hover:text-forest transition">Calendar</a></li></ul></div>
+            <div><h4 class="text-white font-bold mb-4">Company</h4><ul class="space-y-2 text-sm"><li><a href="blog.html" class="text-gray-400 hover:text-forest transition">Blog</a></li><li><a href="contact.html" class="text-gray-400 hover:text-forest transition">Contact</a></li><li><a href="#" class="text-gray-400 hover:text-forest transition">Privacy Policy</a></li><li><a href="#" class="text-gray-400 hover:text-forest transition">Terms of Service</a></li></ul></div>
+        </div>
+        <div class="max-w-7xl mx-auto mt-12 pt-8 border-t border-border text-center"><p class="text-gray-500 text-sm">&copy; 2026 GrantRadar. All rights reserved.</p></div>
+    </footer>
+
+    <script>
+        document.getElementById('mobile-menu-btn').addEventListener('click',function(){document.querySelector('.nav-links').classList.toggle('active');});
+        document.getElementById('contact-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const body = {
+                name: this.querySelector('[name="name"]').value,
+                email: this.querySelector('[name="email"]').value,
+                subject: this.querySelector('[name="subject"]').value,
+                message: this.querySelector('[name="message"]').value
+            };
+            const msg = document.getElementById('contact-msg');
+            msg.classList.remove('hidden');
+            try {
+                const res = await fetch(`${window.API_BASE}/api/contact`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
+                if (res.ok) {
+                    msg.className = 'bg-forest/20 text-forest border border-forest/30 rounded-xl p-4 text-center font-medium';
+                    msg.textContent = 'Message sent successfully! We will get back to you within 24 hours.';
+                    this.reset();
+                } else {
+                    msg.className = 'bg-red-500/20 text-red-400 border border-red-500/30 rounded-xl p-4 text-center font-medium';
+                    msg.textContent = 'Failed to send message. Please try again or email us directly.';
+                }
+            } catch(e) {
+                msg.className = 'bg-red-500/20 text-red-400 border border-red-500/30 rounded-xl p-4 text-center font-medium';
+                msg.textContent = 'Failed to send message. Please email us at hello@grantradar.com.';
+            }
+        });
+    </script>
+</body>
+</html>
