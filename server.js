@@ -17,6 +17,11 @@ const {
   sendAdminAlert,
   sendContactFormEmail,
 } = require('./services/email');
+const { ScraperOrchestrator } = require('./src/scrapers/orchestrator');
+const { GrantScorer } = require('./src/matching/grant-scorer');
+const { ReasoningGenerator } = require('./src/matching/reasoning-generator');
+const { DeadlineMonitor } = require('./src/monitoring/deadline-monitor');
+const { GrantEnricher } = require('./src/enrichment/grant-enricher');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -170,6 +175,12 @@ const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
   ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false
 });
+
+// Initialize scraper orchestrator and matching engine
+const scraperOrchestrator = new ScraperOrchestrator(pool);
+const grantScorer = new GrantScorer(pool);
+const reasoningGenerator = new ReasoningGenerator(pool);
+const grantEnricher = new GrantEnricher(pool);
 
 // =====================================================
 // JWT MIDDLEWARE
@@ -1399,19 +1410,12 @@ app.post('/api/scrape/trigger/:source', adminAuth, async (req, res) => {
 
     console.log(`[Scraper] Triggered: ${source} (job #${result.rows[0].id})`);
 
-    // In production, trigger actual scraper module here
-    // For now, simulate completion after a delay
-    setTimeout(async () => {
-      try {
-        await pool.query(
-          `UPDATE scrape_jobs SET status = 'completed', completed_at = NOW() WHERE id = $1`,
-          [result.rows[0].id]
-        );
-        console.log(`[Scraper] Completed: ${source} (job #${result.rows[0].id})`);
-      } catch (e) {
-        console.error(`[Scraper] Failed to update job status:`, e.message);
-      }
-    }, 5000);
+    // Trigger actual scraper in background (don't await)
+    scraperOrchestrator.trigger(source).then(scraperResult => {
+      console.log(`[Scraper] ${source} finished:`, JSON.stringify(scraperResult));
+    }).catch(err => {
+      console.error(`[Scraper] ${source} error:`, err.message);
+    });
 
     res.json({ message: `Scraper ${source} triggered`, jobId: result.rows[0].id });
   } catch (err) {
