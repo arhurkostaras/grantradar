@@ -112,11 +112,41 @@
 
 ---
 
+## Deployment — COMPLETE
+**Date**: 2026-03-08
+
+### Railway
+- Project: grantradar (7c913792-e483-4c70-85a5-713ab85533d3)
+- Backend: https://grantradar-backend-production.up.railway.app
+- Database: PostgreSQL on Railway (internal network)
+- Health check: /api/health — passing
+- Admin user: arthur@negotiateandwin.com / GrantRadar2026
+
+### Verification Results
+- Health endpoint: OK
+- Grant listing (75 grants across 8 countries): OK
+- Grant filtering by country/type/sector: OK
+- Organization registration: OK
+- Admin login: OK
+- Eligibility quiz → AI matching: OK (returns 10 scored matches)
+- Scraper trigger: OK (all 7 sources seeded data)
+
+### Seeded Data
+- 75 total grants (all active)
+- By country: CA (20), GLOBAL (16), US (12), EU (7), UK (6), AU (5), SG (5), AE (4)
+- By funder: Government (38), Foundation (30), EU (7)
+- Top sectors: Technology (38), Healthcare (30), Clean Energy (27), Manufacturing (20)
+
+---
+
 ## Build Summary
-- **Total Files**: 59
-- **Total Lines of Code**: 13,132
+- **Total Files**: 60
+- **Total Lines of Code**: 13,150+
 - **Frontend Pages**: 29 HTML pages
 - **Backend JS Files**: 15
 - **Database Tables**: 10
-- **Scraper Sources**: 10 (across 8 countries + EU + global)
+- **Scraper Sources**: 7 (across 8 countries + EU + global foundations)
+- **Grants Seeded**: 75 (curated) + Grants.gov API (1000+ on trigger)
 - **All JS files**: Syntax validated OK
+- **GitHub**: https://github.com/arhurkostaras/grantradar
+- **Deploy URL**: https://grantradar-backend-production.up.railway.app
