@@ -1656,13 +1656,10 @@ app.post('/api/eligibility-quiz', async (req, res) => {
 cron.schedule('0 2 * * *', async () => {
   console.log('[Cron] Daily Grants.gov refresh triggered');
   try {
-    await pool.query(
-      `INSERT INTO scrape_jobs (source, country, status) VALUES ('grants_gov', 'US', 'pending')`
-    );
-    // In production, trigger actual scraper
-    console.log('[Cron] Grants.gov scrape job created');
+    const result = await scraperOrchestrator.trigger('grants_gov');
+    console.log('[Cron] Grants.gov scrape complete:', JSON.stringify(result));
   } catch (err) {
-    console.error('[Cron] Failed to schedule Grants.gov scrape:', err.message);
+    console.error('[Cron] Failed Grants.gov scrape:', err.message);
   }
 });
 
@@ -1670,16 +1667,12 @@ cron.schedule('0 2 * * *', async () => {
 cron.schedule('0 3 * * 0', async () => {
   console.log('[Cron] Weekly country scrapers triggered');
   const sources = ['canada', 'eu', 'uk', 'au', 'sg', 'uae'];
-  const countryMap = { canada: 'CA', eu: 'EU', uk: 'GB', au: 'AU', sg: 'SG', uae: 'AE' };
   for (const source of sources) {
     try {
-      await pool.query(
-        `INSERT INTO scrape_jobs (source, country, status) VALUES ($1, $2, 'pending')`,
-        [source, countryMap[source]]
-      );
-      console.log(`[Cron] ${source} scrape job created`);
+      const result = await scraperOrchestrator.trigger(source);
+      console.log(`[Cron] ${source} scrape complete:`, JSON.stringify(result));
     } catch (err) {
-      console.error(`[Cron] Failed to schedule ${source} scrape:`, err.message);
+      console.error(`[Cron] Failed ${source} scrape:`, err.message);
     }
   }
 });
@@ -1688,12 +1681,10 @@ cron.schedule('0 3 * * 0', async () => {
 cron.schedule('0 4 1 * *', async () => {
   console.log('[Cron] Monthly foundation scraper triggered');
   try {
-    await pool.query(
-      `INSERT INTO scrape_jobs (source, country, status) VALUES ('foundations', 'GLOBAL', 'pending')`
-    );
-    console.log('[Cron] Foundation scrape job created');
+    const result = await scraperOrchestrator.trigger('foundations');
+    console.log('[Cron] Foundation scrape complete:', JSON.stringify(result));
   } catch (err) {
-    console.error('[Cron] Failed to schedule foundation scrape:', err.message);
+    console.error('[Cron] Failed foundation scrape:', err.message);
   }
 });
 
